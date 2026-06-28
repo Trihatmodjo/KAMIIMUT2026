@@ -1015,67 +1015,48 @@
         }
 
         function periksaSusunanKata() {
-            const dataSoal = soalGame3[indeksG3];
-            const kalimatUser = kataTerpilihG3.join(" ").trim().toUpperCase();
-            
-            let targetPotongan = dataSoal.kalimatBenar.split(" ");
-            let jumlahBenar = 0;
-            
-            targetPotongan.forEach(kt => {
-                if(kataTerpilihG3.includes(kt)) {
-                    jumlahBenar++;
-                }
-            });
-
-            let skorHitungG3 = Math.floor((jumlahBenar / targetPotongan.length) * 100);
-            
-            const fbBox = document.getElementById('gameFeedbackBox');
-            const fbIcon = document.getElementById('gameFeedbackIcon');
-            const fbMsg = document.getElementById('gameFeedbackMessage');
-            const scVal = document.getElementById('gameScoreValue');
-            const fbInst = document.getElementById('gameFeedbackInstruction');
-
-            fbBox.classList.remove('hidden', 'bg-gradient-to-r', 'from-amber-400', 'to-orange-500', 'text-white', 'bg-red-50', 'border-red-400', 'text-red-800', 'border-b-8', 'border-orange-600', 'border-4');
-
-            if (skorHitungG3 === 100 && kalimatUser === dataSoal.kalimatBenar) {
-                skorG3 += 100;
-                // EFEK VISUAL MERIAH SEPERTI ULANG TAHUN
-                fbBox.classList.add('bg-gradient-to-r', 'from-pink-500', 'via-purple-500', 'to-indigo-500', 'text-white', 'border-b-8', 'border-purple-700');
-                fbIcon.innerText = "🎉 🥳";
-                fbMsg.innerText = "Keren kamu benar!";
-                fbInst.innerText = "Yey! Silakan klik tombol 'Soal Berikutnya' di bawah!";
-                createConfettiEffect();
-                
-                document.getElementById('checkG3Btn').classList.add('hidden');
-                document.getElementById('nextGameBtn').classList.remove('hidden');
-            } else {
-                // JIKA SALAH, DISURUH PERBAIKI & TOMBOL LANJUT DIKUNCI
-                fbBox.classList.add('bg-red-50', 'border-red-400', 'text-red-800', 'border-4');
-                fbIcon.innerText = "❌";
-                fbMsg.innerText = "Susunan kalimat kamu masih salah!";
-                fbInst.innerText = "Silakan klik tombol 'Atur Ulang Pilihan' di atas untuk memperbaiki jawabanmu.";
-                
-                document.getElementById('checkG3Btn').classList.add('hidden');
-                document.getElementById('nextGameBtn').classList.add('hidden'); // Kunci tombol selanjutnya
-            }
-
-            scVal.innerText = skorHitungG3;
-            fbBox.classList.remove('hidden');
+    const dataSoal = soalGame3[indeksG3];
+    let targetPotongan = dataSoal.kalimatBenar.split(" ");
+    
+    let jumlahBenar = 0;
+    // Memeriksa kata berdasarkan kecocokan posisi/indeks urutannya
+    targetPotongan.forEach((kt, index) => {
+        if(kataTerpilihG3[index] === kt) {
+            jumlahBenar++;
         }
+    });
 
-        function nextGameQuestion() {
-            indeksG3++;
-            tampilkanSoalG3();
-        }
-
-        function pilihRefleksiG3(pilihanEmosi) {
-            alert(`Terima kasih refleksinya! Perasaan kamu saat ini: ${pilihanEmosi}. Sekarang mari lihat rapormu!`);
-            document.getElementById('reflectionG3Page').classList.add('hidden');
-            
-            // Masukkan total nilai game ke 3 ke akumulasi
-            totalScore += Math.floor(skorG3 / soalGame3.length);
-            bukaHalamanRaporAkhir();
-        }
+    let skorHitungG3 = Math.floor((jumlahBenar / targetPotongan.length) * 100);
+    
+    const fbBox = document.getElementById('gameFeedbackBox');
+    const fbIcon = document.getElementById('gameFeedbackIcon');
+    const fbMsg = document.getElementById('gameFeedbackMessage');
+    const scVal = document.getElementById('gameScoreValue');
+    const fbInst = document.getElementById('gameFeedbackInstruction');
+    
+    if (skorHitungG3 === 100) {
+        fbBox.className = "p-4 bg-emerald-50 border-2 border-emerald-300 rounded-2xl flex flex-col items-center gap-2";
+        fbIcon.className = "fa-solid fa-circle-check text-4xl text-emerald-500 animate-bounce";
+        fbMsg.innerText = "YAY! SUSUNAN KALIMATMU BENAR SEKALI! 🎉";
+        fbMsg.className = "text-xl font-black text-emerald-700 text-center";
+        fbInst.innerText = "Tekan tombol di bawah untuk lanjut ya!";
+        fbInst.className = "text-sm text-emerald-600 font-medium text-center";
+    } else {
+        fbBox.className = "p-4 bg-amber-50 border-2 border-amber-300 rounded-2xl flex flex-col items-center gap-2";
+        fbIcon.className = "fa-solid fa-circle-xmark text-4xl text-amber-500 animate-pulse";
+        fbMsg.innerText = "KATA-KATANYA MASIH ADA YANG TERBALIK / KURANG TEPAT nih..";
+        fbMsg.className = "text-xl font-black text-amber-700 text-center";
+        fbInst.innerText = "Coba teliti lagi urutan katanya ya, kamu pasti bisa! 💪";
+        fbInst.className = "text-sm text-amber-600 font-medium text-center";
+    }
+    
+    scVal.innerText = skorHitungG3;
+    totalScore += skorHitungG3;
+    
+    document.getElementById('gameActionWrapper').classList.add('hidden');
+    document.getElementById('gameFeedbackBox').classList.remove('hidden');
+    document.getElementById('gameNextBtn').classList.remove('hidden');
+}
 
 
         // ========================== GAME 4 FUNCTIONS ==========================
