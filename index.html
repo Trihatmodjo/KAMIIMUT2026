@@ -1018,8 +1018,16 @@
             const dataSoal = soalGame3[indeksG3];
             const kalimatUser = kataTerpilihG3.join(" ").trim().toUpperCase();
             
-            // Kita normalkan teks target ke Huruf Besar (Uppercase) untuk dicocokkan
-            const kalimatTarget = dataSoal.kalimatBenar.trim().toUpperCase();
+            let targetPotongan = dataSoal.kalimatBenar.split(" ");
+            let jumlahBenar = 0;
+            
+            targetPotongan.forEach(kt => {
+                if(kataTerpilihG3.includes(kt)) {
+                    jumlahBenar++;
+                }
+            });
+
+            let skorHitungG3 = Math.floor((jumlahBenar / targetPotongan.length) * 100);
             
             const fbBox = document.getElementById('gameFeedbackBox');
             const fbIcon = document.getElementById('gameFeedbackIcon');
@@ -1029,37 +1037,17 @@
 
             fbBox.classList.remove('hidden', 'bg-gradient-to-r', 'from-amber-400', 'to-orange-500', 'text-white', 'bg-red-50', 'border-red-400', 'text-red-800', 'border-b-8', 'border-orange-600', 'border-4');
 
-            // LOGIKA FIXED: Jika susunan kata anak sama persis dengan kunci jawaban
-            if (kalimatUser === kalimatTarget) {
-                skorG3 += 10; // Langsung beri nilai mutlak 10
-                
-                // Tampilkan angka 10 di layar
-                scVal.innerText = "10"; 
-
+            if (skorHitungG3 === 100 && kalimatUser === dataSoal.kalimatBenar) {
+                skorG3 += 100;
                 // EFEK VISUAL MERIAH SEPERTI ULANG TAHUN
                 fbBox.classList.add('bg-gradient-to-r', 'from-pink-500', 'via-purple-500', 'to-indigo-500', 'text-white', 'border-b-8', 'border-purple-700');
                 fbIcon.innerText = "🎉 🥳";
-                fbMsg.innerText = "Keren kamu benar! (+10 Poin)";
+                fbMsg.innerText = "Keren kamu benar!";
                 fbInst.innerText = "Yey! Silakan klik tombol 'Soal Berikutnya' di bawah!";
                 createConfettiEffect();
                 
                 document.getElementById('checkG3Btn').classList.add('hidden');
                 document.getElementById('nextGameBtn').classList.remove('hidden');
-            } else {
-                // JIKA SALAH, DIHITUNG 0 & DISURUH PERBAIKI
-                scVal.innerText = "0";
-
-                fbBox.classList.add('bg-red-50', 'border-red-400', 'text-red-800', 'border-4');
-                fbIcon.innerText = "❌";
-                fbMsg.innerText = "Susunan kalimat kamu masih salah! (+0 Poin)";
-                fbInst.innerText = "Silakan klik tombol 'Atur Ulang Pilihan' di atas untuk memperbaiki jawabanmu.";
-                
-                document.getElementById('checkG3Btn').classList.add('hidden');
-                document.getElementById('nextGameBtn').classList.add('hidden'); // Kunci tombol selanjutnya agar diperbaiki dulu
-            }
-
-            fbBox.classList.remove('hidden');
-        }
             } else {
                 // JIKA SALAH, DISURUH PERBAIKI & TOMBOL LANJUT DIKUNCI
                 fbBox.classList.add('bg-red-50', 'border-red-400', 'text-red-800', 'border-4');
@@ -1084,10 +1072,8 @@
             alert(`Terima kasih refleksinya! Perasaan kamu saat ini: ${pilihanEmosi}. Sekarang mari lihat rapormu!`);
             document.getElementById('reflectionG3Page').classList.add('hidden');
             
-            // JALUR AMAN AKUMULASI: Karena tiap soal sudah bernilai mutlak 10 atau 0,
-            // nilainya langsung kita tambahkan total ke totalScore utama tanpa dibagi-bagi lagi.
-            totalScore += skorG3; 
-
+            // Masukkan total nilai game ke 3 ke akumulasi
+            totalScore += Math.floor(skorG3 / soalGame3.length);
             bukaHalamanRaporAkhir();
         }
 
