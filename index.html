@@ -355,26 +355,17 @@
             </div>
         </div>
 
-        <div id="reflectionG3Page" class="hidden w-full max-w-md bg-white rounded-3xl shadow-2xl p-8 border-4 border-amber-400 mx-auto my-auto text-center animate-fade-in">
-            <div class="text-4xl text-amber-500 mb-2"><i class="fa-solid fa-heart-pulse animate-pulse"></i></div>
-            <h2 class="text-2xl font-black text-amber-900 kids-title mb-2">Kotak Refleksi Belajar</h2>
-            <p class="text-gray-600 font-medium text-sm mb-6">Bagaimana perasaanmu setelah berhasil menyusun kalimat tadi?</p>
-            
+        <div id="selesaiGame3Page" class="hidden w-full max-w-md bg-white rounded-3xl shadow-2xl p-8 border-4 border-blue-400 mx-auto my-auto text-center animate-fade-in">
+    <div class="text-4xl text-emerald-500 mb-2"><i class="fa-solid fa-trophy animate-bounce"></i></div>
+    <h2 class="text-2xl font-black text-slate-800 mb-2">Game Selesai!</h2>
+    <p class="text-gray-600 font-medium text-sm mb-6">Hebat, kamu sudah menyelesaikan semua soal dengan baik!</p>
+    
+    <button onclick="kembaliKeMenuUtamaFix()" class="w-full bg-gradient-to-r from-blue-500 to-indigo-500 text-white font-black text-lg py-4 rounded-2xl shadow-lg transition transform hover:-translate-y-1 active:scale-95 mx-auto block">
+        Kembali ke Menu Utama <i class="fa-solid fa-house ml-2"></i>
+    </button>
+</div>            
             <div class="grid grid-cols-3 gap-3 mb-8">
-                <div onclick="pilihRefleksiG3('😄 Senang')" class="cursor-pointer p-4 bg-emerald-50 border-2 border-emerald-300 hover:border-emerald-500 rounded-2xl transition transform hover:scale-105">
-                    <span class="text-4xl block mb-1">😄</span>
-                    <span class="text-xs font-bold text-emerald-800">Senang</span>
-                </div>
-                <div onclick="pilihRefleksiG3('🤔 Bingung')" class="cursor-pointer p-4 bg-amber-50 border-2 border-amber-300 hover:border-amber-500 rounded-2xl transition transform hover:scale-105">
-                    <span class="text-4xl block mb-1">🤔</span>
-                    <span class="text-xs font-bold text-amber-800">Bingung</span>
-                </div>
-                <div onclick="pilihRefleksiG3('🚀 Menantang')" class="cursor-pointer p-4 bg-indigo-50 border-2 border-indigo-300 hover:border-indigo-500 rounded-2xl transition transform hover:scale-105">
-                    <span class="text-4xl block mb-1">🚀</span>
-                    <span class="text-xs font-bold text-indigo-800">Tertantang</span>
-                </div>
-            </div>
-            <p class="text-xs text-gray-400 font-semibold uppercase">Ketuk salah satu emoji di atas</p>
+                
         </div>
 
         <div id="gameHandwritingPage" class="hidden w-full max-w-4xl bg-gradient-to-b from-purple-50 via-white to-fuchsia-100 rounded-3xl shadow-2xl p-5 md:p-8 border-4 border-fuchsia-400 mx-auto my-auto text-center">
@@ -1014,12 +1005,17 @@
             document.getElementById('checkG3Btn').classList.remove('hidden');
         }
 
-        function periksaSusunanKata() {
+        // =========================================================================
+// PERBAIKAN UTUH UNTUK GAME 3: LOGIKA NILAI DAN NAVIGASI TOMBOL LANJUT
+// =========================================================================
+
+function periksaSusunanKata() {
     const dataSoal = soalGame3[indeksG3];
+    const kalimatUser = kataTerpilihG3.join(" ").trim().toUpperCase();
     let targetPotongan = dataSoal.kalimatBenar.split(" ");
     
     let jumlahBenar = 0;
-    // Memeriksa kata berdasarkan kecocokan posisi/indeks urutannya
+    // 1. Perbaikan Nilai: Cek kata berdasarkan posisi indeksnya agar urutan tidak terbalik
     targetPotongan.forEach((kt, index) => {
         if(kataTerpilihG3[index] === kt) {
             jumlahBenar++;
@@ -1034,15 +1030,20 @@
     const scVal = document.getElementById('gameScoreValue');
     const fbInst = document.getElementById('gameFeedbackInstruction');
     
-    if (skorHitungG3 === 100) {
-        fbBox.className = "p-4 bg-emerald-50 border-2 border-emerald-300 rounded-2xl flex flex-col items-center gap-2";
+    fbBox.classList.remove('hidden', 'bg-gradient-to-r', 'from-amber-400', 'to-orange-500', 'text-white', 'bg-red-50', 'border-red-400', 'text-red-800', 'border-b-8', 'border-orange-600', 'border-4');
+    
+    if (skorHitungG3 === 100 && kalimatUser === dataSoal.kalimatBenar) {
+        skorG3 += 100;
+        // Efek visual sukses kalimat teratur rapi
+        fbBox.className = "p-4 bg-emerald-50 border-2 border-emerald-300 rounded-2xl flex flex-col items-center gap-2 max-w-md mx-auto";
         fbIcon.className = "fa-solid fa-circle-check text-4xl text-emerald-500 animate-bounce";
         fbMsg.innerText = "YAY! SUSUNAN KALIMATMU BENAR SEKALI! 🎉";
         fbMsg.className = "text-xl font-black text-emerald-700 text-center";
         fbInst.innerText = "Tekan tombol di bawah untuk lanjut ya!";
         fbInst.className = "text-sm text-emerald-600 font-medium text-center";
     } else {
-        fbBox.className = "p-4 bg-amber-50 border-2 border-amber-300 rounded-2xl flex flex-col items-center gap-2";
+        // Efek visual jika susunan acak-acakan / tidak sesuai urutan
+        fbBox.className = "p-4 bg-amber-50 border-2 border-amber-300 rounded-2xl flex flex-col items-center gap-2 max-w-md mx-auto";
         fbIcon.className = "fa-solid fa-circle-xmark text-4xl text-amber-500 animate-pulse";
         fbMsg.innerText = "KATA-KATANYA MASIH ADA YANG TERBALIK / KURANG TEPAT nih..";
         fbMsg.className = "text-xl font-black text-amber-700 text-center";
@@ -1051,15 +1052,45 @@
     }
     
     scVal.innerText = skorHitungG3;
-    totalScore += skorHitungG3;
     
-    document.getElementById('gameActionWrapper').classList.add('hidden');
+    // 2. Perbaikan Tombol Hilang: Menghapus tombol Cek, memunculkan tombol 'nextGameBtn' (Sesuai ID di HTML Anda)
+    document.getElementById('checkG3Btn').classList.add('hidden');
     document.getElementById('gameFeedbackBox').classList.remove('hidden');
-    document.getElementById('gameNextBtn').classList.remove('hidden');
+    document.getElementById('nextGameBtn').classList.remove('hidden'); // Menjamin tombol muncul!
 }
 
+function nextGameQuestion() {
+    // 3. Reset Interface Tombol: Balikkan kondisi tombol untuk soal selanjutnya
+    document.getElementById('checkG3Btn').classList.remove('hidden'); // Munculkan tombol periksa lagi
+    document.getElementById('nextGameBtn').classList.add('hidden');    // Sembunyikan tombol next ini kembali
+    document.getElementById('gameFeedbackBox').classList.add('hidden'); // Bersihkan kotak nilai lama
+    
+    indeksG3++; // Naikkan ke soal berikutnya
 
-        // ========================== GAME 4 FUNCTIONS ==========================
+    // 4. Cek Batasan Jumlah Soal (Total ada 10 soal di array Anda)
+    if (indeksG3 < soalGame3.length) {
+        kataTerpilihG3 = []; // Kosongkan papan susunan user yang lama
+        tampilkanSoalG3();   // Panggil fungsi bawaan Anda untuk muat gambar dan kata acak baru
+    } else {
+        // Jika 10 soal sudah habis, hitung total skor akumulasi Game 3 ke sistem utama Anda
+        totalScore += Math.floor(skorG3 / soalGame3.length);
+        
+        // 1. Sembunyikan halaman permainan Game 3 secara total
+        document.getElementById('gamePage').classList.add('hidden');
+        
+        // 2. POTONG KOMPAS: Langsung buka Menu Utama asli kamu tanpa lewat refleksi lagi!
+        const menuUtama = document.getElementById('mainMenuPage');
+        if (menuUtama) {
+            menuUtama.classList.remove('hidden');
+        } else {
+            // Cadangan aman jika id menu berbeda
+            location.reload(); 
+        }
+        
+        // 3. Beri notifikasi hore biar murid tahu kalau gamenya sudah selesai
+        alert(`🎉 Yeay!Selamat...Kamu sudah menyelesaikan semua soal Game 3.\nTotal Skormu: ${skorG3}`);
+    }
+}     // ========================== GAME 4 FUNCTIONS ==========================
         function startGameHandwriting() {
             document.getElementById('mainMenuPage').classList.add('hidden');
             document.getElementById('gameHandwritingPage').classList.remove('hidden');
@@ -1434,6 +1465,49 @@
             document.getElementById('reportPage').classList.add('hidden');
             document.getElementById('mainMenuPage').classList.remove('hidden');
         }
-    </script>
+    // =========================================================================
+// KODE PENYELAMAT: ANTI-TYPO, ANTI-WHITE SCREEN, & KEMBALI KE MENU UTAMA
+// =========================================================================
+
+// Kita buat dua nama fungsi sekaligus agar typo 'pilesh' di HTML kamu tetap aktif berjalan!
+function pileshRefleksiG3(teksEmoji) { pilihRefleksiG3(teksEmoji); }
+
+function pilihRefleksiG3(teksEmoji) {
+    refleksiG3 = teksEmoji;
+
+    // 1. Beri efek menyala warna kuning pada kotak emoji yang diketuk murid
+    document.querySelectorAll('#reflectionG3Page .cursor-pointer').forEach(el => {
+        el.classList.remove('bg-amber-300', 'scale-110', 'border-4', 'border-amber-500');
+        
+        // Deteksi kecocokan teks di dalam kotak emoji
+        if (el.innerText.includes(teksEmoji.replace(/[^\w\s]/g, '').trim()) || el.innerHTML.includes(teksEmoji)) {
+            el.classList.add('bg-amber-300', 'scale-110', 'border-4', 'border-amber-500');
+        }
+    });
+
+    // 2. Langsung munculkan tombol "Kembali ke Menu Utama" di bawahnya (Anti-Stuck!)
+    const btnLanjutRefleksi = document.getElementById('nextAfterReflectionG3Btn');
+    if (btnLanjutRefleksi) {
+        btnLanjutRefleksi.classList.remove('hidden');
+    }
+}
+
+function lanjutKeG4DariRefleksi() {
+    // 1. Sembunyikan halaman refleksi Game 3
+    document.getElementById('reflectionG3Page').classList.add('hidden');
+    
+    // 2. Kembalikan tampilan layar ke halaman pemilihan menu game utama kamu
+    // Kode di bawah ini mengecek id gameSelectionPage atau id gamePage untuk dinonaktifkan
+    const menuUtama = document.getElementById('gameSelectionPage') || document.getElementById('mainMenuPage');
+    if (menuUtama) {
+        menuUtama.classList.remove('hidden');
+    } else {
+        // Jika semua id di atas tidak ketemu, paksa kembali ke startPage halaman depan
+        const startPage = document.getElementById('startPage') || document.getElementById('dashboardPage');
+        if (startPage) startPage.classList.remove('hidden');
+    }
+} 
+
+</script>
 </body>
 </html>
