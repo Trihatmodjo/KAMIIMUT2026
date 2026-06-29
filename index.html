@@ -1507,7 +1507,90 @@ function lanjutKeG4DariRefleksi() {
         if (startPage) startPage.classList.remove('hidden');
     }
 } 
+// ========================================================
+// 1. FUNGSI SAKTI: PENGAMAN NAVIGASI (ANTI-BOCOR / ANTI-MELUBER)
+// ========================================================
+function sembunyikanSemuaHalaman() {
+    // Daftar semua ID kontainer halaman yang ada di HTML-mu
+    const semuaHalaman = [
+        'loginPage', 
+        'mainMenuPage', 
+        'dashboardPage', 
+        'practicePage', 
+        'gamePage',             // Game 3 (Susun Kata)
+        'selesaiGame3Page',     // Game 3 Selesai
+        'reflectionG3Page',     // Game 3 Refleksi Emoji
+        'gameHandwritingPage',  // Game 4 (Ayo Menulis)
+        'rekamBacaPage',        // Game 5 (Rekam Baca)
+        'reportPage'
+    ];
+    
+    // Paksa semua halaman di atas diberi class 'hidden' (disembunyikan)
+    semuaHalaman.forEach(id => {
+        const elemen = document.getElementById(id);
+        if (elemen) {
+            elemen.classList.add('hidden');
+        }
+    });
+}
 
+// ========================================================
+// 2. REPARASI TOMBOL KEMBALI GAME 4 (Ayo Menulis)
+// ========================================================
+function backToMainMenuFromG4() {
+    console.log("Tombol kembali Game 4 sukses dijalankan!");
+    
+    // Sembunyikan Game 4 dan game lainnya
+    sembunyikanSemuaHalaman();
+    
+    // Tampilkan hanya menu utama kamu yang rapi
+    const menuUtama = document.getElementById('mainMenuPage') || document.getElementById('gameSelectionPage');
+    if (menuUtama) {
+        menuUtama.classList.remove('hidden');
+    }
+}
+
+// ========================================================
+// 3. REPARASI TOMBOL KEMBALI GAME 5 (Rekam Baca & Kamera)
+// ========================================================
+function backToMainMenuFromG5() {
+    console.log("Mencoba menutup Game 5 dan mematikan kamera...");
+
+    // Matikan kamera dengan aman (Mencegah fungsi mogok/freeze di HP atau Laptop)
+    try {
+        // Cek elemen video kodinganmu (#kameraTampil)
+        const videoEl = document.getElementById('kameraTampil');
+        if (videoEl && videoEl.srcObject) {
+            const stream = videoEl.srcObject;
+            stream.getTracks().forEach(track => track.stop());
+            videoEl.srcObject = null;
+            console.log("Hardware Kamera berhasil diputus dengan sukses.");
+        }
+        
+        // Cek juga variabel global stream (jika ada nama localStream di skrip bawahmu)
+        if (typeof localStream !== 'undefined' && localStream) {
+            localStream.getTracks().forEach(track => track.stop());
+            localStream = null;
+        }
+    } catch (error) {
+        console.warn("Kamera sudah mati atau dilepas otomatis oleh browser:", error);
+    }
+
+    // Bersihkan layar dari game yang jebol
+    sembunyikanSemuaHalaman();
+
+    // Munculkan menu utama kembali
+    const menuUtama = document.getElementById('mainMenuPage') || document.getElementById('gameSelectionPage');
+    if (menuUtama) {
+        menuUtama.classList.remove('hidden');
+    }
+    
+    // Reset tampilan menu dalam Game 5 agar kalau dimainkan lagi posisinya normal
+    const areaGameG5 = document.getElementById('areaGameG5');
+    const areaSelesaiG5 = document.getElementById('areaSelesaiG5');
+    if (areaGameG5) areaGameG5.style.display = 'block';
+    if (areaSelesaiG5) areaSelesaiG5.style.display = 'none';
+}
 </script>
 </body>
 </html>
