@@ -15,7 +15,6 @@
         body { font-family: 'Poppins', sans-serif; }
         .kids-title { font-family: 'Fredoka', sans-serif; }
         
-        /* Style Ukuran Papan Tulis Baru (Lebih Besar & Responsif) */
         #writingPad {
             border: 6px dashed #d946ef;
             border-radius: 30px;
@@ -26,7 +25,6 @@
             transition: all 0.3s ease;
         }
 
-        /* Style Tambahan Khusus Game Ke-5 (Rekam Baca Pak Tri) */
         .wadah-kuis { 
             background: white; 
             padding: 25px; 
@@ -79,6 +77,7 @@
         .simbol-isyarat { font-size: 26px; }
         .Kamera-wrapper { position: relative; width: 100%; border-radius: 16px; overflow: hidden; background: #333; }
         #kameraTampil { width: 100%; display: block; transform: scaleX(-1); }
+        #canvasWatermark { display: none; }
         #hasilRekaman { width: 100%; border-radius: 16px; background: #222; margin-top: 15px; display: none; }
         .live-watermark {
             position: absolute;
@@ -120,7 +119,6 @@
         .tamat-box { display: none; }
         .tamat-box h2 { color: #2ed573; font-size: 32px; }
 
-        /* Kustom Suku Kata Menarik Konten 2 */
         .syllable-bubble {
             background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
             border: 3px solid #cbd5e1;
@@ -132,7 +130,6 @@
             box-shadow: 0 2px 0 #94a3b8;
         }
 
-        /* Animasi Kembang Api Perayaan Game 3 */
         @keyframes confetti-fall {
             0% { transform: translateY(-10px) rotate(0deg); opacity: 1; }
             100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
@@ -141,7 +138,6 @@
             position: absolute;
             width: 12px;
             height: 12px;
-            backgroundColor: #ff4757;
             top: -10px;
             z-index: 50;
             animation: confetti-fall 2.5s linear infinite;
@@ -246,7 +242,7 @@
                 <button onclick="backToDashboard()" class="text-gray-500 hover:text-indigo-600 font-bold transition text-sm flex items-center gap-2 bg-slate-100 px-4 py-2 rounded-xl hover:bg-indigo-50">
                     <i class="fa-solid fa-chevron-left"></i> Kembali Pilih Kartu
                 </button>
-                <button id="btnPlayMainAudio" onclick="putarSuaraKata(itemAktif.kata)" class="hidden text-white bg-indigo-600 hover:bg-indigo-700 font-bold text-sm px-4 py-2 rounded-xl transition flex items-center gap-2 shadow">
+                <button id="btnPlayMainAudio" onclick="putarSuaraKata(itemAktif.kata)" class="text-white bg-indigo-600 hover:bg-indigo-700 font-bold text-sm px-4 py-2 rounded-xl transition flex items-center gap-2 shadow">
                     <i class="fa-solid fa-volume-high"></i> Dengar Suara
                 </button>
             </div>
@@ -304,10 +300,10 @@
 
         <div id="gamePage" class="hidden w-full max-w-4xl bg-white rounded-3xl shadow-2xl p-6 md:p-8 border-4 border-emerald-400 mx-auto my-auto text-center">
             <div class="flex justify-between items-center border-b-2 border-dashed border-gray-100 pb-4 mb-6">
-                <button onclick="backToMainMenu()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-gray-700 font-bold rounded-xl text-xs transition">
+                <button onclick="backToMainMenuFromG4()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-gray-700 font-bold rounded-xl text-xs transition">
                     <i class="fa-solid fa-chevron-left mr-1"></i> Menu Utama
                 </button>
-                <h2 class="text-2xl font-black text-emerald-700 kids-title">Game 3: Susun Kata Acak 10 Soal ??</h2>
+                <h2 class="text-2xl font-black text-emerald-700 kids-title">Game 3: Susun Kata Acak</h2>
                 <div class="text-sm font-bold text-slate-500 bg-slate-100 px-3 py-1 rounded-full" id="gameProgress">Soal 1 / 10</div>
             </div>
 
@@ -356,29 +352,26 @@
         </div>
 
         <div id="selesaiGame3Page" class="hidden w-full max-w-md bg-white rounded-3xl shadow-2xl p-8 border-4 border-blue-400 mx-auto my-auto text-center animate-fade-in">
-    <div class="text-4xl text-emerald-500 mb-2"><i class="fa-solid fa-trophy animate-bounce"></i></div>
-    <h2 class="text-2xl font-black text-slate-800 mb-2">Game Selesai!</h2>
-    <p class="text-gray-600 font-medium text-sm mb-6">Hebat, kamu sudah menyelesaikan semua soal dengan baik!</p>
-    
-    <button onclick="kembaliKeMenuUtamaFix()" class="w-full bg-gradient-to-r from-blue-500 to-indigo-500 text-white font-black text-lg py-4 rounded-2xl shadow-lg transition transform hover:-translate-y-1 active:scale-95 mx-auto block">
-        Kembali ke Menu Utama <i class="fa-solid fa-house ml-2"></i>
-    </button>
-</div>            
-            <div class="grid grid-cols-3 gap-3 mb-8">
-                
-        </div>
+            <div class="text-4xl text-emerald-500 mb-2"><i class="fa-solid fa-trophy animate-bounce"></i></div>
+            <h2 class="text-2xl font-black text-slate-800 mb-2">Game Selesai!</h2>
+            <p class="text-gray-600 font-medium text-sm mb-6">Hebat, kamu sudah menyelesaikan semua soal dengan baik!</p>
+            
+            <button onclick="kembaliKeMenuUtamaFix()" class="w-full bg-gradient-to-r from-blue-500 to-indigo-500 text-white font-black text-lg py-4 rounded-2xl shadow-lg transition transform hover:-translate-y-1 active:scale-95 mx-auto block">
+                Kembali ke Menu Utama <i class="fa-solid fa-house ml-2"></i>
+            </button>
+        </div>            
 
         <div id="gameHandwritingPage" class="hidden w-full max-w-4xl bg-gradient-to-b from-purple-50 via-white to-fuchsia-100 rounded-3xl shadow-2xl p-5 md:p-8 border-4 border-fuchsia-400 mx-auto my-auto text-center">
             <div class="flex justify-between items-center border-b-4 border-dashed border-fuchsia-200 pb-4 mb-4">
                 <button onclick="backToMainMenu()" class="px-4 py-2 bg-fuchsia-100 hover:bg-fuchsia-200 text-fuchsia-700 font-extrabold rounded-2xl text-xs transition shadow-sm transform active:scale-95">
                     <i class="fa-solid fa-house-chimney mr-1"></i> Menu Utama
                 </button>
-                <h2 class="text-2xl md:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-600 to-purple-600 kids-title tracking-wide">Game 4: Papan Tulis Ajaib! ??</h2>
+                <h2 class="text-2xl md:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-600 to-purple-600 kids-title tracking-wide">Game 4: Papan Tulis Ajaib!</h2>
                 <div class="text-sm font-black text-purple-700 bg-purple-100 px-4 py-1.5 rounded-full border-2 border-purple-300 shadow-sm" id="g4Progress">Soal 1 / 5</div>
             </div>
 
             <div class="bg-gradient-to-r from-fuchsia-500 to-purple-600 text-white rounded-2xl p-4 mb-5 max-w-2xl mx-auto shadow-md transform hover:scale-[1.01] transition duration-300">
-                <p class="text-xs uppercase tracking-widest font-bold opacity-90 mb-1">?? TANTANGAN MENULIS ??</p>
+                <p class="text-xs uppercase tracking-widest font-bold opacity-90 mb-1"> TANTANGAN MENULIS </p>
                 <p id="g4-question" class="font-black text-2xl md:text-4xl tracking-wide kids-title drop-shadow">Tuliskan kata: ...</p>
             </div>
 
@@ -431,6 +424,7 @@
 
                     <div class="Kamera-wrapper" id="boxKamera">
                         <video id="kameraTampil" autoplay muted playsinline></video>
+                        <canvas id="canvasWatermark"></canvas>
                         <div class="live-watermark" id="wmLive">Copyright AMI IMUT 2026</div>
                     </div>
 
@@ -466,12 +460,10 @@
                 <div class="text-7xl font-black text-indigo-600 kids-title tracking-tight" id="finalScoreDisplay">0</div>
                 <p class="text-sm font-bold text-emerald-600 mt-2" id="finalScoreStatus">Bintang Sempurna!</p>
             </div>
-
             <button onclick="closeReportPage()" class="w-full bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-black text-lg py-4 rounded-2xl shadow-lg transform transition hover:-translate-y-1">
                 Kembali ke Menu Utama <i class="fa-solid fa-house ml-1"></i>
             </button>
         </div>
-
     </div>
 
     <footer class="w-full max-w-5xl mt-12 px-4 border-t border-slate-200/60 pt-6 mb-4">
@@ -479,1118 +471,799 @@
             <div class="flex flex-col sm:flex-row items-center gap-2 sm:gap-3 text-slate-500 font-medium text-center sm:text-left">
                 <span class="text-slate-800 font-semibold">&copy; 2026 AMI IMUT " Aplikasi Media Inklusif Interaktif Murid Tunarungu ".</span>
             </div>
-            <div class="text-slate-400 font-normal">
-                Designed & Developed by <span class="text-slate-700 font-semibold cursor-pointer">Mohammad Trihatmodjo</span>
-            </div>
+            <div class="text-slate-400 font-normal"> Designed & Developed by <span class="text-slate-700 font-semibold cursor-pointer">Mohammad Trihatmodjo</span> </div>
         </div>
     </footer>
 
     <script>
-        // 1. DATABASE MATERI HURUF (A - Z AMAN LENGKAP 100%)
         const materiMengucapkan = [
-            { id: 1, kata: "A", ejaan: "Buka mulut lebar: Aaaa... Aaaa...", emoji: "🍏", img: "https://images.unsplash.com/photo-1652080946581-16973c11824a?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?w=400" },
-            { id: 2, kata: "B", ejaan: "Bibir dirapatkan: Beee... Beee...", emoji: "🎈", img: "https://images.unsplash.com/photo-1653956336207-0248ce26f710?q=80&w=869&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?w=400" },
-            { id: 3, kata: "C", ejaan: "Gigi rapat bersentuhan: Ceee... Ceee...", emoji: "🐱", img: "https://images.unsplash.com/photo-1528028018421-7787621bd55d?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?w=400" },
-            { id: 4, kata: "D", ejaan: "Lidah di belakang gigi atas: Deee...", emoji: "🐕", img: "https://images.unsplash.com/photo-1533105079780-92b9be482077?w=400" },
-            { id: 5, kata: "E", ejaan: "Senyum lebar: Eeee... Eeee...", emoji: "🐘", img: "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=400" },
-            { id: 6, kata: "F", ejaan: "Gigi atas gigit bibir bawah: Efff...", emoji: "🐟", img: "https://images.unsplash.com/photo-1538933251213-9e044ce589be?q=80&w=676&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?w=400" },
-            { id: 7, kata: "G", ejaan: "Tenggorokan belakang: Gee... Gee...", emoji: "🦒", img: "https://images.unsplash.com/photo-1547721064-da6cfb341d50?w=400" },
-            { id: 8, kata: "H", ejaan: "Hembuskan nafas dari dalam: Hah...", emoji: "🚁", img: "https://images.unsplash.com/photo-1583608205776-bfd35f0d9f83?w=400" },
-            { id: 9, kata: "I", ejaan: "Tarik bibir ke samping: Iiii... Iiii...", emoji: "🍦", img: "https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?w=400" },
-            { id: 10, kata: "J", ejaan: "Gigi depan rapat bergetar: Jeee...", emoji: "🚘", img: "https://images.unsplash.com/photo-1511919884226-fd3cad34687c?w=400" },
-            { id: 11, kata: "K", ejaan: "Batukkan udara dari dalam: Kaa...", emoji: "📷", img: "https://images.unsplash.com/photo-1484820540004-14229fe36ca4?w=400" },
-            { id: 12, kata: "L", ejaan: "Ujung lidah naik ke atas: Llll...", emoji: "🦁", img: "https://images.unsplash.com/photo-1546182990-dffeafbe841d?q=80&w=859&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?w=400" },
-            { id: 13, kata: "M", ejaan: "Katupkan kedua bibir rapat: Mmmm...", emoji: "🐒", img: "https://images.unsplash.com/photo-1540573133985-87b6da6d54a9?w=400" },
-            { id: 14, kata: "N", ejaan: "Lidah nempel langit depan: Nnnn...", emoji: "🍍", img: "https://images.unsplash.com/photo-1550258987-190a2d41a8ba?w=400" },
-            { id: 15, kata: "O", ejaan: "Mulut bulat penuh: Oooo... Oooo...", emoji: "🍊", img: "https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=400" },
-            { id: 16, kata: "P", ejaan: "Tiup udara dari bibir rapat: Peee...", emoji: "🍕", img: "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=400" },
-            { id: 17, kata: "Q", ejaan: "Bunyi k belakang tenggorokan: Qqq...", emoji: "👑", img: "https://images.unsplash.com/photo-1589652717521-10c0d092dea9?w=400" },
-            { id: 18, kata: "R", ejaan: "Getarkan ujung lidah atas: Rrrr...", emoji: "🤖", img: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=400" },
-            { id: 19, kata: "S", ejaan: "Desis udara lewat celah gigi: Sss...", emoji: "🍓", img: "https://images.unsplash.com/photo-1464965911861-746a04b4bca6?w=400" },
-            { id: 20, kata: "T", ejaan: "Ketuk lidah ke gigi atas: Teee...", emoji: "🍅", img: "https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=400" },
-            { id: 21, kata: "U", ejaan: "Moncongkan bibir ke depan: Uuuu...", emoji: "🍇", img: "https://images.unsplash.com/photo-1537084642907-629340c7e59c?w=400" },
-            { id: 22, kata: "V", ejaan: "Gigi atas nempel bibir bawah: Vvv...", emoji: "🎻", img: "https://images.unsplash.com/photo-1612225330812-01a9c6b355ec?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?w=400" },
-            { id: 23, kata: "W", ejaan: "Bentuk u lalu buka cepat: Wwww...", emoji: "🍉", img: "https://images.unsplash.com/photo-1587049633312-d628ae50a8ae?w=400" },
-            { id: 24, kata: "X", ejaan: "Bunyi k dan s bersamaan: Ksss...", emoji: "🐟", img: "https://images.unsplash.com/photo-1595062584313-47018e0ee5cb?w=400" },
-            { id: 25, kata: "Y", ejaan: "Tekan tengah lidah: Yeee... Yeee...", emoji: "⚓", img: "https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=400" },
-            { id: 26, kata: "Z", ejaan: "Desis gigi depan bergetar: Zzzz...", emoji: "🦓", img: "https://images.unsplash.com/photo-1501705388883-4ed8a543392c?w=400" }
+            { id: 1, kata: "A", ejaan: "Buka mulut lebar: Aaaa... Aaaa...", emoji: "🍏", img: "https://images.unsplash.com/photo-1652080946581-16973c11824a?q=80&w=387&auto=format&fit=crop" },
+            { id: 2, kata: "B", ejaan: "Bibir dirapatkan: Beee... Beee...", emoji: "🎈", img: "https://images.unsplash.com/photo-1653956336207-0248ce26f710?q=80&w=869&auto=format&fit=crop" },
+            { id: 3, kata: "C", ejaan: "Gigi rapat bersentuhan: Ceee... Ceee...", emoji: "🐱", img: "https://images.unsplash.com/photo-1528028018421-7787621bd55d?q=80&w=387&auto=format&fit=crop" },
+            { id: 4, kata: "D", ejaan: "Lidah di belakang gigi atas: Deee...", emoji: "🐕", img: "https://images.unsplash.com/photo-1543466835-00a7907e9de1?q=80&w=400" },
+            { id: 5, kata: "E", ejaan: "Bibir ditarik ke samping: Eeee...", emoji: "🐘", img: "https://images.unsplash.com/photo-1557050543-4d5f4e07ef46?q=80&w=400" },
+            { id: 6, kata: "F", ejaan: "Gigi atas di bibir bawah: Ffff...", emoji: "🦩", img: "https://images.unsplash.com/photo-1519962551719-e34991ac129b?q=80&w=400" },
+            { id: 7, kata: "G", ejaan: "Pangkal lidah ke atas: Gggeee...", emoji: "🦒", img: "https://images.unsplash.com/photo-1547721064-da6cfb341d50?q=80&w=400" },
+            { id: 8, kata: "H", ejaan: "Hembuskan napas bebas: Haaa...", emoji: "🚀", img: "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?q=80&w=400" },
+            { id: 9, kata: "I", ejaan: "Bibir senyum rapat: Iiii... Iiii...", emoji: "🐟", img: "https://images.unsplash.com/photo-1524704654690-b56c05c78a02?q=80&w=400" },
+            { id: 10, kata: "J", ejaan: "Rahang rapat geser: Jjeee...", emoji: "🍓", img: "https://images.unsplash.com/photo-1464965911861-746a04b4bca6?q=80&w=400" },
+            { id: 11, kata: "K", ejaan: "Lidah belakang batuk: Kaaa...", emoji: "🥝", img: "https://images.unsplash.com/photo-1585059895324-58281243f17f?q=80&w=400" },
+            { id: 12, kata: "L", ejaan: "Ujung lidah ke langit gigi: Lllaa...", emoji: "🍋", img: "https://images.unsplash.com/photo-1534531173927-aeb928d54385?q=80&w=400" },
+            { id: 13, kata: "M", ejaan: "Bibir tutup rapat dengung: Mmmm...", emoji: "🥭", img: "https://images.unsplash.com/photo-1553279768-865429fa0078?q=80&w=400" },
+            { id: 14, kata: "N", ejaan: "Lidah nempel atas dengung: Nnnn...", emoji: "🍍", img: "https://images.unsplash.com/photo-1550258987-190a2d41a8ba?q=80&w=400" },
+            { id: 15, kata: "O", ejaan: "Bibir bulat penuh: Oooo... Oooo...", emoji: "🍊", img: "https://images.unsplash.com/photo-1547514701-42782101795e?q=80&w=400" },
+            { id: 16, kata: "P", ejaan: "Bibir rapat lepas udara: Peee...", emoji: "🍌", img: "https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?q=80&w=400" },
+            { id: 17, kata: "Q", ejaan: "Bulat dalam tenggorok: Qyuuu...", emoji: "👑", img: "https://images.unsplash.com/photo-1599583661135-c052e0e01741?q=80&w=400" },
+            { id: 18, kata: "R", ejaan: "Ujung lidah digetarkan: Rrrr...", emoji: "🐇", img: "https://images.unsplash.com/photo-1585110396000-c9ffd4e4b308?q=80&w=400" },
+            { id: 19, kata: "S", ejaan: "Gigi rapat tiup angin: Ssss...", emoji: "🍓", img: "https://images.unsplash.com/photo-1518635017498-87f514b751ba?q=80&w=400" },
+            { id: 20, kata: "T", ejaan: "Ujung lidah lepas gigi atas: Ttt...", emoji: "🍅", img: "https://images.unsplash.com/photo-1518977676601-b53f82aba655?q=80&w=400" },
+            { id: 21, kata: "U", ejaan: "Bibir maju monyong: Uuuu... Uuuu...", emoji: "🍇", img: "https://images.unsplash.com/photo-1537640538966-79f369143f8f?q=80&w=400" },
+            { id: 22, kata: "V", ejaan: "Gigi atas di bibir getar: Vvvv...", emoji: "🎻", img: "https://images.unsplash.com/photo-1612222869049-d8ec8527a067?q=80&w=400" },
+            { id: 23, kata: "W", ejaan: "Monyong lalu buka cepat: Waaa...", emoji: "🍉", img: "https://images.unsplash.com/photo-1587049352846-4a222e784d38?q=80&w=400" },
+            { id: 24, kata: "X", ejaan: "Bunyi k lalu s: Eksen...", emoji: "🪕", img: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=400" },
+            { id: 25, kata: "Y", ejaan: "Lidah tengah tekan: Yeee...", emoji: "🪀", img: "https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?q=80&w=400" },
+            { id: 26, kata: "Z", ejaan: "Gigi rapat getar lebah: Zzzz...", emoji: "🦓", img: "https://images.unsplash.com/photo-1501705388883-4ed8a543392c?q=80&w=400" }
         ];
 
-        // 2. DATABASE MATERI MENGEJA KATA (GAME 2 LENGKAP 10 SOAL)
-        const materiMengeja = [
-            { id: 1, kata: "BUKU", sukuKata: ["BU", "KU"], ejaan: "BU - KU", emoji: "📚", img: "https://images.unsplash.com/photo-1495446815901-a7297e633e8d?w=400", warna: "border-amber-400" },
-            { id: 2, kata: "BOLA", sukuKata: ["BO", "LA"], ejaan: "BO - LA", emoji: "⚽", img: "https://images.unsplash.com/photo-1516567727245-ad8c68f3ec93?q=80&w=449&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?w=400", warna: "border-blue-400" },
-            { id: 3, kata: "ROTI", sukuKata: ["RO", "TI"], ejaan: "RO - TI", emoji: "🍞", img: "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400", warna: "border-orange-400" },
-            { id: 4, kata: "TOPI", sukuKata: ["TO", "PI"], ejaan: "TO - PI", emoji: "🎩", img: "https://images.unsplash.com/photo-1521369909029-2afed882baee?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?w=400", warna: "border-indigo-400" },
-            { id: 5, kata: "PITA", sukuKata: ["PI", "TA"], ejaan: "PI - TA", emoji: "🎀", img: "https://images.unsplash.com/photo-1652501010397-7b19f1d9edad?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3Dw=400", warna: "border-pink-400" },
-            { id: 6, kata: "SAYUR", sukuKata: ["SA", "YUR"], ejaan: "SA - YUR", emoji: "🥦", img: "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=400", warna: "border-teal-400" },
-            { id: 7, kata: "MADU", sukuKata: ["MA", "DU"], ejaan: "MA - DU", emoji: "🍯", img: "https://images.unsplash.com/photo-1587049352851-8d4e89133924?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?w=400", warna: "border-yellow-400" },
-            { id: 8, kata: "SUSU", sukuKata: ["SU", "SU"], ejaan: "SU - SU", emoji: "🥛", img: "https://images.unsplash.com/photo-1550583724-b2692b85b150?w=400", warna: "border-blue-400" },
-            { id: 9, kata: "IKAN", sukuKata: ["I", "KAN"], ejaan: "I - KAN", emoji: "🐟", img: "https://images.unsplash.com/photo-1535591273668-578e31182c4f?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?w=400", warna: "border-cyan-400" },
-            { id: 10, kata: "PULPEN", sukuKata: ["PUL", "PEN"], ejaan: "PUL - PEN", emoji: "🖊️", img: "https://images.unsplash.com/photo-1759729880000-bd54465328b7?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?w=400", warna: "border-purple-400" }
+        const databaseMengejaKata = [
+            { id: 1, kata: "BOLA", ejaan: "BO - LA", sukuKata: ["BO", "LA"], emoji: "⚽", img: "https://images.unsplash.com/photo-1660926655155-8b1f8f9079f5?q=80&w=400" },
+            { id: 2, kata: "BUKU", ejaan: "BU - KU", sukuKata: ["BU", "KU"], emoji: "📚", img: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?q=80&w=400" },
+            { id: 3, kata: "TOPI", ejaan: "TO - PI", sukuKata: ["TO", "PI"], emoji: "🐇", img: "https://images.unsplash.com/photo-1560774358-d727658f457c?q=80&w=400" },
+            { id: 4, kata: "ROTI", ejaan: "RO - TI", sukuKata: ["RO", "TI"], emoji: "🍞", img: "https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=400" },
+            { id: 5, kata: "SAPI", ejaan: "SA - PI", sukuKata: ["SA", "PI"], emoji: "🐄", img: "https://images.unsplash.com/photo-1570042225831-d98fa7577f1e?q=80&w=400" },
+            { id: 6, kata: "KUE", ejaan: "KU - E", sukuKata: ["KU", "E"], emoji: "🍰", img: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?q=80&w=400" },
+            { id: 7, kata: "IKAN", ejaan: "I - KAN", sukuKata: ["I", "KAN"], emoji: "🐟", img: "https://images.unsplash.com/photo-1535591273668-578e31182c4f?q=80&w=400" },
+            { id: 8, kata: "MATA", ejaan: "MA - TA", sukuKata: ["MA", "TA"], emoji: "👁️", img: "https://images.unsplash.com/photo-1564278692313-b2d65996fc93?q=80&w=400" },
+            { id: 9, kata: "PENA", ejaan: "PE - NA", sukuKata: ["PE", "NA"], emoji: "🖊️", img: "https://images.unsplash.com/photo-1759729880000-bd54465328b7?q=80&w=400" },
+            { id: 10, kata: "MEJA", ejaan: "ME - JA", sukuKata: ["ME", "JA"], emoji: "😊", img: "https://images.unsplash.com/photo-1573104049264-5324ea0027d5?q=80&w=400" },
+            { id: 11, kata: "TAHU", ejaan: "TA - HU", sukuKata: ["TA", "HU"], emoji: "⬜", img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=400" },
+            { id: 12, kata: "PITA", ejaan: "PI - TA", sukuKata: ["PI", "TA"], emoji: "🎀", img: "https://images.unsplash.com/photo-1652501010397-7b19f1d9edad?q=80&w=400" }
         ];
 
-        // 3. GAME 3: SUSUN KATA KALIMAT
-        const soalGame3 = [
-            { foto: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=400", kalimatBenar: "SAYA MEMBACA BUKU CERITA", kataAcak: ["BUKU", "SAYA", "CERITA", "MEMBACA"] },
-            { foto: "https://images.unsplash.com/photo-1621998014874-a6edfb5f9bc7?q=80&w=869&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?w=400", kalimatBenar: "BUDI BERMAIN SEPAK BOLA", kataAcak: ["SEPAK", "BOLA", "BUDI", "BERMAIN"] },
-            { foto: "https://images.unsplash.com/photo-1625631980741-33a7752108f4?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?w=400", kalimatBenar: "IBU MEMASAK DAGING SAPI", kataAcak: ["IBU", "DAGING", "SAPI", "MEMASAK"] },
-            { foto: "https://images.unsplash.com/photo-1611068120734-1c4efabe89ab?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?w=400", kalimatBenar: "ADIK MINUM SUSU SAPI", kataAcak: ["SUSU", "ADIK", "SAPI", "MINUM"] },
-            { foto: "https://images.unsplash.com/photo-1659352152057-e7e83f1808b2?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?w=400", kalimatBenar: "KAMI MAKAN BUAH SEGAR", kataAcak: ["BUAH", "KAMI", "SEGAR", "MAKAN"] },
-            { foto: "https://images.unsplash.com/photo-1593453941823-333b0ac96452?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?w=400", kalimatBenar: "ADIK BERMAIN MOBIL ROBOT", kataAcak: ["ROBOT", "MOBIL", "ADIK", "BERMAIN"] },
-            { foto: "https://images.unsplash.com/photo-1544334976-22179b8f2b98?q=80&w=408&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?w=400", kalimatBenar: "KAKAK MEMBELI SAYUR BAYAM", kataAcak: ["SAYUR", "MEMBELI", "BAYAM", "KAKAK"] },
-            { foto: "https://images.unsplash.com/photo-1741243413074-f87bd31f4971?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?w=400", kalimatBenar: "AYAH MAKAN NASI GORENG", kataAcak: ["NASI", "AYAH", "GORENG", "MAKAN"] },
-            { foto: "https://images.unsplash.com/photo-1777175013764-d64b4fe1b289?q=80&w=871&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?w=400", kalimatBenar: "PAMAN MEMBELI MOBIL BARU", kataAcak: ["MOBIL", "PAMAN", "BARU", "MEMBELI"] },
-            { foto: "https://images.unsplash.com/photo-1599321312943-b01b38a518df?q=80&w=415&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?w=400", kalimatBenar: "KUCING MAKAN IKAN GORENG", kataAcak: ["IKAN", "KUCING", "GORENG", "MAKAN"] }
+        const databaseG3Kalimat = [
+            { id: 1, kalimatBenar: "SAPI MAKAN RUMPUT", kataAcak: ["RUMPUT", "SAPI", "MAKAN"], img: "https://images.unsplash.com/photo-1570042225831-d98fa7577f1e?q=80&w=400" },
+            { id: 2, kalimatBenar: "IBU MEMASAK NASI", kataAcak: ["NASI", "IBU", "MEMASAK"], img: "https://images.unsplash.com/photo-1547592180-85f173990554?q=80&w=400" },
+            { id: 3, kalimatBenar: "ADIK BERMAIN BOLA", kataAcak: ["BOLA", "ADIK", "BERMAIN"], img: "https://images.unsplash.com/photo-1622659097972-68f1d8c1829f?q=80&w=400" },
+            { id: 4, kalimatBenar: "SAYA MEMBACA BUKU", kataAcak: ["BUKU", "MEMBACA", "SAYA"], img: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?q=80&w=400" },
+            { id: 5, kalimatBenar: "KUCING MINUM SUSU", kataAcak: ["SUSU", "KUCING", "MINUM"], img: "https://images.unsplash.com/photo-1724329713573-272009a4e8a0?q=80&w=400" },
+            { id: 6, kalimatBenar: "AYAH MEMBELI MOBIL", kataAcak: ["MOBIL", "AYAH", "MEMBELI"], img: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=400" },
+            { id: 7, kalimatBenar: "BURUNG TERBANG TINGGI", kataAcak: ["TINGGI", "BURUNG", "TERBANG"], img: "https://images.unsplash.com/photo-1448227922836-6d05b3f8b663?q=80&w=400" },
+            { id: 8, kalimatBenar: "KAKAK MENCUCI BAJU", kataAcak: ["BAJU", "KAKAK", "MENCUCI"], img: "https://images.unsplash.com/photo-1623237383131-7e915c786a2f?q=80&w=400" },
+            { id: 9, kalimatBenar: "IKAN BERENANG DI AIR", kataAcak: ["AIR", "IKAN", "BERENANG", "DI"], img: "https://images.unsplash.com/photo-1522069169874-c58ec4b76be5?q=80&w=400" },
+            { id: 10, kalimatBenar: "MONYET SUKA MAKAN PISANG", kataAcak: ["PISANG", "MAKAN", "MONYET", "SUKA"], img: "https://images.unsplash.com/photo-1540573133985-87b6da6d54a9?q=80&w=400" }
         ];
 
-        // 4. GAME 4: MENULIS KANVAS (5 SOAL KHUSUS KANVAS)
-        const soalGame4 = ["BUKU", "BOLA", "ROTI", "TOPI", "PITA"];
-
-        // 5. GAME 5: REKAM BACA BERSAMA PAK TRI (5 KALIMAT ISYARAT & VERBAL)
-        const kumpulanSoalG5 = [
-            { teks: "SAYA SUKA MEMBACA BUKU ", panduanIsyarat: "👋 [SAYA] -> 👍 [SUKA] -> 📖 [MEMBACA] -> 📚 [BUKU]" },
-            { teks: "BUDI RAJIN BELAJAR SETIAP HARI", panduanIsyarat: "👦 [BUDI] -> 💪 [RAJIN] -> 📖 [BELAJAR] -> ☀️ [HARI]" },
-            { teks: "IBU MEMASAK SAYUR DI DAPUR", panduanIsyarat: "👩 [IBU] -> 🍳 [MEMASAK] -> 🥦 [SAYUR] -> 🏠 [DAPUR]" },
-            { teks: "AYAH PERGI BEKERJA NAIK MOTOR", panduanIsyarat: "👨 [AYAH] -> 🚶 [PERGI] -> 💼 [BEKERJA] -> 🛵 [MOTOR]" },
-            { teks: "KAMI SELESAI MENGERJAKAN TUGAS SEKOLAH", panduanIsyarat: "🙌 [KAMI] -> ✅ [SELESAI] -> 📝 [TUGAS] -> 🏫 [SEKOLAH]" }
+        const databaseG4Menulis = [
+            { id: 1, kataTarget: "BOLA" },
+            { id: 2, kataTarget: "BUKU" },
+            { id: 3, kataTarget: "TOPI" },
+            { id: 4, kataTarget: "ROTI" },
+            { id: 5, kataTarget: "SAPI" }
         ];
 
-        // GLOBAL APP SYSTEM VARIABLES
-        let currentStudentName = "Murid";
-        let totalScore = 0;
-        let currentMode = ""; 
+        const databaseG5Rekam = [
+            { id: 1, kalimat: "Saya suka belajar", isyarat: "👋❤️📖" },
+            { id: 2, kalimat: "Ibu memasak di dapur", isyarat: "👩‍🍳🍲🍳" },
+            { id: 3, kalimat: "Ayah membaca koran pagi", isyarat: "👨📖📰" },
+            { id: 4, kalimat: "Adik bermain boneka lucu", isyarat: "👶🧸✨" },
+            { id: 5, kalimat: "Kami semua bahagia selalu", isyarat: "👨‍👩‍👧‍👦❤️😊" }
+        ];
+
+        let modeAktif = 'mengucapkan';
+        let itemAktif = null;
         let pengenalSuara = null;
         let sedangMendengar = false;
-        let itemAktif = null;
 
-        // STATE GAME 3
-        let indeksG3 = 0;
-        let skorG3 = 0;
-        let kataTerpilihG3 = [];
+        let g3Index = 0;
+        let g3SusunanUser = [];
+        let totalNilaiG3 = 0;
 
-        // STATE GAME 4
-        let indeksG4 = 0;
-        let skorG4 = 0;
-        let isDrawing = false;
-        let canvasCtx = null;
+        let g4Index = 0;
+        let totalNilaiG4 = 0;
 
-        // STATE GAME 5 (REKAM BACA)
-        let indeksSoalG5 = 0;
-        let streamKamera = null;
-        let perekamMedia = null;
-        let pecahanVideo = [];
-        let urlHasilVideo = null;
-        let canvasWatermarkCtx = null;
-        let idAnimasiWatermark = null;
-        let streamGabungan = null;
+        let g5Index = 0;
+        let mediaRecorderG5 = null;
+        let videoChunksG5 = [];
+        let localStreamG5 = null;
+        let isRecordingG5 = false;
+        let recordedBlobG5 = null;
+        let canvasIntervalG5 = null;
 
-        window.addEventListener('DOMContentLoaded', () => {
+        window.onload = function() {
             initSpeechRecognition();
             initHandwritingCanvas();
-        });
+        };
 
-        // DATABASE INSTAN 7 SISWA & PIN CUSTOM KANVAS
-        const DAFTAR_SISWA = ["Talita", "Tuhfah", "Nafis", "Zahra", "Fitri", "Aura", "Naora", "Pakguru"];
-        const MASTER_PIN = "2233";
+        function initSpeechRecognition() {
+            const SpeechRequest = window.SpeechRecognition || window.webkitSpeechRecognition;
+            if (SpeechRequest) {
+                pengenalSuara = new SpeechRequest();
+                pengenalSuara.lang = 'id-ID';
+                pengenalSuara.continuous = true;
+                pengenalSuara.interimResults = true;
+
+                pengenalSuara.onstart = () => {
+                    sedangMendengar = true;
+                    document.getElementById('micBtn').className = "w-24 h-24 bg-gradient-to-r from-teal-500 to-emerald-500 text-white rounded-full flex items-center justify-center text-4xl shadow-xl shadow-teal-200 transition transform scale-105 relative border-4 border-white animate-pulse";
+                    document.getElementById('micIcon').className = "fa-solid fa-microphone-lines";
+                    document.getElementById('micPulse').classList.remove('hidden');
+                    document.getElementById('systemStatus').innerText = "Sistem Mendengarkan... Silakan Bicara Nyaring!";
+                    document.getElementById('resultContainer').classList.remove('hidden');
+                };
+
+                pengenalSuara.onresult = (event) => {
+                    let hasilTeksSementara = '';
+                    for (let i = event.resultIndex; i < event.results.length; ++i) {
+                        hasilTeksSementara += event.results[i][0].transcript;
+                    }
+                    document.getElementById('resultText').innerText = hasilTeksSementara.toUpperCase();
+                    prosesEvaluasiSuara(hasilTeksSementara.trim().toUpperCase());
+                };
+
+                pengenalSuara.onerror = (e) => {
+                    console.log("Mic error:", e.error);
+                };
+
+                pengenalSuara.onend = () => {
+                    sedangMendengar = false;
+                    document.getElementById('micBtn').className = "w-24 h-24 bg-gradient-to-r from-red-500 to-pink-500 text-white rounded-full flex items-center justify-center text-4xl shadow-xl shadow-red-200 transition transform hover:scale-105 active:scale-95 relative border-4 border-white";
+                    document.getElementById('micIcon').className = "fa-solid fa-microphone";
+                    document.getElementById('micPulse').classList.add('hidden');
+                    document.getElementById('systemStatus').innerText = "Mikrofon Mati. Klik tombol merah untuk menguji ulang.";
+                };
+            } else {
+                document.getElementById('systemStatus').innerText = "Browser Anda Tidak Mendukung Fitur Deteksi Suara.";
+            }
+        }
+
+        function toggleListening() {
+            if (!pengenalSuara) return;
+            if (sedangMendengar) {
+                pengenalSuara.stop();
+            } else {
+                document.getElementById('resultText').innerText = "...";
+                document.getElementById('feedbackBox').classList.add('hidden');
+                pengenalSuara.start();
+            }
+        }
 
         function handleLogin() {
-            const namaInput = document.getElementById("username").value.trim();
-            const pinInput = document.getElementById("password").value.trim();
-
-            if (namaInput === "") {
-                alert("Silahkan Masukan Nama Kamu");
-                return;
-            }
-
-            const siswaDitemukan = DAFTAR_SISWA.some(
-                siswa => siswa.toLowerCase() === namaInput.toLowerCase()
-            );
-
-            if (!siswaDitemukan) {
-                alert("Maaf, nama kamu tidak terdaftar di kelas ini!");
-                return;
-            }
-
-            if (pinInput === MASTER_PIN) {
-                currentStudentName = namaInput;
-                document.getElementById("menuStudentName").innerText = namaInput;
-                document.getElementById("loginPage").classList.add("hidden");
-                document.getElementById("mainMenuPage").classList.remove("hidden");
-            } else {
-                alert("Maaf..PIN salah! Coba cek lagi ya...");
+            const user = document.getElementById('username').value.trim();
+            if(user){
+                document.getElementById('menuStudentName').innerText = user;
+                document.getElementById('loginPage').classList.add('hidden');
+                document.getElementById('mainMenuPage').classList.remove('hidden');
             }
         }
 
         function logout() {
-            document.getElementById("username").value = "";
-            document.getElementById("password").value = "";
-            document.getElementById("mainMenuPage").classList.add("hidden");
-            document.getElementById("loginPage").classList.remove("hidden");
+            document.getElementById('username').value = "";
+            document.getElementById('password').value = "";
+            document.getElementById('mainMenuPage').classList.add('hidden');
+            document.getElementById('loginPage').classList.remove('hidden');
         }
 
-        function backToMainMenu() {
+        function sembunyikanSemuaHalaman() {
+            document.getElementById('loginPage').classList.add('hidden');
+            document.getElementById('mainMenuPage').classList.add('hidden');
             document.getElementById('dashboardPage').classList.add('hidden');
             document.getElementById('practicePage').classList.add('hidden');
             document.getElementById('gamePage').classList.add('hidden');
-            document.getElementById('reflectionG3Page').classList.add('hidden');
+            document.getElementById('selesaiGame3Page').classList.add('hidden');
             document.getElementById('gameHandwritingPage').classList.add('hidden');
             document.getElementById('rekamBacaPage').classList.add('hidden');
-            document.getElementById('mainMenuPage').classList.remove('hidden');
+            document.getElementById('reportPage').classList.add('hidden');
             matikanKameraG5();
         }
 
+        function switchMenu(menu) {
+            modeAktif = menu;
+            sembunyikanSemuaHalaman();
+            if(menu === 'rekambaca') {
+                document.getElementById('rekamBacaPage').classList.remove('hidden');
+                g5Index = 0;
+                bukaSoalG5();
+                return;
+            }
+            document.getElementById('dashboardPage').classList.remove('hidden');
+            const grid = document.getElementById('materiGrid');
+            grid.innerHTML = "";
+
+            if(menu === 'mengucapkan') {
+                document.getElementById('dashboardTitle').innerText = "Latihan 1: Mengucapkan Huruf Vokal & Konsonan";
+                materiMengucapkan.forEach(item => {
+                    grid.innerHTML += `
+                        <div onclick="pilihItemMateri(${item.id})" class="cursor-pointer bg-white border-4 border-indigo-200 hover:border-indigo-500 rounded-2xl p-4 shadow-sm text-center transition transform hover:-translate-y-1">
+                            <span class="text-4xl mb-1 block select-none">${item.emoji}</span>
+                            <span class="text-2xl font-black text-indigo-900 kids-title block">${item.kata}</span>
+                        </div>
+                    `;
+                });
+            } else if(menu === 'mengeja') {
+                document.getElementById('dashboardTitle').innerText = "Latihan 2: Mengeja Kombinasi Suku Kata Benda";
+                databaseMengejaKata.forEach(item => {
+                    grid.innerHTML += `
+                        <div onclick="pilihItemMateri(${item.id})" class="cursor-pointer bg-white border-4 border-amber-300 hover:border-amber-500 rounded-2xl p-4 shadow-sm text-center transition transform hover:-translate-y-1">
+                            <span class="text-4xl mb-1 block select-none">${item.emoji}</span>
+                            <span class="text-xl font-black text-amber-900 kids-title block">${item.kata}</span>
+                        </div>
+                    `;
+                });
+            }
+        }
+
         function backToDashboardOrMainMenu() {
-            document.getElementById('dashboardPage').classList.add('hidden');
+            sembunyikanSemuaHalaman();
             document.getElementById('mainMenuPage').classList.remove('hidden');
         }
 
-        function switchMenu(menu) {
-            currentMode = menu;
-            document.getElementById('mainMenuPage').classList.add('hidden');
-
-            if(menu === 'mengucapkan') {
-                document.getElementById('dashboardTitle').innerText = "Materi 1: Mengucapkan Huruf Vokal & Konsonan (A-Z)";
-                renderDashboardGrid(materiMengucapkan);
-                document.getElementById('dashboardPage').classList.remove('hidden');
-            } else if(menu === 'mengeja') {
-                document.getElementById('dashboardTitle').innerText = "Materi 2: Mengeja Kombinasi Kata Klasifikasi Benda";
-                renderDashboardGrid(materiMengeja);
-                document.getElementById('dashboardPage').classList.remove('hidden');
-            } else if(menu === 'rekambaca') {
-                indeksSoalG5 = 0;
-                document.getElementById('rekamBacaPage').classList.remove('hidden');
-                aktifkanKameraG5();
-                tampilkanSoalG5();
-            }
+        function backToDashboard() {
+            if(pengenalSuara && sedangMendengar) pengenalSuara.stop();
+            switchMenu(modeAktif);
         }
 
-        function renderDashboardGrid(dataKoleksi) {
-            const grid = document.getElementById('materiGrid');
-            grid.innerHTML = '';
-
-            dataKoleksi.forEach((item) => {
-                const card = document.createElement('div');
-                const borderWarna = item.warna ? item.warna : 'border-indigo-200';
-                card.className = `cursor-pointer bg-slate-50 border-4 ${borderWarna} p-4 rounded-2xl shadow hover:shadow-md transition text-center transform hover:-translate-y-1`;
-                card.onclick = () => loadMateriPraktek(item);
-
-                card.innerHTML = `
-                    <span class="text-4xl block mb-2 select-none">${item.emoji}</span>
-                    <h4 class="text-xl font-black text-slate-800 kids-title tracking-wide">${item.kata}</h4>
-                    <p class="text-[10px] text-gray-400 font-bold mt-1 uppercase">Klik Kartu</p>
-                `;
-                grid.appendChild(card);
-            });
-        }
-
-        // FUNGSI UTAMA UNTUK MENGELUARKAN SUARA (WEB SPEECH API)
-        function putarSuaraKata(teks) {
-            if ('speechSynthesis' in window) {
-                window.speechSynthesis.cancel();
-                
-                const utterance = new SpeechSynthesisUtterance(teks);
-                utterance.lang = 'id-ID'; 
-                utterance.rate = 0.7;     
-                utterance.pitch = 1.1;    
-                
-                window.speechSynthesis.speak(utterance);
-            }
-        }
-
-        function loadMateriPraktek(item) {
-            itemAktif = item;
-            document.getElementById('dashboardPage').classList.add('hidden');
+        function pilihItemMateri(id) {
+            sembunyikanSemuaHalaman();
             document.getElementById('practicePage').classList.remove('hidden');
-
-            document.getElementById('targetText').innerText = item.kata;
-            document.getElementById('targetTextOverlay').innerText = item.kata;
-            document.getElementById('targetEjaan').innerText = item.ejaan;
-
-            const btnAudio = document.getElementById('btnPlayMainAudio');
-            if (currentMode === 'mengeja') {
-                btnAudio.classList.remove('hidden');
-                setTimeout(() => { putarSuaraKata(item.kata); }, 400);
-            } else {
-                btnAudio.classList.add('hidden');
-            }
+            document.getElementById('feedbackBox').classList.add('hidden');
+            document.getElementById('resultContainer').classList.add('hidden');
+            
+            const listData = (modeAktif === 'mengucapkan') ? materiMengucapkan : databaseMengejaKata;
+            itemAktif = listData.find(x => x.id === id);
 
             const imgEl = document.getElementById('targetImage');
-            const fallbackEl = document.getElementById('imageFallbackBox');
+            const fbBox = document.getElementById('imageFallbackBox');
+            const fbEmoji = document.getElementById('fallbackEmoji');
 
-            if(item.img && item.img !== "") {
-                imgEl.src = item.img;
+            if(itemAktif.img && itemAktif.img !== "") {
+                imgEl.src = itemAktif.img;
                 imgEl.classList.remove('hidden');
-                fallbackEl.classList.add('hidden');
+                fbBox.classList.add('hidden');
             } else {
                 imgEl.classList.add('hidden');
-                fallbackEl.classList.remove('hidden');
-                document.getElementById('fallbackEmoji').innerText = item.emoji;
+                fbBox.classList.remove('hidden');
+                fbEmoji.innerText = itemAktif.emoji;
             }
 
+            document.getElementById('targetTextOverlay').innerText = itemAktif.kata;
+            document.getElementById('targetText').innerText = itemAktif.kata;
+            document.getElementById('targetEjaan').innerText = itemAktif.ejaan;
+
             const areaSukuKata = document.getElementById('specialSyllableArea');
-            if(currentMode === 'mengeja' && item.sukuKata) {
-                areaSukuKata.innerHTML = '';
+            if(modeAktif === 'mengeja' && itemAktif.sukuKata) {
                 areaSukuKata.classList.remove('hidden');
-                item.sukuKata.forEach(suku => {
-                    const bubble = document.createElement('button');
-                    bubble.className = "syllable-bubble px-6 py-3 rounded-2xl font-black text-2xl text-indigo-900 kids-title tracking-wider focus:outline-none flex items-center gap-1";
-                    bubble.innerHTML = `🔊 ${suku}`;
-                    bubble.onclick = () => {
-                        bubble.classList.add('scale-95', 'bg-indigo-100');
-                        putarSuaraKata(suku);
-                        setTimeout(() => bubble.classList.remove('scale-95', 'bg-indigo-100'), 150);
-                    };
-                    areaSukuKata.appendChild(bubble);
+                areaSukuKata.innerHTML = "";
+                itemAktif.sukuKata.forEach(sk => {
+                    areaSukuKata.innerHTML += `
+                        <button onclick="putarSuaraKata('${sk}')" class="syllable-bubble px-5 py-2 text-xl font-extrabold text-slate-800 rounded-2xl border-b-4 tracking-wider focus:outline-none flex items-center gap-1.5 active:bg-slate-100">
+                            <i class="fa-solid fa-volume-low text-xs text-indigo-400"></i> ${sk}
+                        </button>
+                    `;
                 });
             } else {
                 areaSukuKata.classList.add('hidden');
             }
 
             document.getElementById('audioPracticeArea').classList.remove('hidden');
-            resetFeedbackInterface();
+            document.getElementById('systemStatus').innerText = "Klik tombol mikrofon merah di bawah untuk mulai merekam suara";
+            
+            putarSuaraKata(itemAktif.kata);
         }
 
-        function backToDashboard() {
-            document.getElementById('practicePage').classList.add('hidden');
-            document.getElementById('dashboardPage').classList.remove('hidden');
-            if(sedangMendengar) {
-                pengenalSuara.stop();
-            }
+        function putarSuaraKata(teks) {
             if ('speechSynthesis' in window) {
                 window.speechSynthesis.cancel();
+                const u = new SpeechSynthesisUtterance(teks.toLowerCase());
+                u.lang = 'id-ID';
+                u.rate = 0.75;
+                u.pitch = 1.1;
+                window.speechSynthesis.speak(u);
             }
         }
 
-        function initSpeechRecognition() {
-            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-            if (SpeechRecognition) {
-                pengenalSuara = new SpeechRecognition();
-                pengenalSuara.continuous = false;
-                pengenalSuara.lang = 'id-ID';
-                pengenalSuara.interimResults = false;
-                pengenalSuara.maxAlternatives = 1;
+        function prosesEvaluasiSuara(teksUser) {
+            if(!itemAktif) return;
+            const target = itemAktif.kata.toUpperCase();
+            let score = 0;
 
-                pengenalSuara.onstart = () => {
-                    sedangMendengar = true;
-                    document.getElementById('micIcon').className = "fa-solid fa-microphone-lines text-red-100";
-                    document.getElementById('micPulse').classList.remove('hidden');
-                    document.getElementById('btnLabel').innerText = "Sistem Sedang Mendengar... Bicara Sekarang!";
-                    document.getElementById('systemStatus').innerText = "Ayo bersuara dengan lantang dan jelas!";
-                };
-
-                pengenalSuara.onresult = (e) => {
-                    if (e.results && e.results[0] && e.results[0][0]) {
-                        const teksBersih = e.results[0][0].transcript.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"").toUpperCase().trim();
-                        prosesHasilSuaraSiswa(teksBersih);
-                    }
-                };
-
-                pengenalSuara.onerror = (err) => {
-                    console.error("Speech error: ", err);
-                    document.getElementById('systemStatus').innerText = "Suara tidak terdengar dengan jelas. Silahkan coba lagi!";
-                    stopListeningInterface();
-                };
-
-                pengenalSuara.onend = () => {
-                    stopListeningInterface();
-                };
+            if (teksUser === target) {
+                score = 100;
+            } else if (teksUser.includes(target) || target.includes(teksUser)) {
+                score = 75;
             } else {
-                document.getElementById('systemStatus').innerText = "Browser ini belum mendukung Speech Recognition. Gunakan Google Chrome!";
-            }
-        }
-
-        function toggleListening() {
-            if(!pengenalSuara) return;
-            if(sedangMendengar) {
-                pengenalSuara.stop();
-            } else {
-                pengenalSuara.start();
-            }
-        }
-
-        function stopListeningInterface() {
-            sedangMendengar = false;
-            document.getElementById('micIcon').className = "fa-solid fa-microphone";
-            document.getElementById('micPulse').classList.add('hidden');
-            document.getElementById('btnLabel').innerText = "Tekan Tombol untuk Berbicara";
-        }
-
-        function prosesHasilSuaraSiswa(teksMasuk) {
-            document.getElementById('resultText').innerText = teksMasuk;
-            document.getElementById('resultContainer').classList.remove('hidden');
-
-            const target = itemAktif.kata.toUpperCase().trim();
-            let skorHasil = 0;
-
-            if (currentMode === 'mengucapkan') {
-                const fonetikKamus = {
-                    "A": ["A", "AA", "AH", "APAKAH", "HA"],
-                    "B": ["BÉ", "BI", "BEE", "BE", "B", "BABI"],
-                    "C": ["CÉ", "SE", "CEE", "CE", "C", "SÉ"],
-                    "D": ["DÉ", "DI", "DEE", "DE", "D"],
-                    "E": ["É", "EH", "E"],
-                    "F": ["ÉF", "EFF", "EF", "F"],
-                    "G": ["GÉ", "JI", "GE", "G"],
-                    "H": ["HA", "HAA", "H"],
-                    "I": ["AI", "I", "II"],
-                    "J": ["JÉ", "JE", "J"],
-                    "K": ["KA", "KAA", "K", "KAH"],
-                    "L": ["ÉL", "ELL", "EL", "L"],
-                    "M": ["ÉM", "EMM", "EM", "M"],
-                    "N": ["ÉN", "ENN", "EN", "N"],
-                    "O": ["OH", "OO", "O"],
-                    "P": ["PÉ", "PI", "PE", "P"],
-                    "Q": ["Q", "KI", "KJU", "KU"],
-                    "R": ["ÉR", "ERR", "ER", "R"],
-                    "S": ["ÉS", "ESS", "ES", "S", "ESCE"],
-                    "T": ["TÉ", "TI", "TE", "T"],
-                    "U": ["UH", "UU", "U"],
-                    "V": ["VÉ", "VI", "VE", "V"],
-                    "W": ["WAI", "YÉ", "WE", "W", "DABELYU"],
-                    "X": ["ÉKS", "EKS", "X"],
-                    "Y": ["WAI", "YÉ", "YE", "Y"],
-                    "Z": ["ZÉ", "ZET", "ZE", "Z"]
-                };
-
-                let cocokFonetik = false;
-                if (fonetikKamus[target]) {
-                    cocokFonetik = fonetikKamus[target].some(fon => teksMasuk === fon || teksMasuk.includes(fon));
+                let machingLetters = 0;
+                for(let i=0; i<teksUser.length; i++){
+                    if(target.includes(teksUser[i])) machingLetters++;
                 }
-
-                if (teksMasuk === target || teksMasuk.includes(target) || cocokFonetik) {
-                    skorHasil = 100;
-                } else {
-                    skorHasil = teksMasuk.length > 0 ? 80 : 0;
-                }
-            } else if (currentMode === 'mengeja') {
-                if (teksMasuk === target || teksMasuk.includes(target)) {
-                    skorHasil = 100;
-                } else {
-                    let jumlahKarakterSama = 0;
-                    for (let i = 0; i < target.length; i++) {
-                        if (teksMasuk.includes(target[i])) {
-                            jumlahKarakterSama++;
-                        }
-                    }
-                    let rasioKecocokan = jumlahKarakterSama / target.length;
-                    if (rasioKecocokan >= 0.5) {
-                        skorHasil = 85;
-                    } else if (teksMasuk.length > 0) {
-                        skorHasil = 70;
-                    } else {
-                        skorHasil = 0;
-                    }
-                }
+                score = Math.min(Math.round((machingLetters / target.length) * 50), 60);
             }
 
             const fbBox = document.getElementById('feedbackBox');
             const fbIcon = document.getElementById('feedbackIcon');
             const fbMsg = document.getElementById('feedbackMessage');
-            const scVal = document.getElementById('scoreValue');
+            const scoreVal = document.getElementById('scoreValue');
 
-            fbBox.classList.remove('hidden', 'bg-emerald-50', 'border-emerald-400', 'text-emerald-800', 'bg-amber-50', 'border-amber-400', 'text-amber-800', 'bg-red-50', 'border-red-400', 'text-red-800');
-            
-            if(skorHasil >= 95) {
-                fbBox.classList.add('bg-emerald-50', 'border-emerald-400', 'text-emerald-800');
-                fbIcon.innerText = "✨";
-                fbMsg.innerText = "HEBAT! Pengucapan Kamu Sangat Jelas!";
-                scVal.innerText = skorHasil;
-            } else if (skorHasil >= 70) {
-                fbBox.classList.add('bg-amber-50', 'border-amber-400', 'text-amber-800');
-                fbIcon.innerText = "👍";
-                fbMsg.innerText = "BAGUS! Suara Sudah Keluar, Ayo Tingkatkan!";
-                scVal.innerText = skorHasil;
-            } else {
-                fbBox.classList.add('bg-red-50', 'border-red-400', 'text-red-800');
-                fbIcon.innerText = "❤️";
-                fbMsg.innerText = "Coba Dekatkan Mikrofon dan Ucapkan Lebih Lantang!";
-                scVal.innerText = skorHasil;
-            }
             fbBox.classList.remove('hidden');
-        }
+            scoreVal.innerText = score;
 
-        function resetFeedbackInterface() {
-            document.getElementById('resultContainer').classList.add('hidden');
-            document.getElementById('feedbackBox').classList.add('hidden');
-            document.getElementById('systemStatus').innerText = "Klik tombol mikrofon merah di bawah untuk mulai merekam suara";
-        }
-
-        // ========================== GAME 3 FUNCTIONS (DIUBAH SESUAI INSTRUKSI) ==========================
-        function createConfettiEffect() {
-            for(let i=0; i<30; i++) {
-                const confetti = document.createElement('div');
-                confetti.className = 'confetti';
-                confetti.style.left = Math.random() * 100 + 'vw';
-                confetti.style.animationDelay = Math.random() * 2 + 's';
-                confetti.style.backgroundColor = ['#ff4757','#2ed573','#1e90ff','#ffa502','#purple'][Math.floor(Math.random() * 5)];
-                document.body.appendChild(confetti);
-                setTimeout(() => confetti.remove(), 2500);
+            if(score >= 85) {
+                fbBox.className = "mb-6 p-5 rounded-2xl flex flex-col items-center justify-center gap-2 border-4 bg-emerald-50 border-emerald-400 text-emerald-800 transform scale-100 transition duration-300";
+                fbIcon.innerText = "🌟";
+                fbMsg.innerText = "Hebat! Artikulasi Kamu Sangat Jelas!";
+            } else if(score >= 60) {
+                fbBox.className = "mb-6 p-5 rounded-2xl flex flex-col items-center justify-center gap-2 border-4 bg-amber-50 border-amber-400 text-amber-800 transform scale-100 transition duration-300";
+                fbIcon.innerText = "👍";
+                fbMsg.innerText = "Bagus! Ayo Coba Lebih Jelas Lagi!";
+            } else {
+                fbBox.className = "mb-6 p-5 rounded-2xl flex flex-col items-center justify-center gap-2 border-4 bg-rose-50 border-rose-400 text-rose-800 transform scale-100 transition duration-300";
+                fbIcon.innerText = "❤️";
+                fbMsg.innerText = "Dekatkan mulut ke mic & ikuti ejaannya ya!";
             }
         }
 
         function startGameKataAcak() {
-            document.getElementById('mainMenuPage').classList.add('hidden');
+            sembunyikanSemuaHalaman();
             document.getElementById('gamePage').classList.remove('hidden');
-            indeksG3 = 0;
-            skorG3 = 0;
-            tampilkanSoalG3();
+            g3Index = 0;
+            totalNilaiG3 = 0;
+            loadSoalG3();
         }
 
-        function tampilkanSoalG3() {
-            if(indeksG3 >= soalGame3.length) {
-                // Selesai 10 soal, langsung buka Kotak Refleksi dulu
-                document.getElementById('gamePage').classList.add('hidden');
-                document.getElementById('reflectionG3Page').classList.remove('hidden');
-                return;
-            }
-
-            document.getElementById('gameProgress').innerText = `Soal ${indeksG3 + 1} / ${soalGame3.length}`;
+        function loadSoalG3() {
             document.getElementById('gameFeedbackBox').classList.add('hidden');
-            document.getElementById('nextGameBtn').classList.add('hidden');
             document.getElementById('checkG3Btn').classList.remove('hidden');
-            kataTerpilihG3 = [];
+            document.getElementById('nextGameBtn').classList.add('hidden');
+            g3SusunanUser = [];
+            
+            const soal = databaseG3Kalimat[g3Index];
+            document.getElementById('gameProgress').innerText = `Soal ${g3Index + 1} / 10`;
+            document.getElementById('gameTargetImage').src = soal.img;
 
-            const dataSoal = soalGame3[indeksG3];
-            document.getElementById('gameTargetImage').src = dataSoal.foto;
-            renderKomponenKataG3();
-        }
+            renderPapanJawabanG3();
 
-        function renderKomponenKataG3() {
-            const wadahPilihan = document.getElementById('wordContainer');
-            const wadahJawaban = document.getElementById('wordBoardAnswer');
+            const containerPilihan = document.getElementById('wordContainer');
+            containerPilihan.innerHTML = "";
+            
+            let arrayAcak = [...soal.kataAcak];
+            arrayAcak.sort(() => Math.random() - 0.5);
 
-            wadahPilihan.innerHTML = '';
-            wadahJawaban.innerHTML = '';
-
-            const dataSoal = soalGame3[indeksG3];
-
-            dataSoal.kataAcak.forEach((kata) => {
-                if (!kataTerpilihG3.includes(kata)) {
-                    const btnKata = document.createElement('button');
-                    btnKata.className = "px-5 py-3 bg-white border-4 border-slate-300 hover:border-indigo-500 rounded-2xl font-extrabold text-slate-800 text-lg shadow-sm transition transform active:scale-95";
-                    btnKata.innerText = kata;
-                    btnKata.onclick = () => {
-                        kataTerpilihG3.push(kata);
-                        renderKomponenKataG3();
-                    };
-                    wadahPilihan.appendChild(btnKata);
-                }
-            });
-
-            kataTerpilihG3.forEach((kata, index) => {
-                const badgeJawaban = document.createElement('div');
-                badgeJawaban.className = "px-5 py-3 bg-indigo-600 text-white border-2 border-indigo-700 rounded-2xl font-extrabold text-lg flex items-center gap-2 shadow";
-                badgeJawaban.innerHTML = `
-                    <span>${kata}</span>
-                    <button class="text-indigo-200 hover:text-red-300 font-bold ml-1 text-sm" onclick="hapusKataG3(${index})">×</button>
+            arrayAcak.forEach(kata => {
+                containerPilihan.innerHTML += `
+                    <button onclick="pilihKataG3(this, '${kata}')" class="px-5 py-3 bg-white hover:bg-indigo-50 border-2 border-slate-300 font-extrabold text-slate-800 rounded-xl shadow-sm transition active:scale-95 text-base md:text-lg">
+                        ${kata}
+                    </button>
                 `;
-                wadahJawaban.appendChild(badgeJawaban);
             });
-
-            if(kataTerpilihG3.length === 0) {
-                wadahJawaban.innerHTML = `<span class="text-slate-400 font-medium text-sm select-none">Belum ada kata yang dipilih...</span>`;
-            }
         }
 
-        function hapusKataG3(index) {
-            kataTerpilihG3.splice(index, 1);
-            renderKomponenKataG3();
+        function pilihKataG3(btn, kata) {
+            g3SusunanUser.push(kata);
+            btn.disabled = true;
+            btn.classList.add('opacity-40', 'bg-slate-100');
+            renderPapanJawabanG3();
         }
 
         function resetSusunanG3() {
-            kataTerpilihG3 = [];
-            renderKomponenKataG3();
+            g3SusunanUser = [];
+            renderPapanJawabanG3();
+            const containerPilihan = document.getElementById('wordContainer');
+            const btns = containerPilihan.getElementsByTagName('button');
+            for(let btn of btns) {
+                btn.disabled = false;
+                btn.classList.remove('opacity-40', 'bg-slate-100');
+            }
             document.getElementById('gameFeedbackBox').classList.add('hidden');
-            document.getElementById('checkG3Btn').classList.remove('hidden');
         }
 
-        // =========================================================================
-// PERBAIKAN UTUH UNTUK GAME 3: LOGIKA NILAI DAN NAVIGASI TOMBOL LANJUT
-// =========================================================================
-
-function periksaSusunanKata() {
-    const dataSoal = soalGame3[indeksG3];
-    const kalimatUser = kataTerpilihG3.join(" ").trim().toUpperCase();
-    let targetPotongan = dataSoal.kalimatBenar.split(" ");
-    
-    let jumlahBenar = 0;
-    // 1. Perbaikan Nilai: Cek kata berdasarkan posisi indeksnya agar urutan tidak terbalik
-    targetPotongan.forEach((kt, index) => {
-        if(kataTerpilihG3[index] === kt) {
-            jumlahBenar++;
+        function renderPapanJawabanG3() {
+            const brd = document.getElementById('wordBoardAnswer');
+            brd.innerHTML = "";
+            if(g3SusunanUser.length === 0) {
+                brd.innerHTML = `<span class="text-sm font-bold text-slate-400 italic">Kolom Jawaban Kosong...</span>`;
+                return;
+            }
+            g3SusunanUser.forEach(kata => {
+                brd.innerHTML += `
+                    <span class="px-5 py-2.5 bg-gradient-to-r from-indigo-500 to-purple-500 text-white font-black rounded-xl shadow-md text-base md:text-lg animate-scale-up tracking-wide">
+                        ${kata}
+                    </span>
+                `;
+            });
         }
-    });
 
-    let skorHitungG3 = Math.floor((jumlahBenar / targetPotongan.length) * 100);
-    
-    const fbBox = document.getElementById('gameFeedbackBox');
-    const fbIcon = document.getElementById('gameFeedbackIcon');
-    const fbMsg = document.getElementById('gameFeedbackMessage');
-    const scVal = document.getElementById('gameScoreValue');
-    const fbInst = document.getElementById('gameFeedbackInstruction');
-    
-    fbBox.classList.remove('hidden', 'bg-gradient-to-r', 'from-amber-400', 'to-orange-500', 'text-white', 'bg-red-50', 'border-red-400', 'text-red-800', 'border-b-8', 'border-orange-600', 'border-4');
-    
-    if (skorHitungG3 === 100 && kalimatUser === dataSoal.kalimatBenar) {
-        skorG3 += 100;
-        // Efek visual sukses kalimat teratur rapi
-        fbBox.className = "p-4 bg-emerald-50 border-2 border-emerald-300 rounded-2xl flex flex-col items-center gap-2 max-w-md mx-auto";
-        fbIcon.className = "fa-solid fa-circle-check text-4xl text-emerald-500 animate-bounce";
-        fbMsg.innerText = "YAY! SUSUNAN KALIMATMU BENAR SEKALI! 🎉";
-        fbMsg.className = "text-xl font-black text-emerald-700 text-center";
-        fbInst.innerText = "Tekan tombol di bawah untuk lanjut ya!";
-        fbInst.className = "text-sm text-emerald-600 font-medium text-center";
-    } else {
-        // Efek visual jika susunan acak-acakan / tidak sesuai urutan
-        fbBox.className = "p-4 bg-amber-50 border-2 border-amber-300 rounded-2xl flex flex-col items-center gap-2 max-w-md mx-auto";
-        fbIcon.className = "fa-solid fa-circle-xmark text-4xl text-amber-500 animate-pulse";
-        fbMsg.innerText = "KATA-KATANYA MASIH ADA YANG TERBALIK / KURANG TEPAT nih..";
-        fbMsg.className = "text-xl font-black text-amber-700 text-center";
-        fbInst.innerText = "Coba teliti lagi urutan katanya ya, kamu pasti bisa! 💪";
-        fbInst.className = "text-sm text-amber-600 font-medium text-center";
-    }
-    
-    scVal.innerText = skorHitungG3;
-    
-    // 2. Perbaikan Tombol Hilang: Menghapus tombol Cek, memunculkan tombol 'nextGameBtn' (Sesuai ID di HTML Anda)
-    document.getElementById('checkG3Btn').classList.add('hidden');
-    document.getElementById('gameFeedbackBox').classList.remove('hidden');
-    document.getElementById('nextGameBtn').classList.remove('hidden'); // Menjamin tombol muncul!
-}
+        function periksaSusunanKata() {
+            const soal = databaseG3Kalimat[g3Index];
+            const jawabanUserString = g3SusunanUser.join(" ");
+            const isBenar = (jawabanUserString === soal.kalimatBenar);
 
-function nextGameQuestion() {
-    // 3. Reset Interface Tombol: Balikkan kondisi tombol untuk soal selanjutnya
-    document.getElementById('checkG3Btn').classList.remove('hidden'); // Munculkan tombol periksa lagi
-    document.getElementById('nextGameBtn').classList.add('hidden');    // Sembunyikan tombol next ini kembali
-    document.getElementById('gameFeedbackBox').classList.add('hidden'); // Bersihkan kotak nilai lama
-    
-    indeksG3++; // Naikkan ke soal berikutnya
+            let scoreG3 = isBenar ? 100 : 0;
+            totalNilaiG3 += scoreG3;
 
-    // 4. Cek Batasan Jumlah Soal (Total ada 10 soal di array Anda)
-    if (indeksG3 < soalGame3.length) {
-        kataTerpilihG3 = []; // Kosongkan papan susunan user yang lama
-        tampilkanSoalG3();   // Panggil fungsi bawaan Anda untuk muat gambar dan kata acak baru
-    } else {
-        // Jika 10 soal sudah habis, hitung total skor akumulasi Game 3 ke sistem utama Anda
-        totalScore += Math.floor(skorG3 / soalGame3.length);
-        
-        // 1. Sembunyikan halaman permainan Game 3 secara total
-        document.getElementById('gamePage').classList.add('hidden');
-        
-        // 2. POTONG KOMPAS: Langsung buka Menu Utama asli kamu tanpa lewat refleksi lagi!
-        const menuUtama = document.getElementById('mainMenuPage');
-        if (menuUtama) {
-            menuUtama.classList.remove('hidden');
-        } else {
-            // Cadangan aman jika id menu berbeda
-            location.reload(); 
+            const box = document.getElementById('gameFeedbackBox');
+            const icon = document.getElementById('gameFeedbackIcon');
+            const msg = document.getElementById('gameFeedbackMessage');
+            const val = document.getElementById('gameScoreValue');
+            const instr = document.getElementById('gameFeedbackInstruction');
+
+            box.classList.remove('hidden');
+            val.innerText = scoreG3;
+
+            if(isBenar) {
+                box.className = "mb-6 p-5 rounded-2xl flex flex-col items-center justify-center gap-2 border-4 max-w-md mx-auto bg-emerald-50 border-emerald-400 text-emerald-800";
+                icon.innerText = "🎉";
+                msg.innerText = "Luar Biasa, Jawaban Benar!";
+                instr.innerText = "Klik tombol biru di bawah untuk lanjut.";
+                document.getElementById('checkG3Btn').classList.add('hidden');
+                document.getElementById('nextGameBtn').classList.remove('hidden');
+                memicuKembangApi();
+            } else {
+                box.className = "mb-6 p-5 rounded-2xl flex flex-col items-center justify-center gap-2 border-4 max-w-md mx-auto bg-rose-50 border-rose-400 text-rose-800";
+                icon.innerText = "❌";
+                msg.innerText = "Susunan Belum Tepat!";
+                instr.innerText = "Silakan klik 'Atur Ulang Pilihan' dan coba lagi.";
+            }
         }
-        
-        // 3. Beri notifikasi hore biar murid tahu kalau gamenya sudah selesai
-        alert(`🎉 Yeay!Selamat...Kamu sudah menyelesaikan semua soal Game 3.\nTotal Skormu: ${skorG3}`);
-    }
-}     // ========================== GAME 4 FUNCTIONS ==========================
-        function startGameHandwriting() {
-            document.getElementById('mainMenuPage').classList.add('hidden');
-            document.getElementById('gameHandwritingPage').classList.remove('hidden');
-            indeksG4 = 0;
-            skorG4 = 0;
-            setTimeout(resizeWritingCanvas, 200);
-            tampilkanSoalG4();
+
+        function nextGameQuestion() {
+            g3Index++;
+            if(g3Index < databaseG3Kalimat.length) {
+                loadSoalG3();
+            } else {
+                sembunyikanSemuaHalaman();
+                document.getElementById('selesaiGame3Page').classList.remove('hidden');
+            }
         }
+
+        function kembaliKeMenuUtamaFix() {
+            sembunyikanSemuaHalaman();
+            document.getElementById('mainMenuPage').classList.remove('hidden');
+        }
+
+        function memicuKembangApi() {
+            for (let i = 0; i < 25; i++) {
+                const conf = document.createElement('div');
+                conf.className = 'confetti';
+                conf.style.left = Math.random() * 100 + 'vw';
+                conf.style.backgroundColor = ['#ff4757', '#2ed573', '#1e90ff', '#ffa502', '#00d2d3'][Math.floor(Math.random() * 5)];
+                conf.style.transform = `scale(${Math.random() * 0.6 + 0.5})`;
+                conf.style.animationDelay = Math.random() * 0.5 + 's';
+                document.body.appendChild(conf);
+                setTimeout(() => conf.remove(), 2500);
+            }
+        }
+
+        let padCanvas = null, padCtx = null;
+        let isDrawingPad = false;
 
         function initHandwritingCanvas() {
-            const canvas = document.getElementById('writingPad');
-            canvasCtx = canvas.getContext('2d');
+            padCanvas = document.getElementById('writingPad');
+            if(!padCanvas) return;
+            padCtx = padCanvas.getContext('2d');
 
-            canvas.addEventListener('mousedown', startDrawing);
-            canvas.addEventListener('mousemove', draw);
-            canvas.addEventListener('mouseup', stopDrawing);
-            canvas.addEventListener('mouseout', stopDrawing);
-
-            canvas.addEventListener('touchstart', (e) => {
-                const touch = e.touches[0];
-                const mouseEvent = new MouseEvent("mousedown", {
-                    clientX: touch.clientX,
-                    clientY: touch.clientY
-                });
-                canvas.dispatchEvent(mouseEvent);
-            }, { passive: false });
-
-            canvas.addEventListener('touchmove', (e) => {
-                const touch = e.touches[0];
-                const mouseEvent = new MouseEvent("mousemove", {
-                    clientX: touch.clientX,
-                    clientY: touch.clientY
-                });
-                canvas.dispatchEvent(mouseEvent);
-            }, { passive: false });
-
-            canvas.addEventListener('touchend', stopDrawing);
-        }
-
-        function resizeWritingCanvas() {
-            const canvas = document.getElementById('writingPad');
-            const parentWidth = canvas.parentElement.clientWidth;
-            canvas.width = parentWidth - 16;
-            canvas.height = window.innerWidth < 640 ? 260 : 350;
-            clearPad();
-        }
-
-        function dapatkanPosisiKoordinat(e) {
-            const canvas = document.getElementById('writingPad');
-            const rect = canvas.getBoundingClientRect();
-            
-            const clientX = e.clientX || e.pageX - window.scrollX;
-            const clientY = e.clientY || e.pageY - window.scrollY;
-
-            const x = (clientX - rect.left) * (canvas.width / rect.width);
-            const y = (clientY - rect.top) * (canvas.height / rect.height);
-            return { x, y };
-        }
-
-        function startDrawing(e) {
-            isDrawing = true;
-            canvasCtx.beginPath();
-            const pos = dapatkanPosisiKoordinat(e);
-            canvasCtx.moveTo(pos.x, pos.y);
-            canvasCtx.lineWidth = window.innerWidth < 640 ? 5 : 7;
-            canvasCtx.lineCap = 'round';
-            canvasCtx.lineJoin = 'round';
-            canvasCtx.strokeStyle = '#c026d3'; 
-        }
-
-        function draw(e) {
-            if(!isDrawing) return;
-            const pos = dapatkanPosisiKoordinat(e);
-            canvasCtx.lineTo(pos.x, pos.y);
-            canvasCtx.stroke();
-        }
-
-        function stopDrawing() {
-            if(isDrawing) {
-                canvasCtx.closePath();
-                isDrawing = false;
+            function resizeCanvas() {
+                const reks = padCanvas.getBoundingClientRect();
+                padCanvas.width = reks.width;
+                padCanvas.height = reks.height;
+                clearPad();
             }
+            window.addEventListener('resize', resizeCanvas);
+            setTimeout(resizeCanvas, 500);
+
+            padCtx.lineWidth = 6;
+            padCtx.lineCap = 'round';
+            padCtx.strokeStyle = '#4c1d95';
+
+            padCanvas.addEventListener('mousedown', (e) => { isDrawingPad = true; menggambarG4(e); });
+            padCanvas.addEventListener('mousemove', menggambarG4);
+            padCanvas.addEventListener('mouseup', () => { padCtx.beginPath(); isDrawingPad = false; });
+            padCanvas.addEventListener('mouseleave', () => { padCtx.beginPath(); isDrawingPad = false; });
+
+            padCanvas.addEventListener('touchstart', (e) => { 
+                isDrawingPad = true; 
+                const t = e.touches[0];
+                const rect = padCanvas.getBoundingClientRect();
+                padCtx.moveTo(t.clientX - rect.left, t.clientY - rect.top);
+                e.preventDefault();
+            });
+            padCanvas.addEventListener('touchmove', (e) => {
+                if(!isDrawingPad) return;
+                const t = e.touches[0];
+                const rect = padCanvas.getBoundingClientRect();
+                padCtx.lineTo(t.clientX - rect.left, t.clientY - rect.top);
+                padCtx.stroke();
+                e.preventDefault();
+            });
+            padCanvas.addEventListener('touchend', () => { padCtx.beginPath(); isDrawingPad = false; });
+        }
+
+        function menggambarG4(e) {
+            if(!isDrawingPad) return;
+            const rect = padCanvas.getBoundingClientRect();
+            padCtx.lineTo(e.clientX - rect.left, e.clientY - rect.top);
+            padCtx.stroke();
+            padCtx.beginPath();
+            padCtx.moveTo(e.clientX - rect.left, e.clientY - rect.top);
         }
 
         function clearPad() {
-            if(canvasCtx) {
-                const canvas = document.getElementById('writingPad');
-                canvasCtx.clearRect(0, 0, canvas.width, canvas.height);
-            }
+            if(!padCtx || !padCanvas) return;
+            padCtx.fillStyle = "#fffafb";
+            padCtx.fillRect(0, 0, padCanvas.width, padCanvas.height);
+            padCtx.lineWidth = 6;
+            padCtx.lineCap = 'round';
+            padCtx.strokeStyle = '#4c1d95';
         }
 
-        function tampilkanSoalG4() {
-            if(indeksG4 >= soalGame4.length) {
-                totalScore += Math.floor(skorG4 / soalGame4.length);
-                bukaHalamanRaporAkhir();
-                return;
-            }
+        function startGameHandwriting() {
+            sembunyikanSemuaHalaman();
+            document.getElementById('gameHandwritingPage').classList.remove('hidden');
+            g4Index = 0;
+            totalNilaiG4 = 0;
+            setTimeout(initHandwritingCanvas, 200);
+            loadSoalG4();
+        }
 
-            document.getElementById('g4Progress').innerText = `Soal ${indeksG4 + 1} / ${soalGame4.length}`;
-            document.getElementById('g4-question').innerText = `Tuliskan kata: "${soalGame4[indeksG4]}"`;
-            document.getElementById('g4TextVerify').value = '';
+        function loadSoalG4() {
             document.getElementById('g4FeedbackBox').classList.add('hidden');
+            document.getElementById('g4TextVerify').value = "";
             clearPad();
+
+            const data = databaseG4Menulis[g4Index];
+            document.getElementById('g4Progress').innerText = `Soal ${g4Index + 1} / 5`;
+            document.getElementById('g4-question').innerText = `Tuliskan kata: ${data.kataTarget}`;
         }
 
         function checkG4Answer() {
-            const verifikasiTeks = document.getElementById('g4TextVerify').value.trim().toUpperCase();
-            const targetKata = soalGame4[indeksG4].toUpperCase();
-            const fbBox = document.getElementById('g4FeedbackBox');
-            const fbText = document.getElementById('g4FeedbackText');
+            const data = databaseG4Menulis[g4Index];
+            const inputTeks = document.getElementById('g4TextVerify').value.trim().toUpperCase();
 
-            fbBox.classList.remove('hidden', 'bg-emerald-50', 'border-emerald-400', 'text-emerald-800', 'bg-red-50', 'border-red-400', 'text-red-800');
-
-            if(verifikasiTeks === targetKata) {
-                skorG4 += 100;
-                fbBox.classList.add('bg-emerald-50', 'border-emerald-400', 'text-emerald-800');
-                fbText.innerHTML = "✨ Hebat! Tulisanmu dikonfirmasi BENAR!";
-            } else {
-                fbBox.classList.add('bg-red-50', 'border-red-400', 'text-red-800');
-                fbText.innerHTML = "❌ Tulisan verifikasi belum tepat, cek ejahannya kembali!";
-            }
-
-            fbBox.classList.remove('hidden');
-
-            setTimeout(() => {
-                indeksG4++;
-                tampilkanSoalG4();
-            }, 2000);
-        }
-
-
-        // ========================== GAME 5 FUNCTIONS ==========================
-        async function aktifkanKameraG5() {
-            try {
-                streamKamera = await navigator.mediaDevices.getUserMedia({
-                    video: { width: 640, height: 480, facingMode: "user" },
-                    audio: true
-                });
-
-                const videoTampil = document.getElementById('kameraTampil');
-                videoTampil.srcObject = streamKamera;
-
-                document.getElementById('tombolAksi').style.display = 'block';
-                document.getElementById('tombolUnduh').style.display = 'none';
-                document.getElementById('tombolWA').style.display = 'none';
-                document.getElementById('hasilRekaman').style.display = 'none';
-            } catch (err) {
-                console.error("Gagal mengakses kamera/mikrofon: ", err);
-                alert("Sistem membutuhkan izin kamera dan mikrofon untuk Game Rekam Baca ini!");
-            }
-        }
-
-        function matikanKameraG5() {
-            if(idAnimasiWatermark) {
-                cancelAnimationFrame(idAnimasiWatermark);
-                idAnimasiWatermark = null;
-            }
-            if(streamKamera) {
-                streamKamera.getTracks().forEach(track => track.stop());
-                streamKamera = null;
-            }
-            if(streamGabungan) {
-                streamGabungan.getTracks().forEach(track => track.stop());
-                streamGabungan = null;
-            }
-            document.getElementById('kameraTampil').srcObject = null;
-        }
-
-        function backToMainMenuFromG5() {
-            matikanKameraG5();
-            backToMainMenu();
-        }
-
-        function tampilkanSoalG5() {
-            document.getElementById('areaGameG5').classList.remove('hidden');
-            document.getElementById('areaSelesaiG5').classList.add('hidden');
-
-            const totalSoal = kumpulanSoalG5.length;
-            if(indeksSoalG5 >= totalSoal) {
-                document.getElementById('areaGameG5').classList.add('hidden');
-                document.getElementById('areaSelesaiG5').classList.remove('hidden');
+            if(!inputTeks) {
+                alert("Ketikkan ulang hasil tulisanmu pada kolom verifikasi teks di bawah papan!");
                 return;
             }
 
-            document.getElementById('nomorSoalTampil').innerText = `SOAL ${indeksSoalG5 + 1} DIANTARA ${totalSoal}`;
-            document.getElementById('teksSoalTampil').innerText = kumpulanSoalG5[indeksSoalG5].teks;
-            document.getElementById('isiPanduan').innerText = kumpulanSoalG5[indeksSoalG5].panduanIsyarat;
-            
-            document.getElementById('tombolKembali').style.display = indeksSoalG5 > 0 ? 'block' : 'none';
-            document.getElementById('tombolLanjut').style.display = indeksSoalG5 < totalSoal - 1 ? 'block' : 'none';
-        }
+            const isBenar = (inputTeks === data.kataTarget);
+            let score = isBenar ? 100 : 0;
+            totalNilaiG4 += score;
 
-        function soalSebelumnya() {
-            if(indeksSoalG5 > 0) {
-                indeksSoalG5--;
-                tampilkanSoalG5();
-                resetTampilanPerekamG5();
-            }
-        }
+            const box = document.getElementById('g4FeedbackBox');
+            const txt = document.getElementById('g4FeedbackText');
 
-        function soalBerikutnya() {
-            if(indeksSoalG5 < kumpulanSoalG5.length - 1) {
-                indeksSoalG5++;
-                tampilkanSoalG5();
-                resetTampilanPerekamG5();
+            box.classList.remove('hidden');
+
+            if(isBenar) {
+                box.className = "mb-5 p-4 rounded-2xl flex flex-col items-center justify-center gap-1 border-4 max-w-md mx-auto bg-emerald-50 border-emerald-400 text-emerald-800 animate-bounce";
+                txt.innerText = "🎉 Hebat, Tulisanmu Sangat Bagus!";
+                memicuKembangApi();
+                
+                setTimeout(() => {
+                    g4Index++;
+                    if(g4Index < databaseG4Menulis.length) {
+                        loadSoalG4();
+                    } else {
+                        bukaHalamanRaporAkhir();
+                    }
+                }, 2000);
             } else {
-                indeksSoalG5++;
-                tampilkanSoalG5();
+                box.className = "mb-5 p-4 rounded-2xl flex flex-col items-center justify-center gap-1 border-4 max-w-md mx-auto bg-rose-50 border-rose-400 text-rose-800";
+                txt.innerText = "❌ Ejaan ketikan belum sesuai target soal. Hapus papan & coba lagi!";
             }
         }
 
-        function resetTampilanPerekamG5() {
+        function backToMainMenu() {
+            sembunyikanSemuaHalaman();
+            document.getElementById('mainMenuPage').classList.remove('hidden');
+        }
+
+        function backToMainMenuFromG4() {
+            sembunyikanSemuaHalaman();
+            document.getElementById('mainMenuPage').classList.remove('hidden');
+        }
+
+        function backToMainMenuFromG5() {
+            sembunyikanSemuaHalaman();
+            document.getElementById('mainMenuPage').classList.remove('hidden');
+        }
+
+        function bukaSoalG5() {
             document.getElementById('hasilRekaman').style.display = 'none';
             document.getElementById('tombolUnduh').style.display = 'none';
             document.getElementById('tombolWA').style.display = 'none';
             document.getElementById('boxKamera').style.display = 'block';
-            
-            const tombol = document.getElementById('tombolAksi');
-            tombol.classList.remove('status-stop');
-            tombol.classList.add('status-mulai');
-            tombol.innerHTML = "MULAI REKAM";
-            document.getElementById('statusTeks').style.display = 'none';
+
+            const data = databaseG5Rekam[g5Index];
+            document.getElementById('nomorSoalTampil').innerText = `SOAL ${g5Index + 1} DARI 5`;
+            document.getElementById('teksSoalTampil').innerText = data.kalimat;
+            document.getElementById('simbolPanduan').innerText = data.isyarat;
+
+            document.getElementById('tombolKembali').style.display = (g5Index > 0) ? 'block' : 'none';
+            document.getElementById('tombolLanjut').style.display = (g5Index < 4) ? 'block' : 'none';
+
+            jalankanHardwareKamera();
+        }
+
+        async function jalankanHardwareKamera() {
+            matikanKameraG5();
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ video: { width: 480, height: 360 }, audio: true });
+                localStreamG5 = stream;
+                
+                const videoEl = document.getElementById('kameraTampil');
+                videoEl.srcObject = stream;
+                videoEl.onloadedmetadata = () => {
+                    videoEl.play();
+                };
+            } catch (err) {
+                console.error("Gagal akses kamera/mic:", err);
+                alert("Harap izinkan hak akses kamera dan mikrofon pada browser Anda.");
+            }
+        }
+
+        function matikanKameraG5() {
+            if(canvasIntervalG5) {
+                clearInterval(canvasIntervalG5);
+                canvasIntervalG5 = null;
+            }
+            const videoEl = document.getElementById('kameraTampil');
+            if (videoEl && videoEl.srcObject) {
+                videoEl.srcObject.getTracks().forEach(track => track.stop());
+                videoEl.srcObject = null;
+            }
+            if(localStreamG5) {
+                localStreamG5.getTracks().forEach(track => track.stop());
+                localStreamG5 = null;
+            }
         }
 
         function kontrolPerekam() {
-            const tombol = document.getElementById('tombolAksi');
-            if(tombol.classList.contains('status-mulai')) {
-                mulaiMerekamVideoG5();
+            if(!localStreamG5) {
+                alert("Kamera belum aktif.");
+                return;
+            }
+            if(!isRecordingG5) {
+                mulaiRekamG5();
             } else {
-                stopMerekamVideoG5();
+                stopRekamG5();
             }
         }
 
-        function mulaiMerekamVideoG5() {
-            if(!streamKamera) return;
-            pecahanVideo = [];
-
-            const videoTampil = document.getElementById('kameraTampil');
-            const canvasWatermark = document.createElement('canvas');
-            canvasWatermark.width = 640;
-            canvasWatermark.height = 480;
-            canvasWatermarkCtx = canvasWatermark.getContext('2d');
-
-            function gambarFrameWatermark() {
-                if(!streamKamera) return;
-                canvasWatermarkCtx.save();
-                canvasWatermarkCtx.translate(640, 0);
-                canvasWatermarkCtx.scale(-1, 1);
-                canvasWatermarkCtx.drawImage(videoTampil, 0, 0, 640, 480);
-                canvasWatermarkCtx.restore();
-
-                canvasWatermarkCtx.fillStyle = "rgba(255, 193, 7, 0.85)";
-                canvasWatermarkCtx.fillRect(15, 15, 610, 45);
-                canvasWatermarkCtx.fillStyle = "#1e293b";
-                canvasWatermarkCtx.font = "bold 16px Arial";
-                canvasWatermarkCtx.textAlign = "center";
-                canvasWatermarkCtx.fillText(`Tugas: "${kumpulanSoalG5[indeksSoalG5].teks}"`, 320, 43);
-
-                canvasWatermarkCtx.fillStyle = "rgba(0, 0, 0, 0.5)";
-                canvasWatermarkCtx.fillRect(15, 430, 610, 35);
-                canvasWatermarkCtx.fillStyle = "#ffffff";
-                canvasWatermarkCtx.font = "italic 14px Arial";
-                canvasWatermarkCtx.textAlign = "left";
-                canvasWatermarkCtx.fillText(`User Login: ${currentStudentName} | Copyright AMI IMUT 2026`, 30, 452);
-
-                idAnimasiWatermark = requestAnimationFrame(gambarFrameWatermark);
-            }
-
-            gambarFrameWatermark();
-
-            const streamVideoWatermark = canvasWatermark.captureStream(30);
-            const trekAudio = streamKamera.getAudioTracks()[0];
+        function mulaiRekamG5() {
+            isRecordingG5 = true;
+            videoChunksG5 = [];
             
-            streamGabungan = new MediaStream([streamVideoWatermark.getVideoTracks()[0]]);
-            if(trekAudio) {
-                streamGabungan.addTrack(trekAudio);
-            }
+            document.getElementById('statusTeks').style.display = 'block';
+            document.getElementById('tombolAksi').innerText = "⏹ STOP REKAMAN";
+            document.getElementById('tombolAksi').className = "btn-utama status-stop";
+            
+            document.getElementById('hasilRekaman').style.display = 'none';
+            document.getElementById('tombolUnduh').style.display = 'none';
+            document.getElementById('tombolWA').style.display = 'none';
 
-            perekamMedia = new MediaRecorder(streamGabungan, { mimeType: 'video/webm;codecs=vp8' });
-            perekamMedia.ondataavailable = (e) => {
-                if(e.data && e.data.size > 0) pecahanVideo.push(e.data);
+            const videoEl = document.getElementById('kameraTampil');
+            const canvasEl = document.getElementById('canvasWatermark');
+            const ctx = canvasEl.getContext('2d');
+            
+            canvasEl.width = 480;
+            canvasEl.height = 360;
+
+            canvasIntervalG5 = setInterval(() => {
+                ctx.save();
+                ctx.translate(canvasEl.width, 0);
+                ctx.scale(-1, 1);
+                ctx.drawImage(videoEl, 0, 0, canvasEl.width, canvasEl.height);
+                ctx.restore();
+
+                ctx.fillStyle = "rgba(255, 255, 255, 0.7)";
+                ctx.font = "bold 14px 'Comic Neue', sans-serif";
+                ctx.shadowColor = "rgba(0, 0, 0, 0.7)";
+                ctx.shadowBlur = 4;
+                ctx.shadowOffsetX = 2;
+                ctx.shadowOffsetY = 2;
+                ctx.fillText("Copyright AMI IMUT 2026", 15, canvasEl.height - 15);
+            }, 1000 / 30);
+
+            const canvasStream = canvasEl.captureStream(30);
+            localStreamG5.getAudioTracks().forEach(track => canvasStream.addTrack(track));
+
+            mediaRecorderG5 = new MediaRecorder(canvasStream, { mimeType: 'video/webm;codecs=vp8,opus' });
+            mediaRecorderG5.ondataavailable = (e) => {
+                if(e.data && e.data.size > 0) videoChunksG5.push(e.data);
             };
 
-            perekamMedia.onstop = () => {
-                if(idAnimasiWatermark) {
-                    cancelAnimationFrame(idAnimasiWatermark);
-                }
+            mediaRecorderG5.onstop = () => {
+                recordedBlobG5 = new Blob(videoChunksG5, { type: 'video/webm' });
+                const videoURL = URL.createObjectURL(recordedBlobG5);
                 
-                const blobHasil = new Blob(pecahanVideo, { type: 'video/mp4' });
-                urlHasilVideo = URL.createObjectURL(blobHasil);
-                
-                const elemenHasil = document.getElementById('hasilRekaman');
-                elemenHasil.src = urlHasilVideo;
+                const hRekam = document.getElementById('hasilRekaman');
+                hRekam.src = videoURL;
+                hRekam.style.display = 'block';
                 
                 document.getElementById('boxKamera').style.display = 'none';
-                elemenHasil.style.display = 'block';
                 document.getElementById('tombolUnduh').style.display = 'block';
                 document.getElementById('tombolWA').style.display = 'block';
+                
+                if(canvasIntervalG5) {
+                    clearInterval(canvasIntervalG5);
+                    canvasIntervalG5 = null;
+                }
             };
 
-            perekamMedia.start();
-
-            const tombol = document.getElementById('tombolAksi');
-            tombol.classList.remove('status-mulai');
-            tombol.classList.add('status-stop');
-            tombol.innerHTML = "HENTIKAN REKAM";
-            document.getElementById('statusTeks').style.display = 'block';
+            mediaRecorderG5.start();
         }
 
-        function stopMerekamVideoG5() {
-            if(perekamMedia && perekamMedia.state !== 'inactive') {
-                perekamMedia.stop();
-            }
-            
-            const tombol = document.getElementById('tombolAksi');
-            tombol.classList.remove('status-stop');
-            tombol.classList.add('status-mulai');
-            tombol.innerHTML = "MULAI REKAM";
+        function stopRekamG5() {
+            isRecordingG5 = false;
             document.getElementById('statusTeks').style.display = 'none';
+            document.getElementById('tombolAksi').innerText = "🔴 MULAI REKAM";
+            document.getElementById('tombolAksi').className = "btn-utama status-mulai";
+
+            if(mediaRecorderG5 && mediaRecorderG5.state !== 'inactive') {
+                mediaRecorderG5.stop();
+            }
         }
 
         function unduhVideoKeHP() {
-            if(!urlHasilVideo) return;
+            if(!recordedBlobG5) return;
             const a = document.createElement('a');
-            a.style.display = 'none';
-            a.href = urlHasilVideo;
-            a.download = `TugasG5_${currentStudentName}_Soal${indeksSoalG5+1}.mp4`;
+            a.href = URL.createObjectURL(recordedBlobG5);
+            a.download = `AMI_IMUT_Soal_${g5Index + 1}.webm`;
             document.body.appendChild(a);
             a.click();
-            setTimeout(() => { document.body.removeChild(a); }, 100);
+            document.body.removeChild(a);
         }
 
         function kirimKeWhatsApp() {
-            const noPakTri = "6282326666767"; 
-            const isiPesan = `Halo Pak Tri, saya ${currentStudentName} sudah menyelesaikan tugas merekam baca pada Soal No ${indeksSoalG5 + 1} ("${kumpulanSoalG5[indeksSoalG5].teks}"). Video sudah saya simpan di galeri HP dan siap dikirimkan!`;
-            const urlWA = `https://api.whatsapp.com/send?phone=${noPakTri}&text=${encodeURIComponent(isiPesan)}`;
-            window.open(urlWA, '_blank');
+            const noWA = "628xxxxxxxxxx"; 
+            const teks = encodeURIComponent(`Halo Pak Guru, saya sudah menyelesaikan tugas rekam membaca Soal ke-${g5Index + 1} dengan kalimat: "${databaseG5Rekam[g5Index].kalimat}" menggunakan Aplikasi AMI IMUT.`);
+            window.open(`https://api.whatsapp.com/send?phone=${noWA}&text=${teks}`, '_blank');
+        }
+
+        function soalSebelumnya() {
+            if(g5Index > 0) {
+                g5Index--;
+                bukaSoalG5();
+            }
+        }
+
+        function soalBerikutnya() {
+            if(g5Index < 4) {
+                g5Index++;
+                bukaSoalG5();
+            } else {
+                document.getElementById('areaGameG5').style.display = 'none';
+                document.getElementById('areaSelesaiG5').style.display = 'block';
+                matikanKameraG5();
+            }
         }
 
         function ulangDariAwalG5() {
-            indeksSoalG5 = 0;
-            resetTampilanPerekamG5();
-            tampilkanSoalG5();
+            g5Index = 0;
+            document.getElementById('areaGameG5').style.display = 'block';
+            document.getElementById('areaSelesaiG5').style.display = 'none';
+            bukaSoalG5();
         }
 
-
-        // ========================== REPORT SYSTEM ==========================
         function bukaHalamanRaporAkhir() {
-            let kalkulasiNilaiMaksimal = 100; 
-            let rasioNilai = totalScore;
-            if(rasioNilai > 100) rasioNilai = 100;
-
-            document.getElementById('finalScoreDisplay').innerText = rasioNilai;
-            
-            const statusText = document.getElementById('finalScoreStatus');
-            if(rasioNilai >= 90) {
-                statusText.innerText = "🏆 Sempurna Hebat Sekali Bintang 5! ⭐⭐⭐⭐⭐";
-                statusText.className = "text-sm font-black text-emerald-600 mt-2";
-            } else if (rasioNilai >= 75) {
-                statusText.innerText = "✨ Bagus Sekali Bintang 4! ⭐⭐⭐⭐";
-                statusText.className = "text-sm font-black text-amber-500 mt-2";
-            } else {
-                statusText.innerText = "💪 Terus Semangat Belajar Dan Berlatih! ❤️";
-                statusText.className = "text-sm font-black text-indigo-500 mt-2";
-            }
-
+            sembunyikanSemuaHalaman();
             document.getElementById('reportPage').classList.remove('hidden');
+            
+            let skorRataRata = Math.round((totalNilaiG4 / 5));
+            document.getElementById('finalScoreDisplay').innerText = skorRataRata;
+
+            const st = document.getElementById('finalScoreStatus');
+            if(skorRataRata >= 85) {
+                st.innerText = "🏆 SANGAT HEBAT (Bintang Sempurna!)";
+                st.className = "text-sm font-bold text-emerald-600 mt-2";
+            } else {
+                st.innerText = "💪 BAGUS KREATIVITASNYA (Terus Belajar Ya!)";
+                st.className = "text-sm font-bold text-amber-600 mt-2";
+            }
         }
 
         function closeReportPage() {
-            totalScore = 0;
-            document.getElementById('reportPage').classList.add('hidden');
+            sembunyikanSemuaHalaman();
             document.getElementById('mainMenuPage').classList.remove('hidden');
         }
-    // =========================================================================
-// KODE PENYELAMAT: ANTI-TYPO, ANTI-WHITE SCREEN, & KEMBALI KE MENU UTAMA
-// =========================================================================
-
-// Kita buat dua nama fungsi sekaligus agar typo 'pilesh' di HTML kamu tetap aktif berjalan!
-function pileshRefleksiG3(teksEmoji) { pilihRefleksiG3(teksEmoji); }
-
-function pilihRefleksiG3(teksEmoji) {
-    refleksiG3 = teksEmoji;
-
-    // 1. Beri efek menyala warna kuning pada kotak emoji yang diketuk murid
-    document.querySelectorAll('#reflectionG3Page .cursor-pointer').forEach(el => {
-        el.classList.remove('bg-amber-300', 'scale-110', 'border-4', 'border-amber-500');
-        
-        // Deteksi kecocokan teks di dalam kotak emoji
-        if (el.innerText.includes(teksEmoji.replace(/[^\w\s]/g, '').trim()) || el.innerHTML.includes(teksEmoji)) {
-            el.classList.add('bg-amber-300', 'scale-110', 'border-4', 'border-amber-500');
-        }
-    });
-
-    // 2. Langsung munculkan tombol "Kembali ke Menu Utama" di bawahnya (Anti-Stuck!)
-    const btnLanjutRefleksi = document.getElementById('nextAfterReflectionG3Btn');
-    if (btnLanjutRefleksi) {
-        btnLanjutRefleksi.classList.remove('hidden');
-    }
-}
-
-function lanjutKeG4DariRefleksi() {
-    // 1. Sembunyikan halaman refleksi Game 3
-    document.getElementById('reflectionG3Page').classList.add('hidden');
-    
-    // 2. Kembalikan tampilan layar ke halaman pemilihan menu game utama kamu
-    // Kode di bawah ini mengecek id gameSelectionPage atau id gamePage untuk dinonaktifkan
-    const menuUtama = document.getElementById('gameSelectionPage') || document.getElementById('mainMenuPage');
-    if (menuUtama) {
-        menuUtama.classList.remove('hidden');
-    } else {
-        // Jika semua id di atas tidak ketemu, paksa kembali ke startPage halaman depan
-        const startPage = document.getElementById('startPage') || document.getElementById('dashboardPage');
-        if (startPage) startPage.classList.remove('hidden');
-    }
-} 
-// ========================================================
-// 1. FUNGSI SAKTI: PENGAMAN NAVIGASI (ANTI-BOCOR / ANTI-MELUBER)
-// ========================================================
-function sembunyikanSemuaHalaman() {
-    // Daftar semua ID kontainer halaman yang ada di HTML-mu
-    const semuaHalaman = [
-        'loginPage', 
-        'mainMenuPage', 
-        'dashboardPage', 
-        'practicePage', 
-        'gamePage',             // Game 3 (Susun Kata)
-        'selesaiGame3Page',     // Game 3 Selesai
-        'reflectionG3Page',     // Game 3 Refleksi Emoji
-        'gameHandwritingPage',  // Game 4 (Ayo Menulis)
-        'rekamBacaPage',        // Game 5 (Rekam Baca)
-        'reportPage'
-    ];
-    
-    // Paksa semua halaman di atas diberi class 'hidden' (disembunyikan)
-    semuaHalaman.forEach(id => {
-        const elemen = document.getElementById(id);
-        if (elemen) {
-            elemen.classList.add('hidden');
-        }
-    });
-}
-
-// ========================================================
-// 2. REPARASI TOMBOL KEMBALI GAME 4 (Ayo Menulis)
-// ========================================================
-function backToMainMenuFromG4() {
-    console.log("Tombol kembali Game 4 sukses dijalankan!");
-    
-    // Sembunyikan Game 4 dan game lainnya
-    sembunyikanSemuaHalaman();
-    
-    // Tampilkan hanya menu utama kamu yang rapi
-    const menuUtama = document.getElementById('mainMenuPage') || document.getElementById('gameSelectionPage');
-    if (menuUtama) {
-        menuUtama.classList.remove('hidden');
-    }
-}
-
-// ========================================================
-// 3. REPARASI TOMBOL KEMBALI GAME 5 (Rekam Baca & Kamera)
-// ========================================================
-function backToMainMenuFromG5() {
-    console.log("Mencoba menutup Game 5 dan mematikan kamera...");
-
-    // Matikan kamera dengan aman (Mencegah fungsi mogok/freeze di HP atau Laptop)
-    try {
-        // Cek elemen video kodinganmu (#kameraTampil)
-        const videoEl = document.getElementById('kameraTampil');
-        if (videoEl && videoEl.srcObject) {
-            const stream = videoEl.srcObject;
-            stream.getTracks().forEach(track => track.stop());
-            videoEl.srcObject = null;
-            console.log("Hardware Kamera berhasil diputus dengan sukses.");
-        }
-        
-        // Cek juga variabel global stream (jika ada nama localStream di skrip bawahmu)
-        if (typeof localStream !== 'undefined' && localStream) {
-            localStream.getTracks().forEach(track => track.stop());
-            localStream = null;
-        }
-    } catch (error) {
-        console.warn("Kamera sudah mati atau dilepas otomatis oleh browser:", error);
-    }
-
-    // Bersihkan layar dari game yang jebol
-    sembunyikanSemuaHalaman();
-
-    // Munculkan menu utama kembali
-    const menuUtama = document.getElementById('mainMenuPage') || document.getElementById('gameSelectionPage');
-    if (menuUtama) {
-        menuUtama.classList.remove('hidden');
-    }
-    
-    // Reset tampilan menu dalam Game 5 agar kalau dimainkan lagi posisinya normal
-    const areaGameG5 = document.getElementById('areaGameG5');
-    const areaSelesaiG5 = document.getElementById('areaSelesaiG5');
-    if (areaGameG5) areaGameG5.style.display = 'block';
-    if (areaSelesaiG5) areaSelesaiG5.style.display = 'none';
-}
-</script>
+    </script>
 </body>
 </html>
