@@ -177,10 +177,16 @@
         </div>
 
         <div id="mainMenuPage" class="hidden w-full max-w-5xl bg-white rounded-3xl shadow-2xl p-6 md:p-8 border-4 border-teal-500 mx-auto my-auto text-center">
-            <div class="flex justify-between items-center border-b-2 border-dashed border-gray-100 pb-4 mb-8">
+    <div class="flex flex-col sm:flex-row justify-between items-center border-b-2 border-dashed border-gray-100 pb-4 mb-8 gap-4">
+        <div class="flex items-center gap-3">
+            <img src="pak-tri.jpg" alt="Pak Tri" class="w-14 h-14 rounded-full object-cover border-2 border-teal-500 shadow-md">
+            <div class="text-left">
                 <h2 class="text-2xl font-black text-slate-800 kids-title">Selamat Datang, <span class="text-teal-600" id="menuStudentName">Murid</span>!</h2>
-                <button onclick="logout()" class="px-4 py-2 border-2 border-red-200 text-red-500 rounded-xl hover:bg-red-50 font-bold text-xs transition">Keluar</button>
+                <p class="text-[11px] text-gray-500 font-medium tracking-wide">Kelas Interaktif Bersama Pak Tri</p>
             </div>
+        </div>
+        <button onclick="logout()" class="px-4 py-2 border-2 border-red-200 text-red-500 rounded-xl hover:bg-red-50 font-bold text-xs transition shadow-sm">Keluar</button>
+    </div>
             <p class="text-blue-600 font-bold mb-6">Mau Belajar apa hari ini?</p>
             
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4">
