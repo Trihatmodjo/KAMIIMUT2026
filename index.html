@@ -150,8 +150,8 @@
 
         <div id="loginPage" class="w-full max-w-md bg-white rounded-3xl shadow-2xl p-8 border-4 border-teal-400 mx-auto my-auto">
             <div class="text-center mb-8">
-                <div class="inline-flex p-4 bg-teal-100 text-teal-600 rounded-full text-4xl mb-3 animate-bounce shadow-md">
-                    <i class="fa-solid fa-graduation-cap"></i>
+                <div class="inline-flex justify-center items-center mb-3">
+                    <img src="logo.png" alt="Maskot AMI IMUT" class="w-32 h-32 object-contain animate-bounce drop-shadow-xl rounded-full">
                 </div>
                 <h1 class="text-3xl font-black text-teal-600 tracking-tight kids-title">AMI IMUT</h1>
                 <p class="text-gray-500 text-sm mt-1 font-medium">Aplikasi Media Inklusif Interaktif Murid Tunarungu</p>
@@ -629,10 +629,22 @@
 
         function handleLogin() {
             const user = document.getElementById('username').value.trim();
-            if(user){
+            const pin = document.getElementById('password').value;
+
+            const allowedStudents = ["Nafis", "Aura", "Fitri", "Talita", "Zahra", "Naoura", "Tuhfah"];
+            const isStudent = allowedStudents.some(name => user.toLowerCase() === name.toLowerCase());
+            const isTeacher = user.toLowerCase() === "pakguru";
+
+            if ((isStudent || isTeacher) && pin === "2233") {
                 document.getElementById('menuStudentName').innerText = user;
                 document.getElementById('loginPage').classList.add('hidden');
                 document.getElementById('mainMenuPage').classList.remove('hidden');
+            } else if (!isStudent && !isTeacher && user) {
+                alert("Maaf, nama kamu tidak terdaftar di kelas ini.");
+            } else if ((isStudent || isTeacher) && pin !== "2233") {
+                alert("PIN Masuk Kelas salah. Coba lagi!");
+            } else {
+                alert("Mohon masukkan Nama dan PIN Masuk Kelas.");
             }
         }
 
