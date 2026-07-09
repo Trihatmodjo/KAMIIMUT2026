@@ -9,11 +9,12 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght=700&family=Fredoka:wght=400;600;700&family=Poppins:wght=400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght=700&family=Fredoka:wght=400;600;700&family=Poppins:wght=400;600;700;800&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
     <style>
         body { font-family: 'Poppins', sans-serif; }
         .kids-title { font-family: 'Fredoka', sans-serif; }
+        .credit-footer { font-family: 'Outfit', sans-serif; }
         
         #writingPad {
             border: 6px dashed #d946ef;
@@ -27,11 +28,11 @@
 
         .wadah-kuis { 
             background: white; 
-            padding: 25px; 
-            border-radius: 24px; 
+            padding: 20px; 
+            border-radius: 28px; 
             width: 100%; 
-            max-width: 450px; 
-            box-shadow: 0 12px 30px rgba(0,0,0,0.08); 
+            max-width: 440px; 
+            box-shadow: 0 15px 35px rgba(0,0,0,0.08); 
             box-sizing: border-box;
             margin: auto;
             text-align: center;
@@ -39,9 +40,9 @@
         }
         .box-soal {
             background: #f8f9fa;
-            padding: 22px;
-            border-radius: 16px;
-            margin-bottom: 15px;
+            padding: 14px 18px;
+            border-radius: 20px;
+            margin-bottom: 12px;
             border: 3px dashed #007bff; 
         }
         .nomor-soal { 
@@ -75,10 +76,34 @@
             box-shadow: inset 0 -3px 0 rgba(0,0,0,0.05);
         }
         .simbol-isyarat { font-size: 26px; }
-        .Kamera-wrapper { position: relative; width: 100%; border-radius: 16px; overflow: hidden; background: #333; }
+        .Kamera-wrapper { 
+            position: relative; 
+            width: 100%; 
+            max-width: 420px; 
+            margin: 0 auto 12px auto; 
+            border-radius: 24px; 
+            overflow: hidden; 
+            background: #333; 
+            border: 5px solid #4a5568;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
+        }
+        .Kamera-wrapper.recording {
+            border-color: #ff4757;
+            box-shadow: 0 0 25px rgba(255, 71, 87, 0.7);
+        }
         #kameraTampil { width: 100%; display: block; transform: scaleX(-1); }
         #canvasWatermark { display: none; }
-        #hasilRekaman { width: 100%; border-radius: 16px; background: #222; margin-top: 15px; display: none; }
+        #hasilRekaman { 
+            width: 100%; 
+            max-width: 420px; 
+            margin: 0 auto 12px auto; 
+            border-radius: 24px; 
+            background: #222; 
+            display: none; 
+            border: 5px solid #2ed573;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
         .live-watermark {
             position: absolute;
             bottom: 15px;
@@ -92,17 +117,16 @@
             line-height: 1.4;
             font-family: 'Comic Neue', sans-serif;
             z-index: 10;
-        }
-        .btn-utama { 
+        }        .btn-utama { 
             width: 100%; 
-            padding: 16px; 
-            font-size: 18px; 
+            padding: 12px 18px; 
+            font-size: 16px; 
             border: none; 
-            border-radius: 14px; 
+            border-radius: 16px; 
             cursor: pointer; 
             font-weight: 700; 
             transition: 0.2s; 
-            margin-top: 12px;
+            margin-top: 10px;
             font-family: 'Fredoka', sans-serif;
             box-shadow: 0 4px 0 rgba(0,0,0,0.15); 
         }
@@ -111,10 +135,22 @@
         .status-stop { background: #2ed573; color: white; }
         .btn-unduh { background: #ffa502; color: white; display: none; }
         .btn-wa { background: #25D366; color: white; display: none; }
-        .baris-navigasi { display: flex; gap: 10px; margin-top: 12px; }
+        .baris-navigasi { display: flex; gap: 10px; margin-top: 10px; }
         .btn-kembali { background: #a4b0be; color: white; display: none; flex: 1; margin-top: 0; }
         .btn-lanjut { background: #1e90ff; color: white; display: none; flex: 1; margin-top: 0; }
-        .indikator-rekam { display: none; font-size: 18px; font-weight: bold; color: #ff4757; margin: 15px 0; animation: kedip 1s infinite; }
+        .indikator-rekam { 
+            display: none; 
+            font-size: 13px; 
+            font-weight: 800; 
+            color: #ff4757; 
+            margin: 8px auto; 
+            animation: kedip 1s infinite; 
+            background: #fff5f5; 
+            border: 2px solid #ffe3e3; 
+            border-radius: 12px; 
+            padding: 6px 12px; 
+            width: fit-content;
+        }
         @keyframes kedip { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
         .tamat-box { display: none; }
         .tamat-box h2 { color: #2ed573; font-size: 32px; }
@@ -142,38 +178,255 @@
             z-index: 50;
             animation: confetti-fall 2.5s linear infinite;
         }
+
+        /* Hide main footer when logon page is active to prevent page scrolling */
+        body:has(#loginPageWrapper:not(.hidden)) .credit-footer {
+            display: none !important;
+        }
+
+        /* User Manual Styles */
+        .interactive-letter {
+            display: inline-block;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+        }
+        .interactive-letter:hover {
+            transform: scale(1.3) translateY(-8px) rotate(8deg);
+            color: #ff4757;
+            text-shadow: 0 8px 12px rgba(255, 71, 87, 0.3);
+        }
+        
+        .vowel-bubble {
+            transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 8px 0 #0d9488;
+        }
+        .vowel-bubble:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 0 #0d9488;
+        }
+        .vowel-bubble:active {
+            transform: translateY(8px);
+            box-shadow: 0 0px 0 #0d9488;
+        }
+        
+        .bubbly-letter-card {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 65px;
+            height: 65px;
+            font-size: 32px;
+            font-weight: 900;
+            border-radius: 20px;
+            color: white;
+            border: 4px solid #fff;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15), inset 0 -6px 0 rgba(0,0,0,0.2);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            user-select: none;
+            animation: float-letter 3s ease-in-out infinite alternate;
+        }
+        .bubbly-letter-card:hover {
+            transform: scale(1.25) rotate(10deg) translateY(-10px);
+            box-shadow: 0 15px 25px rgba(0,0,0,0.25), inset 0 -6px 0 rgba(0,0,0,0.2);
+        }
+        
+        @keyframes float-letter {
+            0% { transform: translateY(0px) rotate(0deg); }
+            100% { transform: translateY(-6px) rotate(3deg); }
+        }
+
+        @keyframes bounceLetter {
+            0% { transform: scale(0.3); opacity: 0; }
+            50% { transform: scale(1.05); }
+            70% { transform: scale(0.9); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        /* Hide footer on user manual page too */
+        body:has(#userManualPage:not(.hidden)) .credit-footer {
+            display: none !important;
+        }
     </style>
 </head>
 <body class="min-h-screen flex flex-col justify-between items-center p-4 md:p-8 relative overflow-x-hidden bg-slate-50" style="background-image: url('background.jpg'); background-repeat: repeat; background-size: 400px; background-attachment: fixed;">
 
     <div class="w-full flex flex-col justify-center items-center flex-grow">
 
-        <div id="loginPage" class="w-full max-w-md bg-white rounded-3xl shadow-2xl p-8 border-4 border-teal-400 mx-auto my-auto">
-            <div class="text-center mb-8">
-                <div class="inline-flex justify-center items-center mb-3">
-                    <img src="logo.png" alt="Maskot AMI IMUT" class="w-32 h-32 object-contain animate-bounce drop-shadow-xl rounded-full">
+        <div id="loginPageWrapper" class="w-full max-w-md my-auto relative flex flex-col justify-center">
+            <div id="loginPage" class="w-full bg-white rounded-3xl shadow-2xl p-5 md:p-8 border-4 border-teal-400">
+                <div class="text-center mb-5 md:mb-6">
+                    <div class="inline-flex justify-center items-center mb-2 md:mb-3">
+                        <img src="logo.png" alt="Maskot AMI IMUT" class="w-20 h-20 md:w-28 md:h-28 object-contain animate-bounce drop-shadow-xl rounded-full">
+                    </div>
+                    <h1 class="text-2xl md:text-3xl font-black text-teal-600 tracking-tight kids-title">AMI IMUT</h1>
+                    <p class="text-gray-500 text-xs md:text-sm mt-1 font-medium">Aplikasi Media Inklusif Interaktif Murid Tunarungu</p>
                 </div>
-                <h1 class="text-3xl font-black text-teal-600 tracking-tight kids-title">AMI IMUT</h1>
-                <p class="text-gray-500 text-sm mt-1 font-medium">Aplikasi Media Inklusif Interaktif Murid Tunarungu</p>
+
+                <form id="loginForm" onsubmit="event.preventDefault();">
+                    <div class="mb-3 md:mb-4">
+                        <label class="block text-teal-700 text-xs md:text-sm font-black mb-1.5 md:mb-2 flex items-center gap-2 kids-title tracking-wide">
+                            <i class="fa-solid fa-user-astronaut text-teal-500 text-lg"></i> Nama Panggilan Kamu
+                        </label>
+                        <input type="text" id="username" required class="w-full px-4 py-2.5 md:py-3 bg-slate-50 border-2 md:border-4 border-teal-100 rounded-2xl focus:outline-none focus:bg-white focus:ring-4 focus:ring-teal-200 focus:border-teal-400 transition-all font-black text-base md:text-lg text-teal-900 kids-title placeholder:font-medium placeholder:text-slate-400" placeholder="Ketik namamu di sini...">
+                    </div>
+                    <div class="mb-4 md:mb-5">
+                        <label class="block text-teal-700 text-xs md:text-sm font-black mb-1.5 md:mb-2 flex items-center gap-2 kids-title tracking-wide">
+                            <i class="fa-solid fa-key text-teal-500 text-lg"></i> PIN Rahasia Kelas
+                        </label>
+                        <input type="password" id="password" required class="w-full px-4 py-2.5 md:py-3 bg-slate-50 border-2 md:border-4 border-teal-100 rounded-2xl focus:outline-none focus:bg-white focus:ring-4 focus:ring-teal-200 focus:border-teal-400 transition-all font-black text-lg md:text-2xl tracking-widest text-teal-900 placeholder:text-slate-400" placeholder="••••">
+                    </div>
+                    <button type="button" onclick="handleLogin()" class="w-full bg-gradient-to-r from-teal-500 via-emerald-500 to-teal-500 bg-[length:200%_auto] hover:bg-[position:right_center] text-white font-black text-lg md:text-xl py-2.5 md:py-3 px-4 rounded-2xl shadow-[0_6px_0_rgb(20,184,166)] active:shadow-[0_0px_0_rgb(20,184,166)] hover:-translate-y-1 active:translate-y-2 transition-all duration-200 kids-title flex justify-center items-center gap-2">
+                        Ayo Mulai Belajar! <i class="fa-solid fa-rocket animate-bounce"></i>
+                    </button>
+                </form>
+
+                <!-- Tombol Petunjuk Penggunaan (I) -->
+                <div class="flex items-center gap-3 mt-5 pt-3 border-t border-dashed border-slate-100 lg:border-t-0 lg:pt-0 lg:mt-0 lg:absolute lg:top-12 lg:-left-56 z-10 animate-bounce">
+                    <button type="button" onclick="openManualPage()" class="w-12 h-12 bg-gradient-to-r from-teal-400 to-emerald-500 hover:from-teal-500 hover:to-emerald-600 text-white rounded-full flex items-center justify-center border-4 border-white shadow-xl hover:scale-110 active:scale-95 transition-all focus:outline-none cursor-pointer" title="Petunjuk Penggunaan / Buku Panduan">
+                        <span class="font-black text-2xl kids-title">I</span>
+                    </button>
+                    <div class="bg-white/95 backdrop-blur-sm border-2 border-teal-300 py-1.5 px-3 rounded-2xl shadow-md text-[10px] font-black text-teal-800 uppercase tracking-wider kids-title flex items-center gap-1.5">
+                        <i class="fa-solid fa-hand-point-left text-teal-500 animate-pulse text-xs"></i> Klik Aku untuk Panduan!
+                    </div>
+                </div>
+                
+                <div class="mt-5 pt-3 border-t border-dashed border-slate-100 text-center text-[10px] text-slate-400 font-semibold tracking-wide">
+                    &copy; 2026 AMI IMUT &bull; Designed & Developed by Mohammad Trihatmodjo
+                </div>
+            </div>
+        </div>
+
+        <div id="userManualPage" class="hidden w-full max-w-4xl bg-white rounded-3xl shadow-2xl p-6 md:p-8 border-4 border-teal-400 mx-auto my-auto relative text-center">
+            
+            <!-- Header Panduan -->
+            <div class="mb-6">
+                <h1 class="dynamic-interactive text-3xl md:text-4xl font-black kids-title mb-2">Buku Panduan Belajar</h1>
+                <p class="text-gray-500 font-medium text-xs md:text-sm">Pelajari cara mudah menggunakan aplikasi AMI IMUT di sini!</p>
             </div>
 
-            <form id="loginForm" onsubmit="event.preventDefault();">
-                <div class="mb-4">
-                    <label class="block text-teal-700 text-sm font-black mb-2 flex items-center gap-2 kids-title tracking-wide">
-                        <i class="fa-solid fa-user-astronaut text-teal-500 text-lg"></i> Nama Panggilan Kamu
-                    </label>
-                    <input type="text" id="username" required class="w-full px-4 py-3 bg-slate-50 border-4 border-teal-100 rounded-2xl focus:outline-none focus:bg-white focus:ring-4 focus:ring-teal-200 focus:border-teal-400 transition-all font-black text-lg text-teal-900 kids-title placeholder:font-medium placeholder:text-slate-400" placeholder="Ketik namamu di sini...">
+            <!-- Grid 2 Kolom untuk Info & Vokal -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8 text-left">
+                
+                <!-- Kiri: Petunjuk Penggunaan -->
+                <div class="bg-gradient-to-br from-teal-50 to-emerald-50 border-4 border-teal-200 rounded-3xl p-5 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-black text-teal-800 text-lg mb-3 flex items-center gap-2 kids-title">
+                            <i class="fa-solid fa-circle-question text-teal-600"></i> Cara Masuk & Belajar
+                        </h3>
+                        <ol class="space-y-3 text-xs md:text-sm font-semibold text-slate-700 leading-relaxed">
+                            <li class="flex items-start gap-2">
+                                <span class="w-5 h-5 bg-teal-500 text-white rounded-full flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">1</span>
+                                <span>Ketik <strong>Nama Panggilan</strong> kamu di kotak nama.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="w-5 h-5 bg-teal-500 text-white rounded-full flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">2</span>
+                                <span>Masukkan <strong>PIN Kelas: <span class="text-teal-600 underline font-black">2233</span></strong>.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="w-5 h-5 bg-teal-500 text-white rounded-full flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">3</span>
+                                <span>Klik tombol <strong>"Ayo Mulai Belajar! 🚀"</strong>.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="w-5 h-5 bg-teal-500 text-white rounded-full flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">4</span>
+                                <span>Pilih 1 dari <strong>5 Menu Belajar</strong> yang kamu sukai!</span>
+                            </li>
+                        </ol>
+                    </div>
+                    
+                    <div class="mt-4 pt-3 border-t border-dashed border-teal-200">
+                        <p class="text-[11px] text-teal-700 font-bold leading-normal">
+                            💡 <strong>Catatan untuk Guru:</strong> Aplikasi ini melatih pendengaran & ucapan murid tunarungu. Pastikan izin mikrofon browser aktif saat bermain latihan bersuara.
+                        </p>
+                    </div>
                 </div>
-                <div class="mb-6">
-                    <label class="block text-teal-700 text-sm font-black mb-2 flex items-center gap-2 kids-title tracking-wide">
-                        <i class="fa-solid fa-key text-teal-500 text-lg"></i> PIN Rahasia Kelas
-                    </label>
-                    <input type="password" id="password" required class="w-full px-4 py-3 bg-slate-50 border-4 border-teal-100 rounded-2xl focus:outline-none focus:bg-white focus:ring-4 focus:ring-teal-200 focus:border-teal-400 transition-all font-black text-2xl tracking-widest text-teal-900 placeholder:text-slate-400" placeholder="••••">
+
+                <!-- Kanan: Huruf Vokal Interaktif -->
+                <div class="bg-gradient-to-br from-indigo-50 to-purple-50 border-4 border-indigo-200 rounded-3xl p-5 shadow-sm">
+                    <h3 class="font-black text-indigo-800 text-lg mb-2 flex items-center gap-2 kids-title">
+                        <i class="fa-solid fa-face-smile text-indigo-600"></i> Suara & Isyarat Vokal
+                    </h3>
+                    <p class="text-slate-500 text-xs font-semibold mb-4">Ketuk salah satu huruf bulat di bawah ini:</p>
+                    
+                    <!-- Bubble Row -->
+                    <div class="flex justify-between gap-2 mb-4">
+                        <button type="button" onclick="interactVowel('A')" class="vowel-bubble w-11 h-11 md:w-12 md:h-12 bg-gradient-to-r from-rose-400 to-pink-500 hover:from-rose-500 hover:to-pink-600 text-white rounded-2xl font-black text-xl flex items-center justify-center border-2 border-white focus:outline-none cursor-pointer">A</button>
+                        <button type="button" onclick="interactVowel('I')" class="vowel-bubble w-11 h-11 md:w-12 md:h-12 bg-gradient-to-r from-amber-400 to-orange-500 hover:from-amber-500 hover:to-orange-600 text-white rounded-2xl font-black text-xl flex items-center justify-center border-2 border-white focus:outline-none cursor-pointer">I</button>
+                        <button type="button" onclick="interactVowel('U')" class="vowel-bubble w-11 h-11 md:w-12 md:h-12 bg-gradient-to-r from-emerald-400 to-teal-500 hover:from-emerald-500 hover:to-teal-600 text-white rounded-2xl font-black text-xl flex items-center justify-center border-2 border-white focus:outline-none cursor-pointer">U</button>
+                        <button type="button" onclick="interactVowel('E')" class="vowel-bubble w-11 h-11 md:w-12 md:h-12 bg-gradient-to-r from-sky-400 to-blue-500 hover:from-sky-500 hover:to-blue-600 text-white rounded-2xl font-black text-xl flex items-center justify-center border-2 border-white focus:outline-none cursor-pointer">E</button>
+                        <button type="button" onclick="interactVowel('O')" class="vowel-bubble w-11 h-11 md:w-12 md:h-12 bg-gradient-to-r from-fuchsia-400 to-purple-500 hover:from-fuchsia-500 hover:to-purple-600 text-white rounded-2xl font-black text-xl flex items-center justify-center border-2 border-white focus:outline-none cursor-pointer">O</button>
+                    </div>
+
+                    <!-- Detail Artikulasi Vokal -->
+                    <div id="vowelDetailBox" class="bg-white border-2 border-dashed border-indigo-200 rounded-2xl p-4 text-center min-h-[110px] flex flex-col justify-center">
+                        <p class="text-xs font-bold text-slate-400">Pilih huruf di atas untuk melihat panduan gerak mulut & isyarat tangan!</p>
+                    </div>
                 </div>
-                <button type="button" onclick="handleLogin()" class="w-full bg-gradient-to-r from-teal-500 via-emerald-500 to-teal-500 bg-[length:200%_auto] hover:bg-[position:right_center] text-white font-black text-xl py-3 px-4 rounded-2xl shadow-[0_6px_0_rgb(20,184,166)] active:shadow-[0_0px_0_rgb(20,184,166)] hover:-translate-y-1 active:translate-y-2 transition-all duration-200 kids-title flex justify-center items-center gap-2">
+            </div>
+
+            <!-- Bagian Tengah: Papan Huruf Menari (Interactive Keyboard Sandbox) -->
+            <div class="bg-gradient-to-br from-amber-50 to-orange-50 border-4 border-amber-300 rounded-3xl p-5 shadow-sm mb-6 text-center">
+                <h3 class="font-black text-amber-800 text-lg mb-2 kids-title flex justify-center items-center gap-2">
+                    ✨ Papan Huruf Menari ✨
+                </h3>
+                <p class="text-slate-600 text-xs font-semibold mb-4">Ketik kata di bawah ini untuk melihat hurufnya menari, bersuara, dan menampilkan isyarat jari!</p>
+                
+                <!-- Input Box -->
+                <div class="max-w-md mx-auto mb-5">
+                    <input type="text" id="manualSandboxInput" oninput="updateManualSandbox()" class="w-full text-center px-4 py-2.5 bg-white border-4 border-amber-200 rounded-2xl font-black text-lg text-amber-900 tracking-wide focus:ring-4 focus:ring-amber-200 focus:border-amber-400 focus:outline-none transition uppercase" placeholder="Ketik kata di sini..." maxlength="15">
+                </div>
+
+                <!-- Sandbox Render Area -->
+                <div id="manualSandboxOutput" class="flex flex-wrap justify-center items-center gap-3 p-4 bg-white border-4 border-dashed border-amber-200 rounded-2xl min-h-[100px]">
+                    <span class="text-slate-400 text-xs font-bold italic">Tulis kata di kotak atas untuk memunculkan kartu huruf interaktif...</span>
+                </div>
+            </div>
+
+            <!-- Bagian Bawah: Mengenal 5 Menu Belajar -->
+            <div class="mb-6 text-left">
+                <h3 class="dynamic-interactive font-black text-slate-800 text-xl mb-4 text-center kids-title">5 Menu Belajar AMI IMUT</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-3">
+                    
+                    <div class="p-3 bg-indigo-50 border-2 border-indigo-200 rounded-2xl text-center hover:scale-[1.02] transition">
+                        <div class="w-8 h-8 bg-indigo-500 text-white rounded-lg flex items-center justify-center mx-auto mb-2"><i class="fa-solid fa-font text-xs"></i></div>
+                        <h4 class="text-xs font-black text-indigo-900 kids-title mb-0.5">1. Mengucapkan</h4>
+                        <p class="text-[9px] text-indigo-700 font-semibold leading-snug">Ucapkan huruf A-Z dengan mikrofon.</p>
+                    </div>
+
+                    <div class="p-3 bg-amber-50 border-2 border-amber-200 rounded-2xl text-center hover:scale-[1.02] transition">
+                        <div class="w-8 h-8 bg-amber-500 text-white rounded-lg flex items-center justify-center mx-auto mb-2"><i class="fa-solid fa-comments text-xs"></i></div>
+                        <h4 class="text-xs font-black text-amber-900 kids-title mb-0.5">2. Mengeja Kata</h4>
+                        <p class="text-[9px] text-amber-700 font-semibold leading-snug">Eja kata benda bersuku kata (B-O-L-A).</p>
+                    </div>
+
+                    <div class="p-3 bg-emerald-50 border-2 border-emerald-200 rounded-2xl text-center hover:scale-[1.02] transition">
+                        <div class="w-8 h-8 bg-emerald-500 text-white rounded-lg flex items-center justify-center mx-auto mb-2"><i class="fa-solid fa-puzzle-piece text-xs"></i></div>
+                        <h4 class="text-xs font-black text-emerald-900 kids-title mb-0.5">3. Game Susun</h4>
+                        <p class="text-[9px] text-emerald-700 font-semibold leading-snug">Geser kata acak menjadi kalimat yang pas.</p>
+                    </div>
+
+                    <div class="p-3 bg-fuchsia-50 border-2 border-fuchsia-200 rounded-2xl text-center hover:scale-[1.02] transition">
+                        <div class="w-8 h-8 bg-fuchsia-500 text-white rounded-lg flex items-center justify-center mx-auto mb-2"><i class="fa-solid fa-pen-fancy text-xs"></i></div>
+                        <h4 class="text-xs font-black text-fuchsia-900 kids-title mb-0.5">4. Ayo Menulis</h4>
+                        <p class="text-[9px] text-fuchsia-700 font-semibold leading-snug">Tulis kata di papan dengan sentuhan jari.</p>
+                    </div>
+
+                    <div class="p-3 bg-orange-50 border-2 border-orange-200 rounded-2xl text-center hover:scale-[1.02] transition">
+                        <div class="w-8 h-8 bg-orange-500 text-white rounded-lg flex items-center justify-center mx-auto mb-2"><i class="fa-solid fa-video text-xs"></i></div>
+                        <h4 class="text-xs font-black text-orange-900 kids-title mb-0.5">5. Rekam Baca</h4>
+                        <p class="text-[9px] text-orange-700 font-semibold leading-snug">Rekam video kamu membaca & berisyarat.</p>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Tombol Tutup -->
+            <div class="mt-8 border-t-2 border-dashed border-slate-100 pt-5">
+                <button type="button" onclick="closeManualPage()" class="w-full max-w-sm bg-gradient-to-r from-teal-500 to-emerald-500 text-white font-black text-lg py-3 px-6 rounded-2xl shadow-[0_6px_0_rgb(20,184,166)] active:shadow-[0_0px_0_rgb(20,184,166)] hover:-translate-y-1 active:translate-y-2 transition-all duration-200 kids-title flex justify-center items-center gap-2 mx-auto cursor-pointer">
                     Ayo Mulai Belajar! <i class="fa-solid fa-rocket animate-bounce"></i>
                 </button>
-            </form>
+            </div>
+
         </div>
 
         <div id="mainMenuPage" class="hidden w-full max-w-5xl bg-white rounded-3xl shadow-2xl p-6 md:p-8 border-4 border-teal-500 mx-auto my-auto text-center">
@@ -181,7 +434,14 @@
                 <h2 class="text-2xl font-black text-slate-800 kids-title">Selamat Datang, <span class="text-teal-600" id="menuStudentName">Murid</span>!</h2>
                 <button onclick="logout()" class="px-4 py-2 border-2 border-red-200 text-red-500 rounded-xl hover:bg-red-50 font-bold text-xs transition">Keluar</button>
             </div>
-            <p class="text-blue-600 font-bold mb-6">Mau Belajar apa hari ini?</p>
+            <h3 class="kids-title text-2xl md:text-4xl font-black mb-8 tracking-wide drop-shadow-sm flex flex-wrap justify-center gap-x-2.5 gap-y-1">
+                <span class="text-rose-500">Mau</span>
+                <span class="text-amber-500">Belajar</span>
+                <span class="text-emerald-500">apa</span>
+                <span class="text-sky-500">hari</span>
+                <span class="text-indigo-500">ini?</span>
+                <span class="inline-block animate-bounce select-none">✨</span>
+            </h3>
             
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4">
                 <div onclick="switchMenu('mengucapkan')" class="cursor-pointer group p-4 bg-gradient-to-br from-indigo-50 to-indigo-100 border-4 border-indigo-300 hover:border-indigo-500 rounded-3xl shadow-md transition transform hover:-translate-y-2 text-center">
@@ -404,48 +664,94 @@
             </div>
         </div>
 
-        <div id="rekamBacaPage" class="hidden w-full max-w-xl mx-auto my-auto text-center">
-            <div class="mb-4 text-left">
-                <button onclick="backToMainMenuFromG5()" class="px-4 py-2 bg-white border-2 border-dashed border-orange-400 text-orange-600 font-bold rounded-xl text-xs transition shadow-sm hover:bg-orange-50">
-                    <i class="fa-solid fa-chevron-left mr-1"></i> Kembali ke Menu Utama
+        <div id="rekamBacaPage" class="hidden w-full max-w-5xl mx-auto my-auto text-center px-4">
+            <!-- Header navigation -->
+            <div class="mb-6 flex items-center justify-between">
+                <button onclick="backToMainMenuFromG5()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-black rounded-xl text-xs transition flex items-center gap-1 shadow-sm">
+                    <i class="fa-solid fa-chevron-left"></i> Menu Utama
                 </button>
+                <span class="text-xs md:text-sm font-black text-amber-600 bg-amber-50 border-2 border-amber-200 px-4 py-1.5 rounded-full kids-title shadow-sm">
+                    Latihan 5: Rekam Baca & Isyarat 🎥
+                </span>
             </div>
-            <div class="wadah-kuis">
+
+            <!-- Wide card split layout -->
+            <div class="bg-white rounded-3xl shadow-2xl p-5 md:p-8 border-4 border-amber-400 w-full text-center">
                 <div id="areaGameG5">
-                    <div class="box-soal">
-                        <div id="nomorSoalTampil" class="nomor-soal">SOAL 1 DARI 5</div>
-                        <div id="teksSoalTampil" class="teks-soal">Loading Soal...</div>
-                    </div>
+                    <div class="flex flex-col md:flex-row gap-6 md:gap-8 items-center justify-center">
+                        
+                        <!-- Left Column: Camera / Playback -->
+                        <div class="flex-1 flex flex-col justify-center items-center w-full">
+                            <div class="Kamera-wrapper w-full" id="boxKamera">
+                                <video id="kameraTampil" autoplay muted playsinline class="w-full"></video>
+                                <canvas id="canvasWatermark"></canvas>
+                                <div class="live-watermark" id="wmLive">Copyright AMI IMUT 2026</div>
+                            </div>
+                            
+                            <video id="hasilRekaman" class="w-full" controls playsinline></video>
+                            
+                            <div id="statusTeks" class="indikator-rekam">
+                                <i class="fa-solid fa-circle text-[10px] text-red-500 animate-pulse mr-1"></i> MEREKAM VIDEO...
+                            </div>
+                        </div>
+                        
+                        <!-- Right Column: Question & Controls -->
+                        <div class="flex-1 flex flex-col justify-between w-full text-left gap-4">
+                            
+                            <!-- Question Card -->
+                            <div class="bg-slate-50 border-3 border-indigo-200 rounded-2xl p-4 md:p-5 shadow-inner w-full">
+                                <div id="nomorSoalTampil" class="text-xs font-black text-indigo-500 tracking-wider mb-2 uppercase kids-title">SOAL 1 DARI 5</div>
+                                <div id="teksSoalTampil" class="text-2xl md:text-3xl font-black text-slate-800 leading-snug kids-title flex flex-wrap gap-x-2.5 gap-y-1">
+                                    <!-- Dynamic colorful words -->
+                                </div>
+                            </div>
 
-                    <div class="box-instruksi">
-                        <span class="simbol-isyarat" id="simbolPanduan"></span>
-                        <span id="isiPanduan">Klik tombol MERAH and baca kalimat diatas</span>
-                    </div>
+                            <!-- Sign Language Guide -->
+                            <div class="bg-amber-50/50 border-2 border-amber-200 rounded-2xl p-3 md:p-4 flex flex-col sm:flex-row items-center gap-3 shadow-sm w-full">
+                                <div id="simbolPanduan" class="px-4 py-2 bg-gradient-to-r from-amber-400 to-orange-400 text-white rounded-2xl flex items-center justify-center text-3xl shadow-md animate-pulse font-black select-none shrink-0">
+                                    👋
+                                </div>
+                                <div id="isiPanduan" class="text-xs md:text-sm font-bold text-amber-800 leading-snug kids-title">
+                                    Klik tombol MERAH dan baca kalimat di atas
+                                </div>
+                            </div>
 
-                    <div class="Kamera-wrapper" id="boxKamera">
-                        <video id="kameraTampil" autoplay muted playsinline></video>
-                        <canvas id="canvasWatermark"></canvas>
-                        <div class="live-watermark" id="wmLive">Copyright AMI IMUT 2026</div>
-                    </div>
+                            <!-- Buttons -->
+                            <div class="flex flex-col gap-2.5 mt-auto w-full">
+                                <button id="tombolAksi" class="btn-utama status-mulai flex justify-center items-center gap-2 py-2.5 text-base md:text-lg" onclick="kontrolPerekam()">
+                                    <i class="fa-solid fa-circle text-xs text-white animate-pulse"></i> MULAI REKAM
+                                </button>
+                                
+                                <div class="flex flex-col sm:flex-row gap-2.5 w-full">
+                                    <button id="tombolUnduh" class="btn-utama btn-unduh flex-1 flex justify-center items-center gap-2 py-2.5 text-sm md:text-base" onclick="unduhVideoKeHP()">
+                                        <i class="fa-solid fa-file-arrow-down"></i> SIMPAN VIDEO
+                                    </button>
+                                    <button id="tombolWA" class="btn-utama btn-wa flex-1 flex justify-center items-center gap-2 py-2.5 text-sm md:text-base" onclick="kirimKeWhatsApp()">
+                                        <i class="fa-brands fa-whatsapp text-lg"></i> KIRIM KE WA
+                                    </button>
+                                </div>
 
-                    <div id="statusTeks" class="indikator-rekam"> MEREKAM TUGAS KAMU...</div>
-                    
-                    <button id="tombolAksi" class="btn-utama status-mulai" onclick="kontrolPerekam()"> MULAI REKAM</button>
-                    <button id="tombolUnduh" class="btn-utama btn-unduh" onclick="unduhVideoKeHP()"> SIMPAN VIDEO</button>
-                    <button id="tombolWA" class="btn-utama btn-wa" onclick="kirimKeWhatsApp()"> KIRIM WA</button>
-                    
-                    <video id="hasilRekaman" controls playsinline></video>
-                    
-                    <div class="baris-navigasi">
-                        <button id="tombolKembali" class="btn-utama btn-kembali" onclick="soalSebelumnya()">KEMBALI</button>
-                        <button id="tombolLanjut" class="btn-utama btn-lanjut" onclick="soalBerikutnya()">LANJUTKAN</button>
+                                <div class="baris-navigasi flex gap-2.5 w-full border-t border-dashed border-slate-100 pt-3 mt-1">
+                                    <button id="tombolKembali" class="btn-utama btn-kembali flex justify-center items-center gap-1.5 py-2" onclick="soalSebelumnya()">
+                                        <i class="fa-solid fa-arrow-left text-xs"></i> KEMBALI
+                                    </button>
+                                    <button id="tombolLanjut" class="btn-utama btn-lanjut flex justify-center items-center gap-1.5 py-2" onclick="soalBerikutnya()">
+                                        LANJUTKAN <i class="fa-solid fa-arrow-right text-xs"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                        </div>
                     </div>
                 </div>
 
-                <div id="areaSelesaiG5" class="tamat-box">
-                    <h2> HEBAT SEKALI </h2>
-                    <p style="font-size: 20px; font-weight: bold; color: #555;">Semua tugas membaca sudah selesai direkam</p>
-                    <button class="btn-utama text-white mt-4" style="background: #a4b0be;" onclick="ulangDariAwalG5()">Ulangi Latihan</button>
+                <div id="areaSelesaiG5" class="tamat-box py-8 w-full">
+                    <div class="text-6xl text-emerald-500 mb-4 animate-bounce"><i class="fa-solid fa-trophy"></i></div>
+                    <h2 class="text-3xl font-black text-emerald-600 kids-title mb-2">HEBAT SEKALI!</h2>
+                    <p class="text-gray-600 font-bold text-lg mb-6 leading-relaxed">Semua tugas membaca sudah selesai kamu rekam.</p>
+                    <button class="btn-utama text-white max-w-xs mx-auto py-2.5 text-base" style="background: #a4b0be;" onclick="ulangDariAwalG5()">
+                        <i class="fa-solid fa-rotate-left mr-1"></i> Ulangi Latihan
+                    </button>
                 </div>
             </div>
         </div>
@@ -466,18 +772,18 @@
         </div>
     </div>
 
-    <footer class="w-full max-w-5xl mt-12 mx-auto mb-8 px-4">
-        <div class="bg-gradient-to-r from-[#2c3e35] via-[#3e5046] to-[#2c3e35] border border-amber-500/50 rounded-2xl p-6 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-4 text-xs tracking-widest uppercase font-['Poppins']">
+    <footer class="w-full max-w-5xl mt-12 mx-auto mb-8 px-4 credit-footer">
+        <div class="bg-white/80 backdrop-blur-lg border-2 border-teal-100/80 rounded-3xl p-6 shadow-lg flex flex-col md:flex-row items-center justify-between gap-4 text-xs tracking-wider uppercase">
             
-            <div class="flex flex-col sm:flex-row items-center gap-3 text-slate-400 text-center sm:text-left">
-                <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-200 to-yellow-500 font-extrabold">&copy; 2026 AMI IMUT</span> 
-                <span class="hidden sm:inline-block text-slate-600">|</span>
-                <span class="text-slate-300 tracking-wider opacity-90" style="text-transform: none; font-weight: 400;">"Aplikasi Media Inklusif Interaktif Murid Tunarungu"</span>
+            <div class="flex flex-col sm:flex-row items-center gap-3 text-slate-500 text-center sm:text-left">
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-emerald-600 font-black">&copy; 2026 AMI IMUT</span> 
+                <span class="hidden sm:inline-block text-slate-300">|</span>
+                <span class="text-slate-600 font-semibold tracking-wide" style="text-transform: none;">"Aplikasi Media Inklusif Interaktif Murid Tunarungu"</span>
             </div>
             
-            <div class="text-slate-400 flex flex-col sm:flex-row items-center gap-2 font-medium"> 
+            <div class="text-slate-500 flex flex-col sm:flex-row items-center gap-2 font-semibold"> 
                 Designed & Developed by 
-                <span class="text-slate-100 font-bold hover:text-amber-400 transition-colors duration-300 cursor-pointer pb-0.5 border-b border-transparent hover:border-amber-400">
+                <span class="text-teal-600 font-black hover:text-emerald-600 transition-colors duration-300 cursor-pointer pb-0.5 border-b-2 border-transparent hover:border-emerald-600">
                     Mohammad Trihatmodjo
                 </span> 
             </div>
@@ -581,6 +887,7 @@
         window.onload = function() {
             initSpeechRecognition();
             initHandwritingCanvas();
+            initInteractiveText();
         };
 
         function initSpeechRecognition() {
@@ -640,17 +947,11 @@
             const user = document.getElementById('username').value.trim();
             const pin = document.getElementById('password').value;
 
-            const allowedStudents = ["Nafis", "Aura", "Fitri", "Talita", "Zahra", "Naora", "Tuhfah"];
-            const isStudent = allowedStudents.some(name => user.toLowerCase() === name.toLowerCase());
-            const isTeacher = user.toLowerCase() === "pakguru";
-
-            if ((isStudent || isTeacher) && pin === "2233") {
+            if (user && pin === "2233") {
                 document.getElementById('menuStudentName').innerText = user;
-                document.getElementById('loginPage').classList.add('hidden');
+                document.getElementById('loginPageWrapper').classList.add('hidden');
                 document.getElementById('mainMenuPage').classList.remove('hidden');
-            } else if (!isStudent && !isTeacher && user) {
-                alert("Maaf, nama kamu tidak terdaftar di kelas ini.");
-            } else if ((isStudent || isTeacher) && pin !== "2233") {
+            } else if (user && pin !== "2233") {
                 alert("PIN Masuk Kelas salah. Coba lagi!");
             } else {
                 alert("Mohon masukkan Nama dan PIN Masuk Kelas.");
@@ -661,11 +962,12 @@
             document.getElementById('username').value = "";
             document.getElementById('password').value = "";
             document.getElementById('mainMenuPage').classList.add('hidden');
-            document.getElementById('loginPage').classList.remove('hidden');
+            document.getElementById('loginPageWrapper').classList.remove('hidden');
         }
 
         function sembunyikanSemuaHalaman() {
-            document.getElementById('loginPage').classList.add('hidden');
+            document.getElementById('loginPageWrapper').classList.add('hidden');
+            document.getElementById('userManualPage').classList.add('hidden');
             document.getElementById('mainMenuPage').classList.add('hidden');
             document.getElementById('dashboardPage').classList.add('hidden');
             document.getElementById('practicePage').classList.add('hidden');
@@ -1086,6 +1388,14 @@
             document.getElementById('mainMenuPage').classList.remove('hidden');
         }
 
+        function buatTeksWarnaWarni(kalimat) {
+            const warna = ['text-rose-500', 'text-amber-500', 'text-emerald-500', 'text-sky-500', 'text-indigo-500', 'text-fuchsia-500'];
+            return kalimat.split(" ").map((kata, idx) => {
+                const kelasWarna = warna[idx % warna.length];
+                return `<span class="${kelasWarna} inline-block transition-transform duration-200 hover:scale-110 hover:-rotate-1 cursor-default select-none">${kata}</span>`;
+            }).join(" ");
+        }
+
         function bukaSoalG5() {
             document.getElementById('hasilRekaman').style.display = 'none';
             document.getElementById('tombolUnduh').style.display = 'none';
@@ -1094,7 +1404,7 @@
 
             const data = databaseG5Rekam[g5Index];
             document.getElementById('nomorSoalTampil').innerText = `SOAL ${g5Index + 1} DARI 5`;
-            document.getElementById('teksSoalTampil').innerText = data.kalimat;
+            document.getElementById('teksSoalTampil').innerHTML = buatTeksWarnaWarni(data.kalimat);
             document.getElementById('simbolPanduan').innerText = data.isyarat;
 
             document.getElementById('tombolKembali').style.display = (g5Index > 0) ? 'block' : 'none';
@@ -1153,8 +1463,9 @@
             videoChunksG5 = [];
             
             document.getElementById('statusTeks').style.display = 'block';
-            document.getElementById('tombolAksi').innerText = "⏹ STOP REKAMAN";
-            document.getElementById('tombolAksi').className = "btn-utama status-stop";
+            document.getElementById('tombolAksi').innerHTML = `<i class="fa-solid fa-square mr-1"></i> HENTIKAN REKAMAN`;
+            document.getElementById('tombolAksi').className = "btn-utama status-stop flex justify-center items-center gap-2";
+            document.getElementById('boxKamera').classList.add('recording');
             
             document.getElementById('hasilRekaman').style.display = 'none';
             document.getElementById('tombolUnduh').style.display = 'none';
@@ -1215,8 +1526,9 @@
         function stopRekamG5() {
             isRecordingG5 = false;
             document.getElementById('statusTeks').style.display = 'none';
-            document.getElementById('tombolAksi').innerText = "🔴 MULAI REKAM";
-            document.getElementById('tombolAksi').className = "btn-utama status-mulai";
+            document.getElementById('tombolAksi').innerHTML = `<i class="fa-solid fa-circle text-xs text-white animate-pulse mr-1"></i> MULAI REKAM`;
+            document.getElementById('tombolAksi').className = "btn-utama status-mulai flex justify-center items-center gap-2";
+            document.getElementById('boxKamera').classList.remove('recording');
 
             if(mediaRecorderG5 && mediaRecorderG5.state !== 'inactive') {
                 mediaRecorderG5.stop();
@@ -1284,6 +1596,140 @@
         function closeReportPage() {
             sembunyikanSemuaHalaman();
             document.getElementById('mainMenuPage').classList.remove('hidden');
+        }
+
+        /* USER MANUAL FUNCTIONS */
+        function openManualPage() {
+            sembunyikanSemuaHalaman();
+            document.getElementById('userManualPage').classList.remove('hidden');
+        }
+
+        function closeManualPage() {
+            sembunyikanSemuaHalaman();
+            document.getElementById('loginPageWrapper').classList.remove('hidden');
+        }
+
+        function initInteractiveText() {
+            const targets = document.querySelectorAll('.dynamic-interactive');
+            targets.forEach(el => {
+                const text = el.innerText;
+                el.innerHTML = '';
+                [...text].forEach(char => {
+                    const span = document.createElement('span');
+                    span.innerText = char === ' ' ? '\u00A0' : char;
+                    if (char !== ' ') {
+                        span.className = 'interactive-letter';
+                        const colors = ['#f43f5e', '#f59e0b', '#10b981', '#06b6d4', '#6366f1', '#d946ef'];
+                        span.style.color = colors[Math.floor(Math.random() * colors.length)];
+                    }
+                    el.appendChild(span);
+                });
+            });
+        }
+
+        function interactVowel(v) {
+            // Play vowel vocal sound
+            putarSuaraKata(v);
+            
+            // Get visual articulation and sign info
+            const vowelData = {
+                'A': {
+                    ejaan: "Aaaa...",
+                    mulut: "Buka mulut lebar-lebar seperti saat tertawa atau dokter memeriksa tenggorokan.",
+                    isyarat: "✊ (Ibu jari rapat di samping telapak tangan mengepal)"
+                },
+                'I': {
+                    ejaan: "Iiii...",
+                    mulut: "Bibir ditarik lebar ke samping seperti tersenyum, gigi atas-bawah rapat.",
+                    isyarat: "🤙 (Jari kelingking tegak ke atas, jari lainnya mengepal)"
+                },
+                'U': {
+                    ejaan: "Uuuu...",
+                    mulut: "Bibir dimajukan ke depan dan membulat kecil seperti monyong/bersiul.",
+                    isyarat: "✌️ (Jari telunjuk & tengah tegak rapat ke atas)"
+                },
+                'E': {
+                    ejaan: "Eeee...",
+                    mulut: "Bibir dibuka sedikit lebar ke samping, lidah mendatar di dalam.",
+                    isyarat: "✊ (Semua jari ditekuk rapat ke bawah menyentuh telapak)"
+                },
+                'O': {
+                    ejaan: "Oooo...",
+                    mulut: "Bibir dibuka bulat penuh membentuk lingkaran seperti kaget.",
+                    isyarat: "👌 (Semua ujung jari melingkar menyentuh ibu jari)"
+                }
+            };
+            
+            const data = vowelData[v];
+            const detailBox = document.getElementById('vowelDetailBox');
+            if (detailBox && data) {
+                detailBox.innerHTML = `
+                    <div style="animation: bounceLetter 0.4s ease;">
+                        <p class="text-xs uppercase font-extrabold text-indigo-600 tracking-wider">Membaca Huruf: <span class="text-lg font-black underline">${v}</span></p>
+                        <p class="text-sm font-black text-slate-800 mt-1">👄 Gerak Mulut: <span class="font-bold text-slate-600">${data.mulut}</span></p>
+                        <p class="text-sm font-black text-indigo-700 mt-1">👋 Isyarat Jari SIBI: <span class="font-extrabold text-lg">${data.isyarat}</span></p>
+                    </div>
+                `;
+            }
+        }
+
+        function updateManualSandbox() {
+            const inputVal = document.getElementById('manualSandboxInput').value.trim().toUpperCase();
+            const outputArea = document.getElementById('manualSandboxOutput');
+            
+            if (!outputArea) return;
+            
+            if (!inputVal) {
+                outputArea.innerHTML = `<span class="text-slate-400 text-xs font-bold italic">Tulis kata di kotak atas untuk memunculkan kartu huruf interaktif...</span>`;
+                return;
+            }
+            
+            outputArea.innerHTML = '';
+            
+            // Map character to sign language gestures emoji/hints for kids
+            const signGifs = {
+                'A': '✊ (A)', 'B': '✊ (B)', 'C': '👌 (C)', 'D': '☝️ (D)', 'E': '✊ (E)', 'F': '👌 (F)', 'G': '✊ (G)',
+                'H': '✌️ (H)', 'I': '🤙 (I)', 'J': '🤙 (J)', 'K': '✌️ (K)', 'L': '☝️ (L)', 'M': '✊ (M)', 'N': '✊ (N)',
+                'O': '👌 (O)', 'P': '✊ (P)', 'Q': '✊ (Q)', 'R': '✌️ (R)', 'S': '✊ (S)', 'T': '✊ (T)', 'U': '✌️ (U)',
+                'V': '✌️ (V)', 'W': '🖐️ (W)', 'X': '☝️ (X)', 'Y': '🤙 (Y)', 'Z': '☝️ (Z)'
+            };
+            
+            const cardGradients = [
+                'from-rose-400 to-pink-500',
+                'from-amber-400 to-orange-500',
+                'from-emerald-400 to-teal-500',
+                'from-sky-400 to-blue-500',
+                'from-indigo-400 to-purple-500',
+                'from-fuchsia-400 to-pink-500'
+            ];
+            
+            [...inputVal].forEach((char, index) => {
+                if (char === ' ') {
+                    const spaceDiv = document.createElement('div');
+                    spaceDiv.className = 'w-6 h-1';
+                    outputArea.appendChild(spaceDiv);
+                    return;
+                }
+                
+                const grad = cardGradients[index % cardGradients.length];
+                const card = document.createElement('button');
+                card.type = 'button';
+                card.className = `bubbly-letter-card bg-gradient-to-br ${grad} focus:outline-none flex flex-col justify-center items-center cursor-pointer`;
+                card.style.animationDelay = `${index * 0.1}s`;
+                
+                card.innerHTML = `
+                    <span class="kids-title text-2xl font-black">${char}</span>
+                    <span class="text-[8px] opacity-80 font-bold mt-[-4px]">${signGifs[char] ? signGifs[char].split(' ')[0] : '👋'}</span>
+                `;
+                
+                card.onclick = () => {
+                    putarSuaraKata(char);
+                    card.classList.add('scale-95');
+                    setTimeout(() => card.classList.remove('scale-95'), 150);
+                };
+                
+                outputArea.appendChild(card);
+            });
         }
     </script>
 </body>
