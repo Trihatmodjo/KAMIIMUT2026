@@ -257,7 +257,7 @@
             <div id="loginPage" class="w-full bg-white rounded-3xl shadow-2xl p-5 md:p-8 border-4 border-teal-400">
                 <div class="text-center mb-5 md:mb-6">
                     <div class="inline-flex justify-center items-center mb-2 md:mb-3">
-                        <img src="logo.png" alt="Maskot AMI IMUT" class="w-20 h-20 md:w-28 md:h-28 object-contain animate-bounce drop-shadow-xl rounded-full">
+                        <img src="logo.png" alt="Maskot AMI IMUT" class="w-20 h-20 md:w-28 md:h-28 object-contain rounded-full bg-white p-1 border-4 border-teal-400 ring-4 ring-emerald-300 shadow-[0_0_25px_rgba(20,184,166,0.8)] transition-all duration-300 hover:scale-105">
                     </div>
                     <h1 class="text-2xl md:text-3xl font-black text-teal-600 tracking-tight kids-title">AMI IMUT</h1>
                     <p class="text-gray-500 text-xs md:text-sm mt-1 font-medium">Aplikasi Media Inklusif Interaktif Murid Tunarungu</p>
@@ -282,8 +282,8 @@
                 </form>
 
                 <!-- Tombol Petunjuk Penggunaan (I) -->
-                <div class="flex items-center gap-3 mt-5 pt-3 border-t border-dashed border-slate-100 lg:border-t-0 lg:pt-0 lg:mt-0 lg:absolute lg:top-12 lg:-left-56 z-10 animate-bounce">
-                    <button type="button" onclick="openManualPage()" class="w-12 h-12 bg-gradient-to-r from-teal-400 to-emerald-500 hover:from-teal-500 hover:to-emerald-600 text-white rounded-full flex items-center justify-center border-4 border-white shadow-xl hover:scale-110 active:scale-95 transition-all focus:outline-none cursor-pointer" title="Petunjuk Penggunaan / Buku Panduan">
+                <div class="fixed bottom-6 left-6 z-40 flex items-center gap-3 animate-bounce">
+                    <button type="button" onclick="openManualPage()" class="w-12 h-12 bg-gradient-to-r from-teal-400 to-emerald-500 hover:from-teal-500 hover:to-emerald-600 text-white rounded-full flex items-center justify-center border-4 border-white shadow-xl hover:scale-110 active:scale-95 transition-all focus:outline-none cursor-pointer" title="Petunjuk Penggunaan / Panduan Belajar">
                         <span class="font-black text-2xl kids-title">I</span>
                     </button>
                     <div class="bg-white/95 backdrop-blur-sm border-2 border-teal-300 py-1.5 px-3 rounded-2xl shadow-md text-[10px] font-black text-teal-800 uppercase tracking-wider kids-title flex items-center gap-1.5">
@@ -301,129 +301,115 @@
             
             <!-- Header Panduan -->
             <div class="mb-6">
-                <h1 class="dynamic-interactive text-3xl md:text-4xl font-black kids-title mb-2">Buku Panduan Belajar</h1>
-                <p class="text-gray-500 font-medium text-xs md:text-sm">Pelajari cara mudah menggunakan aplikasi AMI IMUT di sini!</p>
+                <h1 class="dynamic-interactive text-3xl md:text-4xl font-black kids-title mb-2">Panduan Belajar</h1>
+                <p class="text-gray-500 font-medium text-xs md:text-sm">Mengenal AMI IMUT - Belajar seru untuk anak hebat! ✨</p>
             </div>
 
             <!-- Grid 2 Kolom untuk Info & Vokal -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8 text-left">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6 text-left">
                 
-                <!-- Kiri: Petunjuk Penggunaan -->
-                <div class="bg-gradient-to-br from-teal-50 to-emerald-50 border-4 border-teal-200 rounded-3xl p-5 shadow-sm flex flex-col justify-between">
-                    <div>
-                        <h3 class="font-black text-teal-800 text-lg mb-3 flex items-center gap-2 kids-title">
-                            <i class="fa-solid fa-circle-question text-teal-600"></i> Cara Masuk & Belajar
+                <!-- Kolom Kiri: Tentang Aplikasi & Cara Masuk -->
+                <div class="flex flex-col gap-4">
+                    <!-- Kartu Info Aplikasi -->
+                    <div class="bg-gradient-to-br from-teal-500 to-emerald-500 text-white rounded-3xl p-5 shadow-md border-b-4 border-teal-700">
+                        <h3 class="font-black text-lg mb-2 flex items-center gap-2 kids-title">
+                            <i class="fa-solid fa-star text-yellow-300"></i> Apa itu AMI IMUT?
                         </h3>
-                        <ol class="space-y-3 text-xs md:text-sm font-semibold text-slate-700 leading-relaxed">
-                            <li class="flex items-start gap-2">
-                                <span class="w-5 h-5 bg-teal-500 text-white rounded-full flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">1</span>
-                                <span>Ketik <strong>Nama Panggilan</strong> kamu di kotak nama.</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <span class="w-5 h-5 bg-teal-500 text-white rounded-full flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">2</span>
-                                <span>Masukkan <strong>PIN Kelas: <span class="text-teal-600 underline font-black">2233</span></strong>.</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <span class="w-5 h-5 bg-teal-500 text-white rounded-full flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">3</span>
-                                <span>Klik tombol <strong>"Ayo Mulai Belajar! 🚀"</strong>.</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <span class="w-5 h-5 bg-teal-500 text-white rounded-full flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">4</span>
-                                <span>Pilih 1 dari <strong>5 Menu Belajar</strong> yang kamu sukai!</span>
-                            </li>
-                        </ol>
-                    </div>
-                    
-                    <div class="mt-4 pt-3 border-t border-dashed border-teal-200">
-                        <p class="text-[11px] text-teal-700 font-bold leading-normal">
-                            💡 <strong>Catatan untuk Guru:</strong> Aplikasi ini melatih pendengaran & ucapan murid tunarungu. Pastikan izin mikrofon browser aktif saat bermain latihan bersuara.
+                        <p class="text-xs md:text-sm font-medium leading-relaxed opacity-95">
+                            <strong>AMI IMUT</strong> (Aplikasi Media Inklusif Interaktif Murid Tunarungu) dirancang khusus untuk melatih ucapan artikulasi vokal, mengeja, menulis, dan membaca isyarat secara interaktif dan menyenangkan!
                         </p>
+                    </div>
+
+                    <!-- Kartu Panduan Masuk -->
+                    <div class="bg-white border-4 border-teal-100 rounded-3xl p-5 shadow-sm">
+                        <h3 class="font-black text-teal-800 text-base mb-3 flex items-center gap-2 kids-title">
+                            <i class="fa-solid fa-rocket text-teal-500"></i> Cara Mulai Belajar
+                        </h3>
+                        <ul class="space-y-2.5 text-xs font-semibold text-slate-700">
+                            <li class="flex items-center gap-2">
+                                <span class="w-5 h-5 bg-teal-500 text-white rounded-full flex items-center justify-center font-bold text-xs shrink-0">1</span>
+                                <span>Ketik <strong>Nama Panggilan</strong> kamu.</span>
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <span class="w-5 h-5 bg-teal-500 text-white rounded-full flex items-center justify-center font-bold text-xs shrink-0">2</span>
+                                <span>Masukkan PIN Kelas: <strong class="text-teal-600 bg-teal-50 px-2 py-0.5 rounded border border-teal-200">2233</strong></span>
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <span class="w-5 h-5 bg-teal-500 text-white rounded-full flex items-center justify-center font-bold text-xs shrink-0">3</span>
+                                <span>Klik <strong>"Ayo Mulai Belajar!"</strong> dan pilih materi!</span>
+                            </li>
+                        </ul>
                     </div>
                 </div>
 
-                <!-- Kanan: Huruf Vokal Interaktif -->
-                <div class="bg-gradient-to-br from-indigo-50 to-purple-50 border-4 border-indigo-200 rounded-3xl p-5 shadow-sm">
-                    <h3 class="font-black text-indigo-800 text-lg mb-2 flex items-center gap-2 kids-title">
-                        <i class="fa-solid fa-face-smile text-indigo-600"></i> Suara & Isyarat Vokal
-                    </h3>
-                    <p class="text-slate-500 text-xs font-semibold mb-4">Ketuk salah satu huruf bulat di bawah ini:</p>
-                    
-                    <!-- Bubble Row -->
-                    <div class="flex justify-between gap-2 mb-4">
-                        <button type="button" onclick="interactVowel('A')" class="vowel-bubble w-11 h-11 md:w-12 md:h-12 bg-gradient-to-r from-rose-400 to-pink-500 hover:from-rose-500 hover:to-pink-600 text-white rounded-2xl font-black text-xl flex items-center justify-center border-2 border-white focus:outline-none cursor-pointer">A</button>
-                        <button type="button" onclick="interactVowel('I')" class="vowel-bubble w-11 h-11 md:w-12 md:h-12 bg-gradient-to-r from-amber-400 to-orange-500 hover:from-amber-500 hover:to-orange-600 text-white rounded-2xl font-black text-xl flex items-center justify-center border-2 border-white focus:outline-none cursor-pointer">I</button>
-                        <button type="button" onclick="interactVowel('U')" class="vowel-bubble w-11 h-11 md:w-12 md:h-12 bg-gradient-to-r from-emerald-400 to-teal-500 hover:from-emerald-500 hover:to-teal-600 text-white rounded-2xl font-black text-xl flex items-center justify-center border-2 border-white focus:outline-none cursor-pointer">U</button>
-                        <button type="button" onclick="interactVowel('E')" class="vowel-bubble w-11 h-11 md:w-12 md:h-12 bg-gradient-to-r from-sky-400 to-blue-500 hover:from-sky-500 hover:to-blue-600 text-white rounded-2xl font-black text-xl flex items-center justify-center border-2 border-white focus:outline-none cursor-pointer">E</button>
-                        <button type="button" onclick="interactVowel('O')" class="vowel-bubble w-11 h-11 md:w-12 md:h-12 bg-gradient-to-r from-fuchsia-400 to-purple-500 hover:from-fuchsia-500 hover:to-purple-600 text-white rounded-2xl font-black text-xl flex items-center justify-center border-2 border-white focus:outline-none cursor-pointer">O</button>
+                <!-- Kolom Kanan: Fitur Interaktif Coba Suara/Isyarat -->
+                <div class="bg-gradient-to-br from-indigo-50 to-purple-50 border-4 border-indigo-200 rounded-3xl p-5 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-black text-indigo-800 text-base mb-1.5 flex items-center gap-2 kids-title">
+                            <i class="fa-solid fa-face-smile text-indigo-600"></i> Coba Suara & Isyarat Vokal
+                        </h3>
+                        <p class="text-slate-500 text-xs font-semibold mb-3">Ketuk salah satu huruf untuk mendengar suara & cara mengucapkannya:</p>
+                        
+                        <!-- Bubble Row -->
+                        <div class="flex justify-between gap-1.5 mb-3">
+                            <button type="button" onclick="interactVowel('A')" class="vowel-bubble w-10 h-10 md:w-11 md:h-11 bg-gradient-to-r from-rose-400 to-pink-500 hover:from-rose-500 hover:to-pink-600 text-white rounded-2xl font-black text-lg flex items-center justify-center border-2 border-white focus:outline-none cursor-pointer">A</button>
+                            <button type="button" onclick="interactVowel('I')" class="vowel-bubble w-10 h-10 md:w-11 md:h-11 bg-gradient-to-r from-amber-400 to-orange-500 hover:from-amber-500 hover:to-orange-600 text-white rounded-2xl font-black text-lg flex items-center justify-center border-2 border-white focus:outline-none cursor-pointer">I</button>
+                            <button type="button" onclick="interactVowel('U')" class="vowel-bubble w-10 h-10 md:w-11 md:h-11 bg-gradient-to-r from-emerald-400 to-teal-500 hover:from-emerald-500 hover:to-teal-600 text-white rounded-2xl font-black text-lg flex items-center justify-center border-2 border-white focus:outline-none cursor-pointer">U</button>
+                            <button type="button" onclick="interactVowel('E')" class="vowel-bubble w-10 h-10 md:w-11 md:h-11 bg-gradient-to-r from-sky-400 to-blue-500 hover:from-sky-500 hover:to-blue-600 text-white rounded-2xl font-black text-lg flex items-center justify-center border-2 border-white focus:outline-none cursor-pointer">E</button>
+                            <button type="button" onclick="interactVowel('O')" class="vowel-bubble w-10 h-10 md:w-11 md:h-11 bg-gradient-to-r from-fuchsia-400 to-purple-500 hover:from-fuchsia-500 hover:to-purple-600 text-white rounded-2xl font-black text-lg flex items-center justify-center border-2 border-white focus:outline-none cursor-pointer">O</button>
+                        </div>
                     </div>
 
                     <!-- Detail Artikulasi Vokal -->
-                    <div id="vowelDetailBox" class="bg-white border-2 border-dashed border-indigo-200 rounded-2xl p-4 text-center min-h-[110px] flex flex-col justify-center">
-                        <p class="text-xs font-bold text-slate-400">Pilih huruf di atas untuk melihat panduan gerak mulut & isyarat tangan!</p>
+                    <div id="vowelDetailBox" class="bg-white border-2 border-dashed border-indigo-200 rounded-2xl p-3 text-center min-h-[90px] flex flex-col justify-center">
+                        <p class="text-[11px] font-bold text-slate-400">Ketuk huruf di atas untuk melihat panduan mulut & isyarat tangan!</p>
                     </div>
                 </div>
+
             </div>
 
-            <!-- Bagian Tengah: Papan Huruf Menari (Interactive Keyboard Sandbox) -->
-            <div class="bg-gradient-to-br from-amber-50 to-orange-50 border-4 border-amber-300 rounded-3xl p-5 shadow-sm mb-6 text-center">
-                <h3 class="font-black text-amber-800 text-lg mb-2 kids-title flex justify-center items-center gap-2">
-                    ✨ Papan Huruf Menari ✨
-                </h3>
-                <p class="text-slate-600 text-xs font-semibold mb-4">Ketik kata di bawah ini untuk melihat hurufnya menari, bersuara, dan menampilkan isyarat jari!</p>
-                
-                <!-- Input Box -->
-                <div class="max-w-md mx-auto mb-5">
-                    <input type="text" id="manualSandboxInput" oninput="updateManualSandbox()" class="w-full text-center px-4 py-2.5 bg-white border-4 border-amber-200 rounded-2xl font-black text-lg text-amber-900 tracking-wide focus:ring-4 focus:ring-amber-200 focus:border-amber-400 focus:outline-none transition uppercase" placeholder="Ketik kata di sini..." maxlength="15">
-                </div>
-
-                <!-- Sandbox Render Area -->
-                <div id="manualSandboxOutput" class="flex flex-wrap justify-center items-center gap-3 p-4 bg-white border-4 border-dashed border-amber-200 rounded-2xl min-h-[100px]">
-                    <span class="text-slate-400 text-xs font-bold italic">Tulis kata di kotak atas untuk memunculkan kartu huruf interaktif...</span>
-                </div>
-            </div>
-
-            <!-- Bagian Bawah: Mengenal 5 Menu Belajar -->
-            <div class="mb-6 text-left">
-                <h3 class="dynamic-interactive font-black text-slate-800 text-xl mb-4 text-center kids-title">5 Menu Belajar AMI IMUT</h3>
-                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-3">
+            <!-- Bagian Bawah: Menu Belajar (Sangat Ringkas & Menarik) -->
+            <div class="bg-slate-50 rounded-3xl p-5 border-4 border-slate-100 mb-6 text-left">
+                <h3 class="font-black text-slate-800 text-sm mb-3 text-center kids-title uppercase tracking-wider">🌟 5 Menu Belajar Seru 🌟</h3>
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2.5">
                     
-                    <div class="p-3 bg-indigo-50 border-2 border-indigo-200 rounded-2xl text-center hover:scale-[1.02] transition">
-                        <div class="w-8 h-8 bg-indigo-500 text-white rounded-lg flex items-center justify-center mx-auto mb-2"><i class="fa-solid fa-font text-xs"></i></div>
-                        <h4 class="text-xs font-black text-indigo-900 kids-title mb-0.5">1. Mengucapkan</h4>
-                        <p class="text-[9px] text-indigo-700 font-semibold leading-snug">Ucapkan huruf A-Z dengan mikrofon.</p>
+                    <div class="p-2.5 bg-white border-2 border-indigo-100 rounded-2xl text-center hover:scale-[1.03] transition duration-200 shadow-sm">
+                        <div class="w-7 h-7 bg-indigo-500 text-white rounded-lg flex items-center justify-center mx-auto mb-1.5 shadow-sm text-xs"><i class="fa-solid fa-font"></i></div>
+                        <h4 class="text-[10px] font-black text-indigo-900 kids-title leading-tight">1. Mengucapkan</h4>
+                        <p class="text-[9px] text-indigo-500 font-bold mt-0.5">Latihan bersuara A-Z</p>
                     </div>
 
-                    <div class="p-3 bg-amber-50 border-2 border-amber-200 rounded-2xl text-center hover:scale-[1.02] transition">
-                        <div class="w-8 h-8 bg-amber-500 text-white rounded-lg flex items-center justify-center mx-auto mb-2"><i class="fa-solid fa-comments text-xs"></i></div>
-                        <h4 class="text-xs font-black text-amber-900 kids-title mb-0.5">2. Mengeja Kata</h4>
-                        <p class="text-[9px] text-amber-700 font-semibold leading-snug">Eja kata benda bersuku kata (B-O-L-A).</p>
+                    <div class="p-2.5 bg-white border-2 border-amber-100 rounded-2xl text-center hover:scale-[1.03] transition duration-200 shadow-sm">
+                        <div class="w-7 h-7 bg-amber-500 text-white rounded-lg flex items-center justify-center mx-auto mb-1.5 shadow-sm text-xs"><i class="fa-solid fa-comments"></i></div>
+                        <h4 class="text-[10px] font-black text-amber-900 kids-title leading-tight">2. Mengeja Kata</h4>
+                        <p class="text-[9px] text-amber-500 font-bold mt-0.5">Eja gabungan kata benda</p>
                     </div>
 
-                    <div class="p-3 bg-emerald-50 border-2 border-emerald-200 rounded-2xl text-center hover:scale-[1.02] transition">
-                        <div class="w-8 h-8 bg-emerald-500 text-white rounded-lg flex items-center justify-center mx-auto mb-2"><i class="fa-solid fa-puzzle-piece text-xs"></i></div>
-                        <h4 class="text-xs font-black text-emerald-900 kids-title mb-0.5">3. Game Susun</h4>
-                        <p class="text-[9px] text-emerald-700 font-semibold leading-snug">Geser kata acak menjadi kalimat yang pas.</p>
+                    <div class="p-2.5 bg-white border-2 border-emerald-100 rounded-2xl text-center hover:scale-[1.03] transition duration-200 shadow-sm">
+                        <div class="w-7 h-7 bg-emerald-500 text-white rounded-lg flex items-center justify-center mx-auto mb-1.5 shadow-sm text-xs"><i class="fa-solid fa-puzzle-piece"></i></div>
+                        <h4 class="text-[10px] font-black text-emerald-900 kids-title leading-tight">3. Game Susun</h4>
+                        <p class="text-[9px] text-emerald-500 font-bold mt-0.5">Menyusun kalimat acak</p>
                     </div>
 
-                    <div class="p-3 bg-fuchsia-50 border-2 border-fuchsia-200 rounded-2xl text-center hover:scale-[1.02] transition">
-                        <div class="w-8 h-8 bg-fuchsia-500 text-white rounded-lg flex items-center justify-center mx-auto mb-2"><i class="fa-solid fa-pen-fancy text-xs"></i></div>
-                        <h4 class="text-xs font-black text-fuchsia-900 kids-title mb-0.5">4. Ayo Menulis</h4>
-                        <p class="text-[9px] text-fuchsia-700 font-semibold leading-snug">Tulis kata di papan dengan sentuhan jari.</p>
+                    <div class="p-2.5 bg-white border-2 border-fuchsia-100 rounded-2xl text-center hover:scale-[1.03] transition duration-200 shadow-sm">
+                        <div class="w-7 h-7 bg-fuchsia-500 text-white rounded-lg flex items-center justify-center mx-auto mb-1.5 shadow-sm text-xs"><i class="fa-solid fa-pen-fancy"></i></div>
+                        <h4 class="text-[10px] font-black text-fuchsia-900 kids-title leading-tight">4. Ayo Menulis</h4>
+                        <p class="text-[9px] text-fuchsia-500 font-bold mt-0.5">Menulis jawaban di layar</p>
                     </div>
 
-                    <div class="p-3 bg-orange-50 border-2 border-orange-200 rounded-2xl text-center hover:scale-[1.02] transition">
-                        <div class="w-8 h-8 bg-orange-500 text-white rounded-lg flex items-center justify-center mx-auto mb-2"><i class="fa-solid fa-video text-xs"></i></div>
-                        <h4 class="text-xs font-black text-orange-900 kids-title mb-0.5">5. Rekam Baca</h4>
-                        <p class="text-[9px] text-orange-700 font-semibold leading-snug">Rekam video kamu membaca & berisyarat.</p>
+                    <div class="p-2.5 bg-white border-2 border-orange-100 rounded-2xl text-center hover:scale-[1.03] transition duration-200 shadow-sm col-span-2 sm:col-span-1">
+                        <div class="w-7 h-7 bg-orange-500 text-white rounded-lg flex items-center justify-center mx-auto mb-1.5 shadow-sm text-xs"><i class="fa-solid fa-video"></i></div>
+                        <h4 class="text-[10px] font-black text-orange-900 kids-title leading-tight">5. Rekam Baca</h4>
+                        <p class="text-[9px] text-orange-500 font-bold mt-0.5">Rekam video bicara & isyarat</p>
                     </div>
 
                 </div>
             </div>
 
             <!-- Tombol Tutup -->
-            <div class="mt-8 border-t-2 border-dashed border-slate-100 pt-5">
-                <button type="button" onclick="closeManualPage()" class="w-full max-w-sm bg-gradient-to-r from-teal-500 to-emerald-500 text-white font-black text-lg py-3 px-6 rounded-2xl shadow-[0_6px_0_rgb(20,184,166)] active:shadow-[0_0px_0_rgb(20,184,166)] hover:-translate-y-1 active:translate-y-2 transition-all duration-200 kids-title flex justify-center items-center gap-2 mx-auto cursor-pointer">
-                    Ayo Mulai Belajar! <i class="fa-solid fa-rocket animate-bounce"></i>
+            <div class="pt-2">
+                <button type="button" onclick="closeManualPage()" class="w-full max-w-xs bg-gradient-to-r from-teal-500 to-emerald-500 text-white font-black text-base py-3 px-6 rounded-2xl shadow-[0_6px_0_rgb(20,184,166)] active:shadow-[0_0px_0_rgb(20,184,166)] hover:-translate-y-1 active:translate-y-2 transition-all duration-200 kids-title flex justify-center items-center gap-2 mx-auto cursor-pointer">
+                    Kembali Ke Halaman Utama <i class="fa-solid fa-circle-xmark"></i>
                 </button>
             </div>
 
